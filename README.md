@@ -21,6 +21,9 @@ De bestandsnamen doen ertoe: de navigatie bouwt links op als
 `${groep}-${moment}-${scherm}.html`, dus hernoemen breekt het wisselen tussen
 organisatie en periode.
 
-`tokens.css`, `foundation.css`, `components.css`, `icons.js` en `assets/` zijn kopieën uit het
-[Engage design system](https://effectory-ux.github.io/Engage-Design-system-/), zodat dit
-prototype op zichzelf werkt.
+De motor en de opmaak komen rechtstreeks van het
+[Engage design system](https://effectory-ux.github.io/Engage-Design-system-/):
+`effectiveness.js`, `effectiveness.css`, `i18n.js`, de tokens, componenten, `icons.js` en
+de assets worden daar geladen. Deze repo bevat alleen de 24 schermen en de landingspagina.
+Een wijziging in het design system is hier meteen zichtbaar; verhuist die site, dan moeten
+deze links mee.
