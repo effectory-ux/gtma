@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GTMA prototype · Effectory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="foundation.css" />
+<style>
+  body {
+    margin: 0; min-height: 100vh;
+    display: grid; place-items: center;
+    background: var(--bg-secondary);
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: var(--content-base);
+  }
+  .wrap { width: 100%; max-width: 640px; padding: var(--spacing-loose); }
+  h1 { font-size: 26px; margin: 0 0 var(--spacing-tight); }
+  .lead { font-size: 14px; line-height: 1.6; color: var(--content-secondary); margin: 0 0 var(--spacing-loose); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-base-tight); }
+  .card {
+    display: block; padding: var(--spacing-base);
+    background: var(--bg-base);
+    border: 1px solid var(--border-base);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--sh-card);
+    text-decoration: none; color: inherit;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .card:hover { box-shadow: var(--sh-card-hover); transform: translateY(-1px); }
+  .org { font-size: 16px; font-weight: 600; }
+  .moment { font-size: 12px; color: var(--content-secondary); margin-top: 2px; }
+  .note { font-size: 12px; color: var(--content-subtle); line-height: 1.7; margin-top: var(--spacing-loose); }
+  .note a { color: var(--content-action); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>GTMA prototype</h1>
+    <p class="lead">De oude en nieuwe situatie naast elkaar, voor twee voorbeeldorganisaties.
+       Elk moment heeft zes schermen: overview, scores, thema's, focus, rapporten en acties.
+       Binnen een scherm wissel je van moment en van organisatie via de kop.</p>
+
+    <div class="grid">
+      <a class="card" href="novanta-before-overview.html">
+        <span class="org">Novanta</span>
+        <span class="moment">Q2 · de oude situatie</span>
+      </a>
+      <a class="card" href="novanta-after-overview.html">
+        <span class="org">Novanta</span>
+        <span class="moment">Q3 · de nieuwe situatie</span>
+      </a>
+      <a class="card" href="team-it-before-overview.html">
+        <span class="org">Team IT</span>
+        <span class="moment">Q2 · de oude situatie</span>
+      </a>
+      <a class="card" href="team-it-after-overview.html">
+        <span class="org">Team IT</span>
+        <span class="moment">Q3 · de nieuwe situatie</span>
+      </a>
+    </div>
+
+    <p class="note">Verhuisd uit effectory-design-documentation.
+       Alle prototypes staan bij elkaar in de
+       <a href="https://effectory-ux.github.io/prototypes/">galerij</a>.</p>
+  </div>
+</body>
+</html>
