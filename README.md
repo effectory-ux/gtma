@@ -40,8 +40,15 @@ Drie dingen om te weten voor je hierop verder bouwt:
 - **Het scale-chip-vocabulaire kent geen "Single choice".** Twee vragen (frequentie en
   productiviteitswinst) zijn single choice; die krijgen hier een chip die het `single-answer`-icoon en
   de groene accenttokens hergebruikt. Prototype-lokaal, nog niet in de referentie.
-- **De vragenlijst opent met een intro** die uitlegt wat "AI" in deze survey betekent. Dat blok zit
-  niet in het referentie-scherm; het is hier toegevoegd omdat het bij de template-inhoud hoort.
+- **De intro-tekst van de template staat niet in deze schermen.** `English_FINAL` opent met een
+  ongenummerde regel die uitlegt wat "AI" in deze survey betekent. Dat is tekst voor de deelnemer,
+  geen vraag, en het questionnaire-overzicht heeft er geen plek voor — dus is die er bewust uit
+  gelaten. Hij hoort in de GTMA-kant van deze repo, niet in de Questions-stap. De tekst zelf:
+
+  > For this survey, Artificial Intelligence (AI) refers to ways of working where AI supports or
+  > shapes how work gets done, such as: generating or refining content (for example writing,
+  > summarizing, brainstorming); automating or assisting tasks and workflows; analyzing data to
+  > identify patterns, trends, risks, or opportunities that support decisions.
 
 ## Hoe het in elkaar zit
 

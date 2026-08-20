@@ -82,10 +82,6 @@
     .q-scale-icon.is-nps    { background: var(--bg-accent-blue-subtle);   color: var(--content-accent-blue); }
     .q-scale-icon.is-yesno  { background: var(--bg-accent-green-subtle);  color: var(--content-accent-green); }
     .q-scale-icon.is-single { background: var(--bg-accent-green-subtle); color: var(--content-accent-green); }
-    /* Template intro shown above the first section (AI Adoption Scan defines "AI"). */
-    .q-intro { background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); padding: var(--spacing-base) var(--spacing-loose); margin-bottom: var(--spacing-extra-loose); }
-    .q-intro p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
-    .q-intro ul { margin: var(--spacing-tight) 0 0; padding-left: var(--spacing-loose); font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
     .q-list .tag.is-standard { flex-shrink: 0; background: var(--bg-brand-subtle); color: var(--content-accent-turquoise); }
 
     /* ── Footer action bar ── */
@@ -493,19 +489,6 @@
   if (!QUESTIONNAIRES[templateName]) templateName = 'AI Adoption Scan';
   var meta = TEMPLATE_META[templateName];
 
-  /* Intro text a template can show above its first section. The AI Adoption Scan
-     opens with a definition so every respondent answers about the same thing. */
-  var INTROS = {
-    "AI Adoption Scan": {
-      lead: 'For this survey, Artificial Intelligence (AI) refers to ways of working where AI supports or shapes how work gets done, such as:',
-      items: [
-        'Generating or refining content (for example writing, summarizing, brainstorming)',
-        'Automating or assisting tasks and workflows',
-        'Analyzing data to identify patterns, trends, risks, or opportunities that support decisions'
-      ]
-    }
-  };
-
   var SCALE_TYPES = {
     scale:  ['point-scale', '5-point scale'],
     choice: ['check-square', 'Multiple choice'],
@@ -563,12 +546,7 @@
   }
 
   // Questionnaire — one card of rows per section, headed by the section + a count pill
-  var intro = INTROS[templateName];
-  document.getElementById('questionnaire').innerHTML = (intro
-    ? '<div class="q-intro"><p>' + esc(intro.lead) + '</p><ul>' +
-      intro.items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') +
-      '</ul></div>'
-    : '') + QUESTIONNAIRES[templateName].map(function (sec) {
+  document.getElementById('questionnaire').innerHTML = QUESTIONNAIRES[templateName].map(function (sec) {
     return '<div class="q-topic">' +
       '<div class="q-head">' +
         '<h2 class="text-l5">' + esc(sec[0]) + '</h2>' +

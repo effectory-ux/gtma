@@ -180,10 +180,6 @@
     .q-scale-icon.is-nps    { background: var(--bg-accent-blue-subtle);   color: var(--content-accent-blue); }
     .q-scale-icon.is-yesno  { background: var(--bg-accent-green-subtle);  color: var(--content-accent-green); }
     .q-scale-icon.is-single { background: var(--bg-accent-green-subtle); color: var(--content-accent-green); }
-    /* Template intro shown above the first section (AI Adoption Scan defines "AI"). */
-    .q-intro { background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); padding: var(--spacing-base) var(--spacing-loose); }
-    .q-intro p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
-    .q-intro ul { margin: var(--spacing-tight) 0 0; padding-left: var(--spacing-loose); font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
     /* Same grey-tag gap: Eff Tag has no subtle brand fill, so this one is local. */
     .q-list .tag.is-standard { flex-shrink: 0; background: var(--bg-brand-subtle); color: var(--content-accent-turquoise); }
     @media (max-width: 860px) { .q-scale { width: auto; } .q-scale span:last-child { display: none; } }
@@ -1048,19 +1044,6 @@
   function illustration(name, alt) {
     return '<img class="tpl-card-img" src="https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/' + name + '.svg" alt="' + esc(alt) + '" />';
   }
-  /* Intro text a template can show above its first section. The AI Adoption Scan
-     opens with a definition so every respondent answers about the same thing. */
-  var INTROS = {
-    "AI Adoption Scan": {
-      lead: 'For this survey, Artificial Intelligence (AI) refers to ways of working where AI supports or shapes how work gets done, such as:',
-      items: [
-        'Generating or refining content (for example writing, summarizing, brainstorming)',
-        'Automating or assisting tasks and workflows',
-        'Analyzing data to identify patterns, trends, risks, or opportunities that support decisions'
-      ]
-    }
-  };
-
   /* Scale kind -> icon + label + accent (the .is-* class colours the chip). */
   var SCALE_TYPES = {
     scale:  ['point-scale', '5-point scale'],
@@ -1076,15 +1059,9 @@
   function questionnaireHTML(templateName) {
     var sections = QUESTIONNAIRES[templateName];
     if (!sections || !sections.length) return '';
-    var intro = INTROS[templateName];
-    var introHTML = intro
-      ? '<div class="q-intro"><p>' + esc(intro.lead) + '</p><ul>' +
-        intro.items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') +
-        '</ul></div>'
-      : '';
     return '<div>' +
       '<h3 class="text-l4 q-title">Questionnaire</h3>' +
-      '<div class="q-panel">' + introHTML +
+      '<div class="q-panel">' +
         sections.map(function (sec) {
           return '<div>' +
             '<div class="q-head">' +
