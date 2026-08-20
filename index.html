@@ -16,8 +16,10 @@
     font-family: 'Poppins', system-ui, sans-serif;
     color: var(--content-base);
   }
-  .wrap { width: 100%; max-width: 640px; padding: var(--spacing-loose); }
+  .wrap { width: 100%; max-width: 640px; padding: var(--spacing-extra-loose) var(--spacing-loose); }
   h1 { font-size: 26px; margin: 0 0 var(--spacing-tight); }
+  h2 { font-size: 18px; margin: var(--spacing-extra-loose) 0 var(--spacing-base-tight); }
+  h2:first-of-type { margin-top: 0; }
   .lead { font-size: 14px; line-height: 1.6; color: var(--content-secondary); margin: 0 0 var(--spacing-loose); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-base-tight); }
   .card {
@@ -43,6 +45,8 @@
        Elk moment heeft zes schermen: overview, scores, thema's, focus, rapporten en acties.
        Binnen een scherm wissel je van moment en van organisatie via de kop.</p>
 
+    <h2>Resultaten-demo</h2>
+
     <div class="grid">
       <a class="card" href="novanta-before-overview.html">
         <span class="org">Novanta</span>
@@ -59,6 +63,30 @@
       <a class="card" href="team-it-after-overview.html">
         <span class="org">Team IT</span>
         <span class="moment">Q3 · de nieuwe situatie</span>
+      </a>
+    </div>
+
+    <h2>AI Adoption Scan</h2>
+    <p class="lead">Vier losse schermen rond de AI Adoption Scan-template: de template kiezen,
+       de vragenlijst bekijken, en de resultaten per thema en per vraag. De vragen en
+       thema-omschrijvingen komen uit de template zelf.</p>
+
+    <div class="grid">
+      <a class="card" href="ai-adoption-scan-template-dialog.html">
+        <span class="org">Template kiezen</span>
+        <span class="moment">Dialog &middot; Choose a survey template</span>
+      </a>
+      <a class="card" href="ai-adoption-scan-questionnaire.html">
+        <span class="org">Vragenlijst</span>
+        <span class="moment">CYOS &middot; Questions-stap</span>
+      </a>
+      <a class="card" href="ai-adoption-scan-themes.html">
+        <span class="org">Thema's</span>
+        <span class="moment">Resultaten &middot; zes stages</span>
+      </a>
+      <a class="card" href="ai-adoption-scan-scores.html">
+        <span class="org">Scores</span>
+        <span class="moment">Resultaten &middot; alle vragen</span>
       </a>
     </div>
 

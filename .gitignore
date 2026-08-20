@@ -1,0 +1,4 @@
+# Design-system skill cache (fetched on demand, never committed)
+.ds-cache/
+# Local dev-server config
+.claude/
