@@ -530,7 +530,7 @@
      rewrite it when reusing this screen; it is what the live app says. */
   var TEMPLATES = [
     {
-      img: 'esg-template',
+      img: 'ai-template',
       name: 'AI Adoption Scan',
       sub: 'Available in 3 projects',
       meta: 'Standard template \u00b7 24 questions \u00b7 5 minutes',
@@ -1041,8 +1041,15 @@
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
+  /* Template art lives in the design system, except AI Adoption Scan — the design
+     system has no AI illustration yet, so that one ships from this repo until it does. */
+  var TPL_ART = 'https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/';
+  var TPL_ART_LOCAL = { 'ai-template': 'assets/illustrations/templates/ai-template.svg' };
+  function tplArtSrc(name) {
+    return TPL_ART_LOCAL[name] || TPL_ART + name + '.svg';
+  }
   function illustration(name, alt) {
-    return '<img class="tpl-card-img" src="https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/' + name + '.svg" alt="' + esc(alt) + '" />';
+    return '<img class="tpl-card-img" src="' + tplArtSrc(name) + '" alt="' + esc(alt) + '" />';
   }
   /* Scale kind -> icon + label + accent (the .is-* class colours the chip). */
   var SCALE_TYPES = {

@@ -35,8 +35,11 @@ de benchmark. Zo is er iets te vieren én iets te bespreken.
 
 Drie dingen om te weten voor je hierop verder bouwt:
 
-- **Er is geen AI-illustratie in het design system.** Deze schermen leunen op `esg-template.svg` als
-  tijdelijke stand-in, dus de template-kaart deelt zijn plaatje met de ESG Scan.
+- **De AI-illustratie komt uit deze repo, niet uit het design system.** Al het andere op deze
+  schermen laadt van de design-system-site, maar daar zit nog geen AI-illustratie. Daarom staat
+  `assets/illustrations/templates/ai-template.svg` hier, en wijst alleen dat ene pad lokaal.
+  Zodra de illustratie in `assets.tar.gz` van het design system zit, kan het lokale bestand weg en
+  gaat het pad terug naar de site — zoek op `TPL_ART_LOCAL`.
 - **Het scale-chip-vocabulaire kent geen "Single choice".** Twee vragen (frequentie en
   productiviteitswinst) zijn single choice; die krijgen hier een chip die het `single-answer`-icoon en
   de groene accenttokens hergebruikt. Prototype-lokaal, nog niet in de referentie.

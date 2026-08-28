@@ -124,7 +124,7 @@
 
       <div class="card card-elevated tmpl-card">
         <div class="tmpl-card-top">
-          <img id="tmplImg" src="https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/sf-template.svg" alt="" />
+          <img id="tmplImg" src="assets/illustrations/templates/ai-template.svg" alt="" />
           <div>
             <h2 class="text-l4 tmpl-card-name" id="tmplName">Strategic Fitness Model</h2>
             <p class="text-medium tmpl-card-meta" id="tmplMeta">Standard template · 22 questions · 4 minutes</p>
@@ -467,7 +467,7 @@
 
   /* Template meta, mirroring create-survey-dialog.html */
   var TEMPLATE_META = {
-    "AI Adoption Scan": { img: "esg-template", meta: "Standard template \u00b7 24 questions \u00b7 5 minutes" },
+    "AI Adoption Scan": { img: "ai-template", meta: "Standard template \u00b7 24 questions \u00b7 5 minutes" },
     "Strategic Fitness Model": { img: "sf-template", meta: "Standard template \u00b7 22 questions \u00b7 4 minutes" },
     "World-class workplace Scan": { img: "wcwp-template", meta: "Standard template \u00b7 15 questions \u00b7 3 minutes" },
     "Diversity, Equity & Inclusion (DEI)": { img: "dei-template", meta: "Standard template \u00b7 44 questions \u00b7 8 minutes" },
@@ -532,7 +532,11 @@
   document.getElementById('surveyName').textContent = surveyName;
   document.getElementById('tmplName').textContent = templateName;
   document.getElementById('tmplMeta').textContent = meta.meta;
-  document.getElementById('tmplImg').src = 'https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/' + meta.img + '.svg';
+  /* Template art lives in the design system, except AI Adoption Scan — the design
+     system has no AI illustration yet, so that one ships from this repo until it does. */
+  var TPL_ART_LOCAL = { 'ai-template': 'assets/illustrations/templates/ai-template.svg' };
+  document.getElementById('tmplImg').src = TPL_ART_LOCAL[meta.img] ||
+    'https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/' + meta.img + '.svg';
   document.title = surveyName + ' \u2014 Questions';
 
   // the Questions step summarises the template: "N questions \u00b7 N mins"
