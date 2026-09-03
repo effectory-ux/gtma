@@ -69,3 +69,13 @@ De motor en de opmaak komen rechtstreeks van het
 de assets worden daar geladen. Deze repo bevat alleen de 24 schermen en de landingspagina.
 Een wijziging in het design system is hier meteen zichtbaar; verhuist die site, dan moeten
 deze links mee.
+
+## Prototype toolbar
+
+Elke schermpagina draagt de gedeelde [prototype toolbar](https://github.com/effectory-ux/prototype-toolbar)
+(`toolbar/`, een kopie van de gepubliceerde release; `toolbar/update.sh` ververst hem): wissel tussen **Before (Q2)** en **After (Q3)**, spring naar een
+scherm, en bekijk dezelfde schermen voor Team IT. Lokaal staat hij altijd aan. Live alleen via de
+collega-link, bijvoorbeeld
+https://effectory-ux.github.io/gtma/novanta-after-overview.html?gtma-7c2m-toolbar-active —
+zonder `?gtma-7c2m-toolbar-active` is het de schone versie voor testers. Wat de toolbar toont staat
+in `proto-config.js`; de toolbar zelf verandert alleen via `toolbar/` (zie `CLAUDE.md`).
