@@ -27,7 +27,6 @@
     ["ai-adoption-scan-scores.html", "Scores", "18 scale questions per theme, with Effectory Index"]
   ];
   window.PROTO_TOOLBAR = {
-    key: "gtma-7c2m",          // the ?<key>-toolbar-active gate of the live site
     prefix: "gtma",            // localStorage namespace
     name: "GTMA",              // badge on pages outside the before/after grid
     live: "https://effectory-ux.github.io/gtma/",
