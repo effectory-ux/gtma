@@ -35,7 +35,10 @@
      bar itself rewrites the URL into canonical form, and that part ships with
      every release. */
   function flagged() {
-    try { return /[?&]prototype-toolbar(?:[=&]|$)/.test(location.href); }
+    /* A hash may follow the flag: the bar's own carry() puts the flag in the
+       query, so a link to a page with a hash route arrives as
+       ?prototype-toolbar#themes. Belongs upstream in prototype-toolbar. */
+    try { return /[?&]prototype-toolbar(?:[=&#]|$)/.test(location.href); }
     catch (e) { return false; }
   }
   var params;

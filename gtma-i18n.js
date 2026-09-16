@@ -91,6 +91,9 @@
   /* ── Walking the page ── */
   var busy = false;
   var ATTRS = ['aria-label', 'placeholder', 'title'];
+  /* The prototype toolbar is not part of the product: it is the bar colleagues
+     review with, written by its own repo, and it stays in its own words. */
+  var SKIP = '[data-i18n-skip], .pbar';
 
   function translateNode(n) {
     var raw = n.nodeValue, key = raw.trim();
@@ -112,7 +115,7 @@
         if (p && /SCRIPT|STYLE|TEXTAREA/.test(p.tagName)) continue;
         /* data-i18n-skip marks text that must stay as it is: the language menu
            names every language in its own language. */
-        if (p && p.closest('[data-i18n-skip]')) continue;
+        if (p && p.closest(SKIP)) continue;
         nodes.push(w.currentNode);
       }
       nodes.forEach(translateNode);
@@ -120,6 +123,7 @@
         var els = root.querySelectorAll ? [].slice.call(root.querySelectorAll('[' + a + ']')) : [];
         if (root.nodeType === 1 && root.hasAttribute && root.hasAttribute(a)) els.push(root);
         els.forEach(function (el) {
+          if (el.closest && el.closest(SKIP)) return;
           var val = el.getAttribute(a), v = t(val);
           if (v !== val) el.setAttribute(a, v);
         });

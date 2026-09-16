@@ -7,9 +7,9 @@
        overview. The old address stays alive so links already handed out keep
        working; it sends you straight on. -->
   <link rel="canonical" href="surveys.html" />
-  <meta http-equiv="refresh" content="0; url=surveys.html" />
 </head>
 <body>
+  <script>location.replace(ProtoToolbar.carry(ProtoToolbar.startPath() || "surveys.html"));</script>
   <p>This screen moved to <a href="surveys.html">surveys.html</a>.</p>
   <script>location.replace('surveys.html' + location.search + location.hash);</script>
 </body>
