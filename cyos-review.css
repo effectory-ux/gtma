@@ -1,0 +1,27 @@
+/* ══ Review and plan ══
+   The closing summary, shared by every step so the dialog opens from wherever
+   you are. One card per step instead of a ruled list, and one shared label
+   column, so the values line up in a single column you can read straight down. */
+/* .overlay sets its own display, which beats the browser's [hidden] rule, so the
+   dialog would sit open on any page that does not already carry this. */
+#rpOv[hidden] { display: none !important; }
+
+.rp-dlg { gap: var(--spacing-loose); max-height: 100%; }
+/* One stacked card, the way the email rows on the layout step are built. */
+.rp-list { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); }
+.rp-step { padding: var(--spacing-base); border-bottom: 1px solid var(--border-base); }
+.rp-step:last-child { border-bottom: none; }
+.rp-head { display: flex; align-items: center; gap: var(--spacing-base-tight); margin-bottom: var(--spacing-base-tight); }
+.rp-tile { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: var(--radius-base); background: var(--bg-secondary); color: var(--content-brand); }
+.rp-tile i { width: 18px; height: 18px; display: flex; }
+/* One accent per step, so each block is recognisable at a glance. */
+.rp-tile.is-questions { background: var(--bg-brand-subtle); color: var(--content-brand); }
+.rp-tile.is-people { background: var(--bg-accent-blue-subtle); color: var(--content-accent-blue); }
+.rp-tile.is-period { background: var(--bg-accent-purple-subtle); color: var(--bg-accent-purple-base); }
+.rp-tile.is-design { background: var(--bg-accent-orange-subtle); color: var(--content-accent-orange); }
+.rp-title { margin: 0; font-size: 14px; font-weight: 600; color: var(--content-base); }
+.rp-edit { margin-left: auto; }
+.rp-facts { display: grid; grid-template-columns: 152px 1fr; gap: var(--spacing-tight) var(--spacing-base-tight); margin: 0; font-size: 14px; }
+.rp-facts dt { color: var(--content-secondary); }
+.rp-facts dd { margin: 0; font-weight: 500; color: var(--content-base); }
+.rp-facts dd .rp-note { font-weight: 400; color: var(--content-secondary); }

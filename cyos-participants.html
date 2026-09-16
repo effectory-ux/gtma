@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYOS — Participants</title>
+  <!-- Poppins comes straight from its files instead of through a stylesheet on
+       another host. That stylesheet is only cached for ten minutes, so every
+       navigation after that waited on a round trip before the font could even be
+       found, and the text was laid out twice: once in the fallback, once in
+       Poppins. The font files themselves are cached for a year. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/tokens.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/foundation.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/components.css" />
+  <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("effx-theme")||"light")}catch(e){}</script>
+  <link rel="stylesheet" href="cyos-review.css" />
+  <style>
+    body { background: var(--bg-base); }
+
+    /* Components that set their own display beat the browser's [hidden] rule, and this
+       screen toggles a lot of them. One rule instead of chasing them one by one. */
+    [hidden] { display: none !important; }
+
+    /* .tt-demo in components.css is the docs wrapper and shows the bubble permanently.
+       Gate it on hover, the same three lines the other prototypes here carry. */
+    .tt-demo { position: relative; display: inline-flex; }
+    /* The bubble is placed in a fixed layer on hover. Parking it there from the start
+       too keeps an idle tooltip from widening whatever box it sits in: absolutely
+       positioned, it still counted towards the scroll width and gave the Select groups
+       dialog a horizontal scrollbar. */
+    .tt-demo .tooltip { position: fixed; left: 0; top: 0; opacity: 0; pointer-events: none; transition: opacity var(--motion-fast) var(--ease-out); }
+    /* The tooltip inherits white-space from whatever it sits in, and the toggle label
+       here is nowrap to keep "Random sample" on one line. Without this the bubble can't
+       wrap and its text gets cut off at the 240px max-width. */
+    .tooltip { white-space: normal; }
+    .tt-demo:hover .tooltip, .tt-demo:focus-within .tooltip { opacity: 1; }
+
+    /* ══ CYOS shell ══
+       The same shell as the questionnaire screen in this repo, which is also the one
+       the live app uses: logo bar, four-step rail, 1000px column, fixed action bar. */
+    .cyos { display: flex; flex-direction: column; min-height: 100vh; }
+    .cyos-main { flex: 1; padding: var(--spacing-extra-loose) var(--spacing-loose) 120px; }
+    .cyos-inner { max-width: 1000px; margin-inline: auto; }
+
+    /* The name bar stays put while you scroll, so you always see which survey you
+       are setting up. The stepper scrolls with the page underneath it. */
+    .cyos-head { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; height: 65px; padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-base); border-bottom: 1px solid var(--border-base); }
+    .cyos-logo { width: 40px; height: 40px; flex-shrink: 0; margin-right: var(--spacing-base); }
+    .cyos-name-group { display: flex; align-items: center; gap: var(--spacing-tight); min-width: 0; }
+    .cyos-name-group i[data-icon] { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-secondary); }
+    .cyos-survey-name { margin: 0; color: var(--content-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cyos-head-actions { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-tight); }
+
+    /* The rail is wider than the content column and spreads its steps: max 1300px,
+       centred, space-between, 24px gutters. The hairline belongs to the bar around it,
+       so it runs the full width. */
+    /* The rail sticks under the name bar instead of disappearing behind it, so the
+       two read as one header. */
+    /* Walking to the next step loads a page. A short cross-fade between the two
+       is the difference between stepping and blinking. */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .16s; }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+    }
+    .cyos-steps-bar { position: sticky; top: 65px; z-index: 15; padding: 12px 0; background: var(--bg-base); border-bottom: 1px solid var(--border-base); overflow-x: auto; }
+    /* The steps are drawn by script, so the bar keeps their height free from the
+       start and the content below it stays where it is. */
+    .cyos-steps { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-loose); max-width: 1300px; margin-inline: auto; padding: 0 var(--spacing-loose); }
+    .cyos-step { display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-extra-tight) var(--spacing-base); border: none; background: transparent; border-radius: var(--radius-base); font-family: inherit; text-align: left; cursor: pointer; }
+    .cyos-step:hover { background: var(--bg-base-hover); }
+    .cyos-step-badge { flex-shrink: 0; display: flex; align-items: center; }
+    .cyos-step-circle { position: relative; z-index: 2; width: 28px; height: 28px; margin-right: -4px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-base); border-radius: var(--radius-full); background: var(--bg-secondary-hover); color: var(--content-secondary); font-size: 14px; font-weight: 500; }
+    .cyos-step-circle i { width: 16px; height: 16px; display: flex; }
+    .cyos-step-tile { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-secondary-hover); color: var(--content-secondary); }
+    .cyos-step-tile i { width: 24px; height: 24px; display: flex; }
+    .cyos-step.is-done .cyos-step-circle { background: var(--bg-positive); color: var(--content-on-brand-base); border-color: var(--bg-base); }
+    .cyos-step.is-active .cyos-step-circle,
+    .cyos-step.is-active .cyos-step-tile { background: var(--bg-brand-subtle-selected); }
+    .cyos-step.is-active .cyos-step-circle { color: var(--content-brand-secondary); }
+    .cyos-step.is-active .cyos-step-tile { color: var(--content-brand-secondary); }
+    /* Every page renders this rail from scratch, and the subtitles differ per step and
+       per state. Fixing the step width and reserving two subtitle lines keeps the bar
+       identical from page to page, so it no longer shifts on navigation. */
+    .cyos-step { width: 262px; }
+    .cyos-step-body { min-width: 0; flex: 1; }
+    .cyos-step-title { white-space: nowrap; }
+    .cyos-step-sub { min-height: 2.6em; }
+    .cyos-step-title { margin: 0; color: var(--content-secondary); }
+    .cyos-step.is-active .cyos-step-title { color: var(--content-base); }
+    .cyos-step-sub { margin: 0; color: var(--content-secondary); }
+    .cyos-step-sep { display: flex; align-items: center; color: var(--content-subtle); }
+    .cyos-step-sep i { width: 16px; height: 16px; display: flex; }
+
+    .cyos-foot { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-base) var(--spacing-loose); background: var(--bg-base); border-top: 1px solid var(--border-base); box-shadow: var(--sh-footer); }
+    .cyos-foot-right { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-base-tight); }
+    .cyos-saved { font-size: 14px; color: var(--content-secondary); }
+    /* The live app title-cases these labels in CSS, so the source strings stay sentence case. */
+    .cyos-foot .btn { text-transform: capitalize; }
+
+    /* ══ Participants header ══ */
+    .pt-head { display: flex; align-items: center; gap: var(--spacing-base); margin-bottom: var(--spacing-loose); }
+    .pt-head-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex-shrink: 0; border-radius: var(--radius-md); background: var(--bg-brand-subtle); color: var(--content-brand); }
+    .pt-head-icon i { width: 24px; height: 24px; display: flex; }
+    .pt-head-txt { flex: 1; min-width: 0; }
+    .pt-title { margin: 0; font-size: 26px; font-weight: 600; line-height: 1.3; color: var(--content-base); }
+    .pt-sub { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+    .pt-head-ctl { display: flex; align-items: center; gap: var(--spacing-base); flex-shrink: 0; }
+    .pt-head-ctl .btn { white-space: nowrap; }
+    .pt-toggle { display: inline-flex; align-items: center; gap: var(--spacing-tight); font-size: 14px; color: var(--content-secondary); cursor: pointer; white-space: nowrap; }
+    /* Sampling is the blue thread on this screen: the slider fill, the invited numbers,
+       the guide strip and the card border. The toggle that switches it on joins them,
+       instead of the design system's brand green. */
+    .pt-toggle input[type="checkbox"].tgl:checked + .tgl-track {
+      background: var(--bg-info);
+      border-color: var(--border-info);
+    }
+    /* The design system's hover-on rule puts brand green back, so the hover state needs
+       the same override as the resting one. */
+    .pt-toggle:hover .tgl-wrap input[type="checkbox"].tgl:checked:not(:disabled):not(.is-disabled) + .tgl-track,
+    .pt-toggle .tgl-wrap:hover input[type="checkbox"].tgl:checked:not(:disabled):not(.is-disabled) + .tgl-track {
+      background: var(--bg-info-hover);
+      border-color: var(--border-info-hover);
+    }
+    /* 18px and content-base, matching the info icon in the app. */
+    .pt-toggle-info { width: 18px; height: 18px; display: flex; color: var(--content-base); border: none; background: none; padding: 0; cursor: pointer; }
+    .pt-toggle-info i { width: 18px; height: 18px; display: flex; }
+    /* Links are the design system's .link-inline (content-action, 500, underline with a
+       2px offset and 1px thickness, plus its hover/active/focus states). .pt-link only
+       adds the trailing icon; the icon is inline-flex so the underline stops before it,
+       and the anchor itself stays inline so the underline runs under the text. */
+    .pt-link i { display: inline-flex; width: 16px; height: 16px; vertical-align: -3px; margin-left: 2px; }
+
+    /* ══ Summary card ══ (8px radius, 32px padding — as in the app)
+       The sampling card is the one carrying blue: the slider fill, the invited numbers
+       and the guide strip. Its border follows, so the card reads as one blue block. */
+    .pt-card { border: 1px solid var(--border-info); border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--spacing-base); }
+    .pt-card.is-plain { border-color: var(--border-base); }
+    .pt-card-body { padding: var(--spacing-extra-loose); font-size: 14px; }
+    .pt-card-lead { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--content-base); }
+    .pt-card-lead b { color: var(--content-info); }
+    .pt-card-meta { display: flex; align-items: center; gap: var(--spacing-extra-tight); margin: 2px 0 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+    .pt-struct { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; border-radius: var(--radius-sm); background: var(--bg-accent-blue-subtle); color: var(--content-accent-blue); }
+    .pt-struct i { width: 14px; height: 14px; display: flex; }
+    .pt-guide { display: flex; align-items: center; gap: var(--spacing-tight); padding: var(--spacing-base-tight) var(--spacing-extra-loose); background: var(--bg-info-subtle); font-size: 14px; color: var(--content-secondary); }
+    /* The two-tone notification icon, loaded as an <img> the way the design system's
+       inline notification does. icons.js rewrites every hex fill to currentColor, so
+       going through <i data-icon> would flatten it to one colour. */
+    .pt-guide-icon { width: 16px; height: 16px; flex-shrink: 0; display: block; }
+
+    /* ══ Sample-size slider ══
+       Prototype-local: the design system has no Slider component yet (its doc page is
+       still a placeholder). Built on DS tokens; move it once Slider ships. */
+    /* 4px between a label and its field, the gap .tf-wrap and .slt-wrap set. */
+    .pt-slider-lbl { margin: var(--spacing-base) 0 var(--spacing-extra-tight); font-size: 14px; font-weight: 600; color: var(--content-base); }
+    .pt-slider-row { display: flex; align-items: center; gap: var(--spacing-base); }
+    /* A 6px track that is filled blue up to the thumb. Native inputs have no
+       cross-browser "progress" part, so the fill is a gradient set per render. */
+    .pt-range { flex: 1; min-width: 0; -webkit-appearance: none; appearance: none; height: 6px; border-radius: var(--radius-full); background: var(--bg-tertiary); outline: none; cursor: pointer; }
+    .pt-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: var(--radius-full); background: var(--bg-info); border: 2px solid var(--bg-base); box-shadow: var(--sh-action); cursor: grab; }
+    .pt-range::-moz-range-thumb { width: 20px; height: 20px; border: 2px solid var(--bg-base); border-radius: var(--radius-full); background: var(--bg-info); cursor: grab; }
+    .pt-range:focus-visible { outline: 2px solid var(--border-brand); outline-offset: 2px; }
+    .pt-pct { flex-shrink: 0; min-width: 44px; text-align: right; font-size: 14px; color: var(--content-secondary); }
+
+    /* ══ Tables ══ (no Table component in the design system yet either) */
+    .pt-search { margin-bottom: var(--spacing-base); }
+    .pt-table { border: 1px solid var(--border-base); border-radius: var(--radius-md); overflow: hidden; }
+    .pt-row { display: grid; grid-template-columns: 1fr 160px 120px; align-items: center; gap: var(--spacing-base); min-height: 50px; padding: var(--spacing-tight) var(--spacing-loose); border-bottom: 1px solid var(--border-base); font-size: 14px; color: var(--content-base); }
+    .pt-row:last-child { border-bottom: none; }
+    .pt-row.is-head { font-weight: 500; }
+    .pt-row-name { display: flex; align-items: center; gap: var(--spacing-tight); min-width: 0; }
+    .pt-caret { width: 16px; height: 16px; flex-shrink: 0; display: flex; color: var(--content-secondary); }
+    .pt-caret-btn { padding: 0; border: none; background: none; cursor: pointer; }
+    .pt-caret-btn:hover { color: var(--content-base); }
+    .pt-caret-btn i { width: 16px; height: 16px; display: flex; }
+    .pt-num { text-align: right; font-variant-numeric: tabular-nums; }
+    .pt-num.is-sample { color: var(--content-info); }
+    .pt-head-sample { display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-extra-tight); color: var(--content-info); }
+    .pt-head-sample i { width: 14px; height: 14px; display: flex; }
+    .pt-small { display: inline-flex; width: 16px; height: 16px; color: var(--content-info); }
+    .pt-sample-cell { display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-tight); }
+
+    /* People rows, for the view without sampling */
+    .pp-row { display: grid; grid-template-columns: 1fr 320px; align-items: center; gap: var(--spacing-base); padding: var(--spacing-base-tight) var(--spacing-loose); border-bottom: 1px solid var(--border-base); font-size: 14px; }
+    .pp-row:last-child { border-bottom: none; }
+    .pp-row.is-head { font-weight: 600; color: var(--content-base); }
+    .pp-person { display: flex; align-items: center; gap: var(--spacing-base-tight); min-width: 0; }
+    .pp-name { font-weight: 600; color: var(--content-base); }
+    .pp-mail { font-size: 12px; color: var(--content-secondary); }
+    .pp-group { display: flex; align-items: center; gap: var(--spacing-tight); color: var(--content-base); }
+    .pp-group .pp-ell { color: var(--content-subtle); }
+    .pp-group i { width: 16px; height: 16px; display: flex; color: var(--content-secondary); }
+
+    /* ══ Empty panel ══ (full column width, square corners, as in the app) */
+    .pt-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-extra-tight); height: 517px; background: var(--bg-secondary); text-align: center; }
+    /* Repo-local, like the AI template art: the design system has no participants
+       illustration. Rendered from Figma at 1x. Search for PT_ART_LOCAL. */
+    .pt-empty img { width: 250px; height: 180px; margin-bottom: var(--spacing-tight); }
+    [data-theme="dark"] .pt-empty img { border-radius: var(--radius-md); }
+    .pt-empty-title { font-size: 14px; font-weight: 600; color: var(--content-base); }
+    .pt-empty-txt { font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+
+    /* ══ Select groups dialog ══ */
+    .sg-overlay .dialog { padding: 0; gap: 0; max-height: 88vh; }
+    /* The title stays put; everything under it scrolls, description included. */
+    .sg-title-bar { padding: var(--spacing-extra-loose) var(--spacing-extra-loose) var(--spacing-tight); }
+    .sg-head { padding: 0 var(--spacing-extra-loose); }
+    .sg-title { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.5; color: var(--content-base); }
+    .sg-desc { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+    .sg-toggle-row { display: flex; justify-content: flex-end; padding: var(--spacing-base) var(--spacing-extra-loose) 0; }
+    /* Everything above the action bar scrolls together, description included; only the
+       Select groups bar stays put. */
+    .sg-scroll { overflow-y: auto; }
+    .sg-body { padding: var(--spacing-base) var(--spacing-extra-loose) 0; }
+    .sg-body .pt-card-body { padding: var(--spacing-loose); }
+    /* Grey only while nothing is picked. Once there is a selection the card is white:
+       a grey border for the plain count, a blue one for the sampling summary. */
+    .sg-body .pt-card.is-empty { background: var(--bg-secondary); border-color: transparent; }
+    .sg-body .pt-guide { padding: var(--spacing-base-tight) var(--spacing-loose); }
+    .sg-tools { display: flex; align-items: center; gap: var(--spacing-base-tight); margin: var(--spacing-base) 0; }
+    .sg-tools .search-wrap { flex: 1; min-width: 0; }
+    /* Structure selector — the tinted dropdown from the group-linking prototype: the
+       select carries the structure's own colour instead of a plain border. */
+    .struct-select { font-family: inherit; display: flex; align-items: center; gap: var(--spacing-tight); flex-shrink: 0; min-width: 260px; font-size: 14px; font-weight: 600; color: var(--content-base); background: var(--bg-secondary); border: 1px solid var(--border-base); border-radius: var(--radius-md); padding: var(--spacing-tight) var(--spacing-base-tight); cursor: pointer; transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out); }
+    .struct-select-icon { width: 18px; height: 18px; display: flex; flex-shrink: 0; color: var(--content-base); }
+    /* flex:1 pushes the chevron to the right edge, where every select keeps it. */
+    .struct-select-val { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
+    .struct-select-chev { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-secondary); }
+    .struct-select.is-blue { background: var(--bg-info-subtle); border-color: var(--border-info); }
+    .struct-select.is-green { background: var(--bg-positive-subtle); border-color: var(--border-positive); }
+    .struct-select-wrap { position: relative; display: inline-block; }
+    /* .menu's surface, padding and shadow; only the positioning is ours. */
+    /* wide enough for the longest structure name to sit on one line */
+    .struct-menu { position: absolute; top: 100%; left: 0; margin-top: var(--spacing-extra-tight); min-width: 320px; background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); box-shadow: var(--sh-popovers); padding: var(--spacing-tight); z-index: 60; }
+    .struct-mi { display: flex; align-items: center; gap: var(--spacing-base-tight); width: 100%; padding: 10px var(--spacing-base-tight); border: none; background: none; font-family: inherit; font-size: 14px; text-align: left; border-radius: var(--radius-md); cursor: pointer; }
+    .struct-mi:hover { background: var(--bg-base-hover); }
+    .struct-mi.is-selected, .struct-mi.is-selected:hover { background: var(--bg-brand-subtle); }
+    .struct-mi-icon { width: 28px; height: 28px; border-radius: var(--radius-base); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--content-base); }
+    .struct-mi-icon i { width: 16px; height: 16px; display: flex; }
+    .struct-mi-icon.is-blue { background: var(--bg-info-subtle); }
+    .struct-mi-icon.is-green { background: var(--bg-positive-subtle); }
+    .struct-mi-name { flex: 1; min-width: 0; color: var(--content-base); white-space: nowrap; }
+    .struct-mi-check { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-brand); }
+    /* the chip in the summary card carries the structure's colour too */
+    .pt-struct.is-green { background: var(--bg-positive-subtle); color: var(--content-accent-green); }
+    .sg-foot { display: flex; justify-content: flex-end; padding: var(--spacing-loose) var(--spacing-extra-loose) var(--spacing-extra-loose); }
+    .sg-overlay .pt-row { grid-template-columns: 1fr 140px 110px; padding-inline: var(--spacing-base); }
+  </style>
+  <!-- The scripts that translate this page sit at the end of the body, and a
+       blocking script halfway down lets the browser paint what it has before it
+       gets there. In English there is nothing to wait for; in another language
+       that first paint is the wrong one, so hold it back until the text has been
+       swapped. The timeout is the failsafe: a page always shows itself. -->
+  <script>try{if((localStorage.getItem('effx-lang')||'en')!=='en'){document.documentElement.classList.add('gtma-lang-wait');setTimeout(function(){document.documentElement.classList.remove('gtma-lang-wait')},2000)}}catch(e){}</script>
+  <style>html.gtma-lang-wait body { visibility: hidden; }</style>
+</head>
+<body>
+    
+<div class="cyos">
+
+  <header class="cyos-head">
+    <img class="cyos-logo" src="https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/logo/effectory-logo.svg" alt="Effectory" />
+    <div class="cyos-name-group">
+      <span class="tag is-draft">Draft</span>
+      <i data-icon="clipboard"></i>
+      <p class="text-medium text-w500 cyos-survey-name">Monthly pulse</p>
+      <button class="btn btn-tertiary"><i data-icon="edit"></i> Edit name</button>
+    </div>
+    <div class="cyos-head-actions">
+      <button class="btn btn-tertiary"><i data-icon="globe"></i> English</button>
+    </div>
+  </header>
+
+  <div class="cyos-steps-bar">
+    <nav class="cyos-steps" id="steps" aria-label="Survey setup"></nav>
+  </div>
+
+  <main class="cyos-main">
+    <div class="cyos-inner">
+
+      <div class="pt-head">
+        <div class="pt-head-icon"><i data-icon="group"></i></div>
+        <div class="pt-head-txt">
+          <h1 class="pt-title">Participants</h1>
+          <p class="pt-sub">Select the groups that will participate in this survey
+            <a class="link-inline pt-link" href="#">Learn more <i data-icon="external-link"></i></a></p>
+        </div>
+        <div class="pt-head-ctl">
+          <label class="pt-toggle">
+            <span class="tgl-wrap">
+              <input type="checkbox" class="tgl" id="sampleToggle" />
+              <span class="tgl-track"><span class="tgl-thumb"></span></span>
+            </span>
+            Random sample
+            <span class="tt-demo">
+              <button class="pt-toggle-info" type="button" aria-label="About random sampling"><i data-icon="info"></i></button>
+              <span class="tooltip is-below">Invite a randomized representative sample of all the groups you select</span>
+            </span>
+          </label>
+          <button class="btn btn-primary" id="selectGroupsBtn" type="button">
+            <span class="sg-btn-add">Select groups</span>
+            <span class="sg-btn-edit" hidden>Edit selection</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sampling on, nothing picked yet -->
+      <div class="pt-card is-plain" id="sampleIntro" hidden>
+        <div class="pt-card-body">
+          <p class="pt-card-lead">Inviting a randomized &amp; representative sample</p>
+          <p class="pt-card-meta">Add participant groups first. Then set a sample percentage to invite enough participants.</p>
+          <p style="margin:var(--spacing-tight) 0 0"><a class="link-inline pt-link" href="#">Read our guide <i data-icon="external-link"></i></a></p>
+        </div>
+      </div>
+
+      <!-- Groups picked -->
+      <div class="pt-card" id="summary" hidden>
+        <div class="pt-card-body">
+          <p class="pt-card-lead" id="summaryLead"></p>
+          <p class="pt-card-meta" id="summaryMeta"></p>
+          <div id="sliderBlock" hidden>
+            <p class="pt-slider-lbl">Select sample size</p>
+            <div class="pt-slider-row">
+              <input type="range" class="pt-range" id="sampleRange" min="5" max="100" step="5" value="25" aria-label="Sample size" />
+              <span class="pt-pct" id="pctOut">25%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-guide" id="guideStrip" hidden>
+          <img class="pt-guide-icon" src="https://effectory-ux.github.io/Engage-Design-system-/assets/icons/notification-information.svg" alt="" />
+          Need help with random sampling?
+          <a class="link-inline pt-link" href="#">Read our guide <i data-icon="external-link"></i></a>
+        </div>
+      </div>
+
+      <div id="selectedView" hidden>
+        <div class="search-wrap pt-search">
+          <span class="search-icon"><i data-icon="search"></i></span>
+          <input type="search" class="srch" placeholder="Search" aria-label="Search" id="groupSearch" />
+        </div>
+        <div class="pt-table" id="groupTable"></div>
+      </div>
+
+      <div class="pt-empty" id="emptyPanel">
+        <!-- PT_ART_LOCAL -->
+        <img src="assets/illustrations/participants-empty.png" alt="" />
+        <span class="pt-empty-title">Add your participants</span>
+        <span class="pt-empty-txt">Who would you like to receive feedback from?<br />Select which groups you would like to invite to this survey, by editing the selection.</span>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="cyos-foot">
+    <button class="btn btn-secondary" type="button" onclick="location.href='ai-adoption-scan-questionnaire.html'"><i data-icon="arrow-left"></i> Previous step</button>
+    <div class="cyos-foot-right">
+      <span class="cyos-saved">All changes were saved</span>
+      <button class="btn btn-secondary" type="button" data-saveclose>Save &amp; close</button>
+      <button class="btn btn-primary" type="button" onclick="location.href='cyos-survey-period.html'">Next step <i data-icon="arrow-right"></i></button>
+      <button class="btn btn-primary" type="button" id="reviewBtn"><i data-icon="send"></i> Review &amp; plan</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ░░ Select groups dialog ░░ -->
+<div class="overlay sg-overlay" id="sgOverlay" hidden>
+  <div class="dialog dialog-m" role="dialog" aria-modal="true" aria-labelledby="sgTitle">
+    <button class="dialog-close" id="sgClose" aria-label="Close"><i data-icon="cross"></i></button>
+    <div class="sg-title-bar">
+      <h2 class="sg-title" id="sgTitle">Select groups</h2>
+    </div>
+    <div class="sg-scroll">
+    <div class="sg-head">
+      <p class="sg-desc">Select your preferred group structure and add the groups you want to invite. The structure you choose here will become the Inviting Structure of the survey. This means you will receive the most comprehensive results based on this structure. <a class="link-inline pt-link" href="#">Learn more <i data-icon="external-link"></i></a></p>
+    </div>
+    <div class="sg-toggle-row">
+      <label class="pt-toggle">
+        <span class="tgl-wrap">
+          <input type="checkbox" class="tgl" id="sgToggle" />
+          <span class="tgl-track"><span class="tgl-thumb"></span></span>
+        </span>
+        Random sample
+        <span class="tt-demo">
+          <button class="pt-toggle-info" type="button" aria-label="About random sampling"><i data-icon="info"></i></button>
+          <span class="tooltip is-below">Invite a randomized representative sample of all the groups you select</span>
+        </span>
+      </label>
+    </div>
+    <div class="sg-body">
+      <div class="pt-card" id="sgCard">
+        <div class="pt-card-body">
+          <p class="pt-card-lead" id="sgLead"></p>
+          <p class="pt-card-meta" id="sgMeta"></p>
+          <p id="sgGuideLink" hidden style="margin:var(--spacing-tight) 0 0"><a class="link-inline pt-link" href="#">Read our guide <i data-icon="external-link"></i></a></p>
+          <div id="sgSliderBlock" hidden>
+            <p class="pt-slider-lbl">Select sample size</p>
+            <div class="pt-slider-row">
+              <input type="range" class="pt-range" id="sgRange" min="5" max="100" step="5" value="25" aria-label="Sample size" />
+              <span class="pt-pct" id="sgPctOut">25%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-guide" id="sgGuide" hidden>
+          <img class="pt-guide-icon" src="https://effectory-ux.github.io/Engage-Design-system-/assets/icons/notification-information.svg" alt="" />
+          Need help with random sampling?
+          <a class="link-inline pt-link" href="#">Read our guide <i data-icon="external-link"></i></a>
+        </div>
+      </div>
+
+      <div class="sg-tools">
+        <span class="struct-select-wrap">
+          <button class="struct-select" id="structBtn" type="button" aria-haspopup="menu" aria-expanded="false"></button>
+          <div class="struct-menu" id="structMenu" role="menu" aria-label="Group structure" hidden></div>
+        </span>
+        <div class="search-wrap">
+          <span class="search-icon"><i data-icon="search"></i></span>
+          <input type="search" class="srch" placeholder="Search for a group" aria-label="Search for a group" id="sgSearch" />
+        </div>
+      </div>
+
+      <div class="pt-table" id="sgTable"></div>
+    </div>
+    </div>
+    <div class="sg-foot">
+      <button class="btn btn-primary" id="sgConfirm" type="button">Select groups</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://effectory-ux.github.io/Engage-Design-system-/icons.js"></script>
+<script src="gtma-icons.js"></script>
+<script src="cyos-draft.js"></script>
+<script src="cyos-review.js"></script>
+<script>
+/* ── Data ────────────────────────────────────────────────────
+   The org chart of Novanta B.V.: nine departments with their teams, 481 people in
+   total. Made up, but shaped like a company of that size. Every number above a team is
+   derived from the ticked teams, so parent, child and total always agree, at any
+   sample size. */
+var STRUCTURES = {
+  org: {
+    label: 'Organizational Structure', color: 'blue', icon: 'hierarchy',
+    groups: [
+      { name: 'Operations',       sv: 4,    kids: [['Production', 56], ['Logistics', 42], ['Quality assurance', 28]] },
+      { name: 'Engineering',      sv: 4,    kids: [['Software development', 46], ['Hardware', 30], ['Test and validation', 22]] },
+      { name: 'Sales',            sv: 4,    kids: [['Account management', 34], ['Inside sales', 24], ['Sales support', 16]] },
+      { name: 'Marketing',        sv: 3,    kids: [['Brand and content', 20], ['Campaigns', 18]] },
+      { name: 'Customer service', sv: 4,    kids: [['Service desk', 34], ['Field service', 28]] },
+      { name: 'Finance',          sv: 3,    kids: [['Accounting', 18], ['Control', 15]] },
+      { name: 'Human resources',  sv: 2,    kids: [['HR business partners', 12], ['Recruitment', 9]] },
+      /* The team whose results the dashboard in this repo shows, so the structure here
+         and the results there point at the same group. */
+      { name: 'Team IT',          sv: 2,    kids: [['Infrastructure', 12], ['Applications', 10]] },
+      { name: 'Management',       sv: null, kids: [['Management team', 5], ['Board', 2]] }
+    ]
+  },
+  /* The same 481 people cut a different way. A survey is sent along one structure, so
+     picking Location here instead of the org chart changes who ends up in which group. */
+  loc: {
+    label: 'Geographical', color: 'green', icon: 'globe',
+    groups: [
+      { name: 'The Netherlands', sv: 4, kids: [['Amsterdam', 246]] },
+      { name: 'Germany',         sv: 3, kids: [['Munich', 132]] },
+      { name: 'United Kingdom',  sv: 3, kids: [['London', 103]] }
+    ]
+  }
+};
+var STRUCT = 'org';
+var S      = function () { return STRUCTURES[STRUCT]; };
+var GROUPS = function () { return S().groups; };
+
+Object.keys(STRUCTURES).forEach(function (key) {
+  STRUCTURES[key].groups.forEach(function (g) {
+    /* Nothing is picked until you pick it: the page starts on its empty state, so
+       the dialog must not open with everything already ticked. */
+    g.kids = g.kids.map(function (k) { return { name: k[0], n: k[1], sel: false }; });
+    g.n = g.kids.reduce(function (s, k) { return s + k.n; }, 0);
+    g.open = false;
+  });
+});
+var ORG = 'Novanta B.V.';
+var ORG_OPEN = true;
+var ALL = function () { return GROUPS().reduce(function (s, g) { return s + g.n; }, 0); };
+/* A group counts as picked when at least one of its children is ticked, and its size is
+   the sum of the ticked ones — so parent, child and total always agree. */
+var kidsOn = function (g) { return g.kids.filter(function (k) { return k.sel; }); };
+var gN     = function (g) { return kidsOn(g).reduce(function (s, k) { return s + k.n; }, 0); };
+var picked = function () { return GROUPS().filter(function (g) { return kidsOn(g).length > 0; }); };
+var total  = function () { return GROUPS().reduce(function (s, g) { return s + gN(g); }, 0); };
+/* A group with fewer than this many participants can't be reported on separately,
+   whether or not a sample is drawn from it. */
+var TOO_SMALL = 5;
+var tooSmall = function (n) { return n < TOO_SMALL; };
+
+/* Without sampling the step lists the people themselves. Invented, shaped like the app:
+   name, work address, and the group they sit in. */
+var PEOPLE = [
+  ['Jamal van Rooijen',      'jamal.van.rooijen@novanta.com',    'av-blue',      'Operations',       'Production',           'The Netherlands', 'Amsterdam'],
+  ['Johannes Ouendag',       'johannes.ouendag@novanta.com',     'av-turquoise', 'Engineering',      'Software development', 'The Netherlands', 'Amsterdam'],
+  ['Eline van den Berg',     'eline.van.den.berg@novanta.com',   'av-green',     'Customer service', 'Service desk',         'The Netherlands', 'Amsterdam'],
+  ['Thimo van Leeuwen',      'thimo.van.leeuwen@novanta.com',    'av-yellow',    'Engineering',      'Hardware',             'Germany',         'Munich'],
+  ['Anne-Maartje Letschert', 'annemaartje.letschert@novanta.com','av-orange',    'Marketing',        'Campaigns',            'The Netherlands', 'Amsterdam'],
+  ['Laurens Erber',          'laurens.erber@novanta.com',        'av-red',       'Sales',            'Account management',   'Germany',         'Munich'],
+  ['Don Griffioen',          'don.griffioen@novanta.com',        'av-blue',      'Management',       'Board',                'The Netherlands', 'Amsterdam'],
+  ['Sanne de Wit',           'sanne.de.wit@novanta.com',         'av-green',     'Customer service', 'Field service',        'United Kingdom',  'London'],
+  ['Bilal Yilmaz',           'bilal.yilmaz@novanta.com',         'av-turquoise', 'Operations',       'Logistics',            'Germany',         'Munich'],
+  ['Marit Hoekstra',         'marit.hoekstra@novanta.com',       'av-yellow',    'Human resources',  'Recruitment',          'The Netherlands', 'Amsterdam'],
+  ['Ravi Persaud',           'ravi.persaud@novanta.com',         'av-orange',    'Finance',          'Accounting',           'United Kingdom',  'London'],
+  ['Fleur Jansen',           'fleur.jansen@novanta.com',         'av-red',       'Sales',            'Inside sales',         'The Netherlands', 'Amsterdam'],
+  ['Tom Verlinden',          'tom.verlinden@novanta.com',        'av-blue',      'Team IT',          'Infrastructure',       'Germany',         'Munich'],
+  ['Nadia El Amrani',        'nadia.el.amrani@novanta.com',      'av-green',     'Operations',       'Quality assurance',    'United Kingdom',  'London']
+];
+/* Which columns of a person apply depends on the structure the survey uses: a department
+   and a team, or a country and a city. */
+var personPath  = function (p) { return STRUCT === 'org' ? [ORG, p[3], p[4]] : [ORG, p[5], p[6]]; };
+var personGroup = function (p) { return personPath(p)[1]; };
+var initials = function (name) { var p = name.split(' '); return (p[0][0] + p[p.length - 1][0]).toUpperCase(); };
+
+var state = { sampling: false, selected: false, pct: 25 };
+var sampleOf = function (n) { return state.sampling ? Math.floor(n * state.pct / 100) : n; };
+/* Sampled bottom-up: each team, then its group, then the organization. */
+var gInvited = function (g) { return kidsOn(g).reduce(function (s, k) { return s + sampleOf(k.n); }, 0); };
+var invited  = function () { return GROUPS().reduce(function (s, g) { return s + gInvited(g); }, 0); };
+
+var $ = function (id) { return document.getElementById(id); };
+
+/* ── Keeping the step across the flow ────────────────────────
+   Walking to Survey period and back is a real page load, so without this the whole
+   selection would be gone on return. sessionStorage keeps it for as long as the tab is
+   open; a fresh tab starts clean. The second key is the summary the next step reads. */
+var SAVE_KEY = 'gtma-cyos-participants';
+function save() {
+  var sel = {};
+  Object.keys(STRUCTURES).forEach(function (key) {
+    sel[key] = STRUCTURES[key].groups.map(function (g) { return g.kids.map(function (k) { return k.sel; }); });
+  });
+  try {
+    sessionStorage.setItem(SAVE_KEY, JSON.stringify({
+      sampling: state.sampling, pct: state.pct, selected: state.selected, struct: STRUCT, sel: sel
+    }));
+    sessionStorage.setItem('gtma-cyos-sampling', JSON.stringify({
+      sampling: state.sampling, pct: state.pct, groups: picked().length,
+      total: total(), invited: invited(), structure: S().label
+    }));
+  } catch (e) {}
+}
+function restore() {
+  var saved;
+  try { saved = JSON.parse(sessionStorage.getItem(SAVE_KEY)); } catch (e) { return; }
+  if (!saved) return;
+  state.sampling = !!saved.sampling;
+  state.pct = saved.pct || state.pct;
+  state.selected = !!saved.selected;
+  if (STRUCTURES[saved.struct]) STRUCT = saved.struct;
+  Object.keys(saved.sel || {}).forEach(function (key) {
+    if (!STRUCTURES[key]) return;
+    STRUCTURES[key].groups.forEach(function (g, i) {
+      var flags = saved.sel[key][i];
+      if (flags) g.kids.forEach(function (k, j) { if (typeof flags[j] === 'boolean') k.sel = flags[j]; });
+    });
+  });
+}
+
+/* ── Stepper ─────────────────────────────────────────────────
+   The same four steps the live app shows. Participants is the step you are on; its
+   subtitle turns into the selection once groups are picked. */
+/* The layout step remembers its template; the rail shows whatever it settled on. */
+var LAYOUT = (function () {
+  try { return (JSON.parse(sessionStorage.getItem('gtma-cyos-layout')) || {}).layout || 'Novanta yellow'; }
+  catch (e) { return 'Novanta yellow'; }
+})();
+
+/* The questions step writes down what the template asks. */
+var QUESTIONS = (function () {
+  try { return JSON.parse(sessionStorage.getItem('gtma-cyos-questions')); } catch (e) { return null; }
+})();
+
+function renderSteps() {
+  var sub = state.selected
+    ? picked().length + ' Groups<br />' + total() + ' participants'
+    : 'Select participants';
+  var steps = [
+    { title: 'Questions', icon: 'check-square',
+      sub: QUESTIONS ? QUESTIONS.questions + ' questions<br />' + QUESTIONS.minutes + ' mins' : 'Select questions',
+      done: !!QUESTIONS, active: false },
+    { title: 'Participants',    icon: 'users',        sub: sub, done: state.selected, active: true },
+    { title: 'Survey period',   icon: 'calendar',     sub: 'Select period', done: false, active: false },
+    { title: 'Layout &amp; emails', icon: 'layout',   sub: 'Survey: ' + LAYOUT + '<br />Email: Effectory default', done: true, active: false }
+  ];
+  $('steps').innerHTML = steps.map(function (st, i) {
+    var cls = 'cyos-step' + (st.active ? ' is-active' : '') + (st.done ? ' is-done' : '');
+    var badge = st.done ? '<i data-icon="check"></i>' : (i + 1);
+    return (i ? '<span class="cyos-step-sep"><i data-icon="chevron-right"></i></span>' : '') +
+      '<button class="' + cls + '" data-step="' + st.title + '"' + (st.active ? ' aria-current="step"' : '') + '>' +
+        '<span class="cyos-step-badge">' +
+          '<span class="cyos-step-circle">' + badge + '</span>' +
+          '<span class="cyos-step-tile"><i data-icon="' + st.icon + '"></i></span>' +
+        '</span>' +
+        '<span class="cyos-step-body">' +
+          '<p class="text-l5 cyos-step-title">' + st.title + '</p>' +
+          '<p class="text-small text-w500 cyos-step-sub">' + st.sub + '</p>' +
+        '</span>' +
+      '</button>';
+  }).join('');
+}
+
+/* ── Tables ──────────────────────────────────────────────── */
+/* One row of the structure. `depth` indents it, `open` picks the chevron, and a row
+   without children gets a spacer so the names still line up. */
+function structRow(o) {
+  var cb = o.pick
+    ? '<span class="cb-wrap"><input type="checkbox" class="cb ' + o.cbClass + '"' +
+      (o.checked ? ' checked' : '') + (o.indet ? ' data-indeterminate="1"' : '') +
+      ' data-g="' + (o.g || '') + '" data-k="' + (o.k || '') + '" aria-label="' + o.name + '" /></span>'
+    : '';
+  var chev = o.kids
+    ? '<button class="pt-caret pt-caret-btn" type="button" data-toggle="' + (o.g || 'org') + '" aria-expanded="' + (o.open ? 'true' : 'false') + '" aria-label="' + (o.open ? 'Collapse' : 'Expand') + ' ' + o.name + '">' +
+      '<i data-icon="chevron-' + (o.open ? 'down' : 'right') + '"></i></button>'
+    : '<span class="pt-caret"></span>';
+  var mid = state.sampling
+    ? '<span class="pt-sample-cell">' +
+        (o.small ? '<span class="tt-demo"><span class="pt-small"><i data-icon="eye-off"></i></span>' +
+                   '<span class="tooltip is-above">Limited results because group is too small</span></span>' : '') +
+        '<span class="pt-num is-sample">' + o.invited + '</span></span>'
+    : '<span class="pt-num is-sample">' + (o.sv == null ? '' : o.sv) + '</span>';
+  var people = state.sampling && o.pick ? o.n + '/' + o.all : (o.pick ? o.all : o.n);
+  return '<div class="pt-row">' +
+    '<span class="pt-row-name" style="padding-left:' + (o.depth * 24) + 'px">' + chev + cb + o.name + '</span>' +
+    mid +
+    '<span class="pt-num">' + people + '</span></div>';
+}
+
+function tableHTML(q, pick) {
+  var head = '<div class="pt-row is-head"><span>Name</span>' +
+    (state.sampling
+      ? '<span class="pt-head-sample tt-demo">Invited sample <i data-icon="info"></i>' +
+        '<span class="tooltip is-above">Randomized sample invited when survey starts</span></span>'
+      : '<span class="pt-head-sample tt-demo">Surveys <i data-icon="info"></i>' +
+        '<span class="tooltip is-above">Number of surveys the group is invited to</span></span>') +
+    '<span class="pt-num">Participants</span></div>';
+
+  var allOn = GROUPS().every(function (g) { return g.kids.every(function (k) { return k.sel; }); });
+  var someOn = GROUPS().some(function (g) { return g.kids.some(function (k) { return k.sel; }); });
+  var out = head;
+
+  /* Searching flattens the tree to the matches, the same way the app does. */
+  if (q) {
+    GROUPS().forEach(function (g) {
+      if (g.name.toLowerCase().indexOf(q) !== -1) out += groupRows(g, pick, true);
+      else {
+        var hits = g.kids.filter(function (k) { return k.name.toLowerCase().indexOf(q) !== -1; });
+        if (hits.length) out += groupRows(g, pick, true, hits);
+      }
+    });
+    return out;
+  }
+
+  out += structRow({ name: ORG, depth: 0, kids: true, open: ORG_OPEN, pick: pick,
+    checked: allOn, indet: !allOn && someOn, cbClass: 'sg-cb-all',
+    invited: invited(), n: total(), all: ALL(), sv: null, small: false });
+  if (ORG_OPEN) {
+    var list = pick ? GROUPS() : picked();
+    list.forEach(function (g) { out += groupRows(g, pick); });
+  }
+  return out;
+}
+
+/* A group plus its teams when it is open. */
+function groupRows(g, pick, forceOpen, only) {
+  var on = kidsOn(g);
+  var allOn = g.kids.every(function (k) { return k.sel; });
+  var inv = gInvited(g);
+  var rows = structRow({
+    name: g.name, depth: 1, kids: true, open: forceOpen || g.open, pick: pick, g: g.name,
+    checked: allOn, indet: !allOn && on.length > 0, cbClass: 'sg-cb',
+    invited: pick && !on.length ? 0 : inv, n: gN(g), all: g.n, sv: g.sv,
+    small: tooSmall(g.n)
+  });
+  if (!(forceOpen || g.open)) return rows;
+  var kids = only || (pick ? g.kids : on);
+  kids.forEach(function (k) {
+    var ki = k.sel ? sampleOf(k.n) : 0;
+    rows += structRow({
+      name: k.name, depth: 2, kids: false, pick: pick, g: g.name, k: k.name,
+      checked: k.sel, indet: false, cbClass: 'sg-cb-kid',
+      invited: ki, n: k.sel ? k.n : 0, all: k.n, sv: null,
+      small: tooSmall(k.n)
+    });
+  });
+  return rows;
+}
+
+function peopleHTML(q) {
+  var head = '<div class="pp-row is-head"><span>Name</span><span>Group</span></div>';
+  var names = picked().map(function (g) { return g.name; });
+  var rows = PEOPLE.filter(function (p) {
+    var path = personPath(p).join(' ').toLowerCase();
+    return names.indexOf(personGroup(p)) !== -1 && (!q || p[0].toLowerCase().indexOf(q) !== -1 || path.indexOf(q) !== -1);
+  }).map(function (p) {
+    return '<div class="pp-row">' +
+      '<span class="pp-person"><span class="av av-32 ' + p[2] + '">' + initials(p[0]) + '</span>' +
+        '<span><span class="pp-name">' + p[0] + '</span><br /><span class="pp-mail">' + p[1] + '</span></span></span>' +
+      '<span class="pp-group tt-demo"><span class="pp-ell">...</span><i data-icon="chevron-right"></i>' + personPath(p).slice(-1)[0] +
+        '<span class="tooltip is-above">' + personPath(p).join(' › ') + '</span></span></div>';
+  }).join('');
+  return head + rows;
+}
+
+/* ── Render ──────────────────────────────────────────────── */
+function render() {
+  var has = state.selected;
+
+  $('emptyPanel').hidden = has;
+  $('selectedView').hidden = !has;
+  $('sampleIntro').hidden = has || !state.sampling;
+  $('summary').hidden = !has;
+  $('sliderBlock').hidden = !state.sampling;
+  $('guideStrip').hidden = !state.sampling;
+  document.querySelector('.sg-btn-add').hidden = has;
+  document.querySelector('.sg-btn-edit').hidden = !has;
+
+  if (has) {
+    $('summary').classList.toggle('is-plain', !state.sampling);
+    $('summaryLead').innerHTML = state.sampling
+      ? 'Inviting <b>' + invited() + '</b> of ' + total() + ' participants'
+      : picked().length + ' groups selected';
+    $('summaryMeta').innerHTML = (state.sampling
+        ? picked().length + ' groups under '
+        : total() + ' selected participants in total under ') +
+      '<span class="pt-struct is-' + S().color + '"><i data-icon="' + S().icon + '"></i></span> ' + S().label;
+    var q = ($('groupSearch').value || '').trim().toLowerCase();
+    /* Sampling is about how many people per group, so it lists groups. Without it the
+       step is simply the invite list, so it lists the people. */
+    $('groupTable').innerHTML = state.sampling ? tableHTML(q, false) : peopleHTML(q);
+  }
+
+  /* The dialog card has three faces: the plain count, the sampling explainer while
+     nothing is picked, and the full summary with the slider once both hold. */
+  var sgSummary = state.sampling && picked().length > 0;
+  if (sgSummary) {
+    $('sgLead').innerHTML = 'Inviting <b>' + invited() + '</b> of ' + total() + ' participants';
+    $('sgMeta').textContent = picked().length + ' groups under Organizational Structure';
+  } else if (state.sampling) {
+    $('sgLead').textContent = 'Inviting a randomized & representative sample';
+    $('sgMeta').textContent = 'Add participant groups first. Then set a sample percentage to invite enough participants.';
+  } else {
+    $('sgLead').textContent = picked().length + ' groups selected';
+    $('sgMeta').textContent = total() + ' selected participants';
+  }
+  $('sgCard').classList.toggle('is-plain', !sgSummary);
+  $('sgCard').classList.toggle('is-empty', picked().length === 0);
+  $('sgGuideLink').hidden = !(state.sampling && !sgSummary);
+  $('sgSliderBlock').hidden = !sgSummary;
+  $('sgGuide').hidden = !sgSummary;
+  $('sgTable').innerHTML = tableHTML(($('sgSearch').value || '').trim().toLowerCase(), true);
+
+  var confirmBtn = $('sgConfirm');
+  confirmBtn.textContent = picked().length ? 'Select ' + picked().length + ' groups' : 'Select groups';
+  confirmBtn.disabled = picked().length === 0;
+  confirmBtn.classList.toggle('is-disabled', picked().length === 0);
+
+  /* Paint the filled part of both tracks up to the thumb. */
+  [$('sampleRange'), $('sgRange')].forEach(function (r) {
+    var at = (state.pct - r.min) / (r.max - r.min) * 100;
+    r.style.background = 'linear-gradient(to right, var(--bg-info) 0 ' + at + '%, var(--bg-tertiary) ' + at + '% 100%)';
+  });
+
+  $('pctOut').textContent = state.pct + '%';
+  $('sgPctOut').textContent = state.pct + '%';
+  $('sampleRange').value = state.pct;
+  $('sgRange').value = state.pct;
+  $('sampleToggle').checked = state.sampling;
+  $('sgToggle').checked = state.sampling;
+
+  document.querySelectorAll('input.cb[data-indeterminate]').forEach(function (cb) { cb.indeterminate = true; });
+
+  save();
+
+  renderStructSelect();
+  renderSteps();
+  if (window.Icons) window.Icons.render(document.body);
+}
+
+/* ── Walking between the steps ────────────────────────────
+   Only Participants and Survey period are built, so those two are the ones that
+   navigate; the other two stay put. */
+var STEP_HREF = {
+  'Questions': 'ai-adoption-scan-questionnaire.html',
+  'Participants': 'cyos-participants.html',
+  'Survey period': 'cyos-survey-period.html',
+  'Layout & emails': 'cyos-layout-emails.html'
+};
+document.getElementById('steps').addEventListener('click', function (e) {
+  var b = e.target.closest('.cyos-step');
+  if (!b) return;
+  /* The step names itself in English on the button, because the title on screen
+     follows the reader's language. */
+  var title = b.dataset.step;
+  var href = STEP_HREF[title];
+  if (href && !b.classList.contains('is-active')) location.href = href;
+});
+
+/* ── Structure selector ──────────────────────────────────── */
+function renderStructSelect() {
+  var btn = $('structBtn');
+  btn.className = 'struct-select is-' + S().color;
+  btn.innerHTML = '<i class="struct-select-icon" data-icon="' + S().icon + '"></i>' +
+    '<span class="struct-select-val">' + S().label + '</span>' +
+    '<i class="struct-select-chev" data-icon="chevron-down"></i>';
+  $('structMenu').innerHTML = Object.keys(STRUCTURES).map(function (key) {
+    var st = STRUCTURES[key], on = key === STRUCT;
+    return '<button class="struct-mi' + (on ? ' is-selected' : '') + '" type="button" role="menuitemradio" aria-checked="' + on + '" data-struct="' + key + '">' +
+      '<span class="struct-mi-icon is-' + st.color + '"><i data-icon="' + st.icon + '"></i></span>' +
+      '<span class="struct-mi-name">' + st.label + '</span>' +
+      (on ? '<i class="struct-mi-check" data-icon="check"></i>' : '') +
+    '</button>';
+  }).join('');
+}
+
+/* ── Wiring ──────────────────────────────────────────────── */
+function setSampling(on) { state.sampling = on; render(); }
+function setPct(v) { state.pct = +v; render(); }
+
+$('sampleToggle').addEventListener('change', function (e) { setSampling(e.target.checked); });
+$('sgToggle').addEventListener('change', function (e) { setSampling(e.target.checked); });
+$('sampleRange').addEventListener('input', function (e) { setPct(e.target.value); });
+$('sgRange').addEventListener('input', function (e) { setPct(e.target.value); });
+$('groupSearch').addEventListener('input', render);
+$('sgSearch').addEventListener('input', render);
+
+/* Ticking a group ticks its teams; ticking teams decides what the group shows. */
+$('sgTable').addEventListener('change', function (e) {
+  var cb = e.target.closest('input.cb');
+  if (!cb) return;
+  if (cb.classList.contains('sg-cb-all')) {
+    GROUPS().forEach(function (g) { g.kids.forEach(function (k) { k.sel = cb.checked; }); });
+  } else if (cb.classList.contains('sg-cb')) {
+    var g = GROUPS().find(function (x) { return x.name === cb.dataset.g; });
+    if (g) g.kids.forEach(function (k) { k.sel = cb.checked; });
+  } else {
+    var gp = GROUPS().find(function (x) { return x.name === cb.dataset.g; });
+    var k = gp && gp.kids.find(function (x) { return x.name === cb.dataset.k; });
+    if (k) k.sel = cb.checked;
+  }
+  render();
+});
+
+/* The chevrons open and close the structure. */
+function wireCarets(el) {
+  el.addEventListener('click', function (e) {
+    var btn = e.target.closest('.pt-caret-btn');
+    if (!btn) return;
+    e.preventDefault();
+    var key = btn.dataset.toggle;
+    if (key === 'org') ORG_OPEN = !ORG_OPEN;
+    else {
+      var g = GROUPS().find(function (x) { return x.name === key; });
+      if (g) g.open = !g.open;
+    }
+    render();
+  });
+}
+wireCarets($('sgTable'));
+wireCarets($('groupTable'));
+
+var structMenu = $('structMenu');
+$('structBtn').addEventListener('click', function (e) {
+  e.stopPropagation();
+  structMenu.hidden = !structMenu.hidden;
+  $('structBtn').setAttribute('aria-expanded', String(!structMenu.hidden));
+});
+structMenu.addEventListener('click', function (e) {
+  var mi = e.target.closest('[data-struct]');
+  if (!mi) return;
+  /* Switching structure switches which groups exist, so the selection made in the other
+     one stays where it is and this one comes back as it was left. */
+  STRUCT = mi.dataset.struct;
+  ORG_OPEN = true;
+  structMenu.hidden = true;
+  $('structBtn').setAttribute('aria-expanded', 'false');
+  render();
+});
+document.addEventListener('click', function () {
+  if (!structMenu.hidden) { structMenu.hidden = true; $('structBtn').setAttribute('aria-expanded', 'false'); }
+});
+
+var overlay = $('sgOverlay');
+var closeSg = function () { overlay.hidden = true; };
+$('selectGroupsBtn').addEventListener('click', function () { overlay.hidden = false; render(); });
+$('sgClose').addEventListener('click', closeSg);
+overlay.addEventListener('click', function (e) { if (e.target === overlay) closeSg(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeSg(); });
+$('sgConfirm').addEventListener('click', function () { state.selected = picked().length > 0; closeSg(); render(); });
+
+restore();
+render();
+
+/* ---------- Tooltip auto-position ----------
+   Render the bubble in a fixed layer so no overflow:hidden ancestor can clip it. */
+(function () {
+  const GAP = 10, PAD = 8;
+  const place = (demo) => {
+    const tip = demo.querySelector('.tooltip');
+    if (!tip) return;
+    tip.style.position = 'fixed'; tip.style.margin = '0'; tip.style.transform = 'none';
+    tip.style.left = '0'; tip.style.top = '0'; tip.style.right = 'auto'; tip.style.bottom = 'auto'; tip.style.height = 'auto';
+    const t = demo.getBoundingClientRect();
+    const tw = tip.offsetWidth, th = tip.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+    const pref = tip.classList.contains('is-below') ? 'below'
+      : tip.classList.contains('is-left') ? 'left'
+      : tip.classList.contains('is-right') ? 'right' : 'above';
+    const fits = {
+      above: t.top - th - GAP >= PAD, below: t.bottom + th + GAP <= vh - PAD,
+      left: t.left - tw - GAP >= PAD, right: t.right + tw + GAP <= vw - PAD,
+    };
+    const dir = [pref, 'above', 'below', 'right', 'left'].find(d => fits[d]) || pref;
+    let x, y;
+    if (dir === 'above')      { x = t.left + t.width / 2 - tw / 2; y = t.top - th - GAP; }
+    else if (dir === 'below') { x = t.left + t.width / 2 - tw / 2; y = t.bottom + GAP; }
+    else if (dir === 'left')  { x = t.left - tw - GAP; y = t.top + t.height / 2 - th / 2; }
+    else                      { x = t.right + GAP; y = t.top + t.height / 2 - th / 2; }
+    tip.style.left = Math.max(PAD, Math.min(x, vw - tw - PAD)) + 'px';
+    tip.style.top = Math.max(PAD, Math.min(y, vh - th - PAD)) + 'px';
+    tip.classList.remove('is-above', 'is-below', 'is-left', 'is-right');
+    tip.classList.add('is-' + dir);
+  };
+  const onEnter = (e) => { const demo = e.target.closest && e.target.closest('.tt-demo'); if (demo) place(demo); };
+  document.addEventListener('mouseover', onEnter);
+  document.addEventListener('focusin', onEnter);
+})();
+</script>
+
+<!-- One language for the whole prototype: the design system's map for what these
+     screens share with the dashboard, this prototype's own for the rest. -->
+<script src="https://effectory-ux.github.io/Engage-Design-system-/i18n.js"></script>
+<script src="gtma-strings.js"></script>
+<script src="gtma-i18n.js"></script>
+</body>
+</html>

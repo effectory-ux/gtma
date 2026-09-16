@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survey — My Effectory</title>
+  <!-- Poppins comes straight from its files instead of through a stylesheet on
+       another host. That stylesheet is only cached for ten minutes, so every
+       navigation after that waited on a round trip before the font could even be
+       found, and the text was laid out twice: once in the fallback, once in
+       Poppins. The font files themselves are cached for a year. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/tokens.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/foundation.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/components.css" />
+  <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("effx-theme")||"light")}catch(e){}</script>
+  <style>
+    body { background: var(--bg-interface-body); }
+
+    /* Responsive page padding (design-system §2) */
+    :root { --page-y: var(--spacing-super-extra-loose); --page-x: 80px; }
+    @media (max-width: 1199px) { :root { --page-y: var(--spacing-extra-loose); --page-x: var(--spacing-loose); } }
+    @media (max-width: 575px)  { :root { --page-y: var(--spacing-loose); --page-x: var(--spacing-base); } }
+
+    /* App shell: sidebar (full height) + scrolling content */
+    .app { display: flex; height: 100vh; overflow: hidden; }
+    .app .mainnav { height: 100%; }
+    .app-main { flex: 1; min-width: 0; height: 100vh; overflow-y: auto; }
+    .app-main-inner { max-width: calc(1200px + 2 * var(--page-x)); margin-inline: auto; padding: var(--page-y) var(--page-x) var(--spacing-super-extra-loose); display: flex; flex-direction: column; gap: var(--spacing-loose); }
+    .ph { margin-bottom: calc(-1 * var(--spacing-loose)); }
+    .ph-divider { border: none; border-top: 1px solid var(--border-base); margin: 0; }
+
+    /* ── Section header (Latest projects) ── */
+    .sec-head { display: flex; align-items: center; gap: var(--spacing-base-tight); margin-bottom: var(--spacing-loose); }
+    .sec-head h2 { margin: 0; flex: 1; min-width: 0; }
+    .sec-head .btn { flex-shrink: 0; }
+
+    /* ── Project cards (carousel) ── */
+    .proj-viewport { overflow: hidden; padding: 6px 0 12px; margin: -6px 0 -12px; }
+    .proj-track { display: flex; gap: var(--spacing-base); transition: transform .32s cubic-bezier(.4,0,.2,1); }
+    .proj-card { flex: 0 0 calc((100% - var(--spacing-base) * 2) / 3); height: 172px; padding: var(--spacing-extra-loose); display: flex; flex-direction: column; text-decoration: none; }
+    .proj-card:hover { border-color: var(--border-action-hover); }
+    .proj-title { flex: 1; font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--content-base); }
+    .proj-meta { display: flex; align-items: center; gap: var(--spacing-tight); font-size: 14px; font-weight: 500; color: var(--content-secondary); }
+    .proj-meta i { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-secondary); }
+
+    /* .tt-demo in components.css is the docs wrapper and shows the bubble permanently.
+       Gate it on hover, the same three lines the other prototypes here carry. */
+    .tt-demo { position: relative; display: inline-flex; }
+    .tt-demo .tooltip { opacity: 0; pointer-events: none; transition: opacity var(--motion-fast) var(--ease-out); }
+    .tooltip { white-space: nowrap; }
+    .tt-demo:hover .tooltip, .tt-demo:focus-within .tooltip { opacity: 1; }
+
+    /* ══ Survey detail ══
+       The survey once it is out of setup: what it is going to do, when, and the
+       settings it was given. Lifted from the overview in the group-linking
+       prototype so both screens stay the same screen. */
+    /* The breadcrumb sits on its own bar, the hairline running the width of the
+       content column, the same as in the product. */
+    .sd-topbar { max-width: calc(1200px + 2 * var(--page-x)); margin-inline: auto; padding: 0 var(--page-x); }
+    .sd-topbar-inner { display: flex; align-items: center; gap: 6px; min-height: 64px; border-bottom: 1px solid var(--border-base); }
+    .sd-topbar .btn { margin-right: var(--spacing-tight); }
+    .sd-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--content-brand); }
+    .ph-actions { display: flex; align-items: center; gap: var(--spacing-base); }
+    /* surveys.html scopes these to its list; here they dress the status chip. */
+    .tag.is-planned { background: var(--bg-inverse); color: var(--content-on-brand-base); }
+    .ov-avatar { width: 32px; height: 32px; border-radius: var(--radius-full); background: var(--bg-accent-orange-subtle); color: var(--content-accent-orange); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+    /* ── Overview: survey status banner + timeline ── */
+    /* The page header already carries 24px under its row, so the card sits
+       straight underneath instead of adding a second gap. */
+    .ov-tl-card { position: relative; z-index: 1; margin-top: 0; background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-lg); box-shadow: var(--sh-card); overflow: hidden; }
+    .ov-banner { display: flex; align-items: center; gap: var(--spacing-base); padding: var(--spacing-base-tight) var(--spacing-loose); }
+    .ov-banner-icon { width: 24px; height: 24px; flex-shrink: 0; border-radius: var(--radius-sm); background: var(--bg-warning); color: var(--content-inverse); display: flex; align-items: center; justify-content: center; box-shadow: var(--sh-action); }
+    .ov-banner-icon i { width: 14px; height: 14px; display: flex; }
+    .ov-banner-text { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; color: var(--content-base); }
+    .ov-banner-btn { flex-shrink: 0; }
+
+    /* coloured zone bands */
+    .ov-tl { position: relative; display: flex; height: 238px; border-top: 1px solid var(--border-base); }
+    .ov-tl-band { position: relative; box-sizing: border-box; }
+    .ov-tl-band + .ov-tl-band { border-left: 2px solid var(--bg-base); }
+    .ov-tl-band.is-planned { background: var(--bg-tertiary); }
+    .ov-tl-band.is-running { background: var(--bg-accent-yellow-subtle); }
+    .ov-tl-band.is-done { background: var(--bg-accent-green-subtle); }
+    /* The phase labels are a level 6 headline: 12px, uppercase, letterspaced. */
+    .ov-tl-band-lbl { position: absolute; left: var(--spacing-loose); top: var(--spacing-base); display: flex; align-items: center; gap: var(--spacing-tight); }
+    .ov-tl-band-lbl .text-l6 { color: var(--content-base); }
+    /* The three phase glyphs are the ones the product draws, kept as files and
+       masked so they still take a colour. */
+    .ov-tl-status { width: 16px; height: 16px; flex-shrink: 0; display: block; background: currentColor;
+      -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
+    .ov-tl-status.is-planned { color: var(--content-base); -webkit-mask-image: url('assets/img/phase-planned.svg'); mask-image: url('assets/img/phase-planned.svg'); }
+    .ov-tl-status.is-running { color: var(--border-highlight-hover); -webkit-mask-image: url('assets/img/phase-running.svg'); mask-image: url('assets/img/phase-running.svg'); }
+    .ov-tl-status.is-done { color: var(--bg-positive); -webkit-mask-image: url('assets/img/phase-completed.svg'); mask-image: url('assets/img/phase-completed.svg'); }
+    .ov-tl-period { position: absolute; left: var(--spacing-loose); top: calc(var(--spacing-base) + 30px); display: flex; align-items: center; gap: var(--spacing-tight); font-size: 14px; color: var(--content-base); }
+    .ov-tl-period i { width: 20px; height: 20px; display: flex; color: var(--content-subtle); }
+
+    /* track + progress + milestones (inset lane over the bands) */
+    .ov-tl-lane { position: absolute; left: var(--spacing-loose); right: var(--spacing-loose); top: 0; bottom: 0; }
+    .ov-tl-track { position: absolute; left: 0; right: 0; top: 94px; height: 4px; border-radius: var(--radius-full); background: var(--content-subtle); }
+    .ov-tl-fill { position: absolute; left: 0; top: 94px; height: 4px; border-radius: var(--radius-full); background: var(--content-info-secondary); }
+    .ov-tl-now { position: absolute; top: 96px; width: 16px; height: 16px; border-radius: var(--radius-full); background: var(--content-info-secondary); border: 3px solid var(--bg-base); transform: translate(-50%, -50%); box-shadow: var(--sh-action); z-index: 2; }
+    .ov-tl-ms { position: absolute; top: 92px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+    .ov-tl-ms-dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--content-info-secondary); }
+    .ov-tl-ms.is-future .ov-tl-ms-dot { background: var(--content-subtle); }
+    .ov-tl-ms-stem { width: 2px; height: 24px; margin-top: var(--spacing-extra-tight); background: var(--border-action); }
+    .ov-tl-ms-icon { margin-top: var(--spacing-extra-tight); width: 24px; height: 24px; border-radius: var(--radius-sm); background: var(--bg-base); box-shadow: var(--sh-card); color: var(--content-secondary); display: flex; align-items: center; justify-content: center; }
+    .ov-tl-ms-icon i { width: 14px; height: 14px; display: flex; }
+    /* Each moment keeps its own colour: the invitation goes out, the survey
+       closes, the results follow. */
+    .ov-tl-ms.is-invite .ov-tl-ms-icon { color: var(--bg-warning); }
+    .ov-tl-ms.is-close .ov-tl-ms-icon { color: var(--bg-positive); }
+    .ov-tl-ms.is-results .ov-tl-ms-icon { color: var(--content-subtle); }
+
+    /* "Did you know?" tips carousel stuck to the bottom of the timeline card (Figma) */
+
+    /* first-match celebration dialog */
+
+    .ov-section { margin-top: var(--spacing-extra-loose); }
+    .ov-section-title { display: flex; align-items: center; justify-content: space-between; margin: 0 0 var(--spacing-base-tight); padding: 0 var(--spacing-extra-tight); }
+    .ov-section-chev { display: flex; color: var(--content-secondary); }
+    .ov-section-chev i { width: 20px; height: 20px; display: flex; }
+    .ov-section .card-body { padding: 0 var(--spacing-loose); gap: 0; }
+    .ov-row { display: flex; align-items: center; gap: var(--spacing-base); margin: 0 calc(-1 * var(--spacing-loose)); padding: var(--spacing-loose); border-bottom: 1px solid var(--border-base); text-decoration: none; color: inherit; }
+    .ov-row:last-child { border-bottom: none; }
+    .ov-row.is-link { cursor: pointer; transition: background var(--motion-fast) var(--ease-out); }
+    /* hover fills the whole row (card clips it to its rounded corners) */
+    .ov-row.is-link:hover { background: var(--bg-base-hover); }
+    .ov-row-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: var(--radius-md); background: var(--bg-secondary); color: var(--content-secondary); display: flex; align-items: center; justify-content: center; }
+    .ov-row-icon i { width: 20px; height: 20px; display: flex; }
+    /* coloured icon tiles (accent tokens, homepage Updates pattern) */
+    .tile-blue      { background: var(--bg-accent-blue-subtle);      color: var(--content-accent-blue); }
+    .tile-turquoise { background: var(--bg-accent-turquoise-subtle); color: var(--content-accent-turquoise); }
+    .tile-purple    { background: var(--bg-accent-purple-subtle);    color: var(--content-base); }
+    .tile-orange    { background: var(--bg-accent-orange-subtle);    color: var(--content-accent-orange); }
+    .tile-green     { background: var(--bg-accent-green-subtle);     color: var(--content-accent-green); }
+    .tile-yellow    { background: var(--bg-accent-yellow-subtle);    color: var(--content-accent-yellow); }
+    .tile-red       { background: var(--bg-accent-red-subtle);       color: var(--content-accent-red); }
+    .ov-row-body { flex: 1; min-width: 0; }
+    /* A level 5 heading, the same as the titles in Sharing results. */
+    .ov-row-title { font-size: 16px; font-weight: 600; color: var(--content-base); }
+    .ov-row-sub { font-size: 14px; color: var(--content-secondary); margin-top: 2px; }
+    .ov-row-action { flex-shrink: 0; display: flex; align-items: center; gap: var(--spacing-tight); font-size: 14px; font-weight: 500; color: var(--content-secondary); }
+    .ov-row-action i { width: 16px; height: 16px; display: flex; }
+
+    /* ── Sharing results ── */
+    .sr-row { display: flex; align-items: center; gap: var(--spacing-base); margin: 0 calc(-1 * var(--spacing-loose)); padding: var(--spacing-loose); border-bottom: 1px solid var(--border-base); text-decoration: none; color: inherit; }
+    .sr-row:last-child { border-bottom: none; }
+    .sr-row.is-link { cursor: pointer; transition: background var(--motion-fast) var(--ease-out); }
+    .sr-row.is-link:hover { background: var(--bg-base-hover); }
+    .sr-title { font-size: 16px; font-weight: 600; color: var(--content-base); }
+    .sr-sub { font-size: 14px; color: var(--content-secondary); margin-top: 2px; }
+
+    /* The two cards under it, measured on the real page: 384 wide, a 73px title
+       row with the title at 16/600 and 24px padding, and a 261px body with the
+       action button at the bottom. */
+    /* 40px between the rows and the cards, measured on the real page. */
+    .sr-cards { display: flex; flex-wrap: wrap; gap: var(--spacing-loose); margin-top: var(--spacing-super-loose); }
+    .sr-cards .card { flex: 0 0 384px; max-width: 100%; }
+    .sr-cards .card-title { padding: var(--spacing-loose); border-bottom: 1px solid var(--border-base); font-size: 16px; font-weight: 600; }
+    .sr-card-body { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: var(--spacing-base); min-height: 261px; padding: var(--spacing-loose); text-align: center; }
+    /* Both illustrations come from the product. The results one is a line drawing
+       that takes the brand colour, so it is masked; the response one carries its
+       own greys and is placed as an image. */
+    .sr-card-art { width: 80px; height: 80px; background: var(--bg-brand-hover);
+      -webkit-mask: url('assets/img/results-empty.svg') center / contain no-repeat;
+      mask: url('assets/img/results-empty.svg') center / contain no-repeat; }
+    .sr-card-art.is-response { width: 80px; height: 80px; background: none; -webkit-mask: none; mask: none; }
+    .sr-card-name { margin: 0; font-size: 16px; font-weight: 600; color: var(--content-base); }
+    .sr-card-note { font-size: 12px; color: var(--content-secondary); }
+    .sr-card-info { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-extra-tight); flex: 1; width: 100%; }
+
+    /* Response: one row per group, the share on the right and a bar underneath. */
+    .sr-item { width: 302px; max-width: 100%; margin-bottom: var(--spacing-loose); }
+    .sr-item:last-child { margin-bottom: 0; }
+    .sr-item-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-tight); font-size: 14px; }
+    .sr-item-name { font-weight: 500; color: var(--content-secondary); }
+    .sr-item-pct { color: var(--content-base); }
+    .sr-item-bar { height: 8px; border-radius: var(--radius-full); background: var(--bg-secondary-hover); overflow: hidden; }
+    .sr-item-bar span { display: block; height: 100%; border-radius: var(--radius-full); background: var(--bg-brand); }
+
+  </style>
+  <!-- The scripts that translate this page sit at the end of the body, and a
+       blocking script halfway down lets the browser paint what it has before it
+       gets there. In English there is nothing to wait for; in another language
+       that first paint is the wrong one, so hold it back until the text has been
+       swapped. The timeout is the failsafe: a page always shows itself. -->
+  <script>try{if((localStorage.getItem('effx-lang')||'en')!=='en'){document.documentElement.classList.add('gtma-lang-wait');setTimeout(function(){document.documentElement.classList.remove('gtma-lang-wait')},2000)}}catch(e){}</script>
+  <style>html.gtma-lang-wait body { visibility: hidden; }</style>
+<body>
+    
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="mainnav">
+    <div class="mn-portal">
+      <span class="mn-logo"></span>
+      <button class="mn-portal-btn"><b>Coordinator</b> <i data-icon="chevron-down" class="mn-chev"></i></button>
+    </div>
+    <nav class="mn-nav" aria-label="Main">
+      <a class="mn-item"><i data-icon="home"></i> Home</a>
+      <a class="mn-item" data-group="1" aria-expanded="true"><i data-icon="clipboard"></i> Surveys <i data-icon="chevron-up" class="mn-chev"></i></a>
+      <div class="mn-sub">
+        <a class="mn-subitem is-active" aria-current="page" href="surveys.html">All surveys</a>
+        <a class="mn-subitem">Projects</a>
+      </div>
+      <a class="mn-item"><i data-icon="refresh"></i> 360 feedback</a>
+      <a class="mn-item"><i data-icon="globe"></i> Organization <i data-icon="chevron-down" class="mn-chev"></i></a>
+    </nav>
+    <div class="mn-foot">
+      <a class="mn-item"><i data-icon="book-open"></i> Support wiki</a>
+      <div class="mn-foot-divider"></div>
+      <div class="mn-user">
+        <div class="av av-36 av-blue">JI</div>
+        <div class="mn-meta">
+          <div class="mn-name">Jente Insing</div>
+          <div class="mn-org">Novanta B.V.</div>
+        </div>
+        <i data-icon="chevron-up"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="app-main">
+
+    <nav class="sd-topbar" aria-label="Breadcrumb">
+      <div class="sd-topbar-inner">
+        <a class="btn btn-secondary" href="surveys.html"><i data-icon="arrow-left"></i> Back</a>
+        <ol class="bc-trail">
+          <li><a class="bc-link" href="surveys.html" id="sdCrumbProject">AI and ways of working</a></li>
+          <li><span class="bc-current" aria-current="page">Surveys</span></li>
+        </ol>
+      </div>
+    </nav>
+
+    <div class="app-main-inner">
+
+      <div class="ph">
+        <div class="ph-row">
+          <div class="ph-left">
+            <p class="sd-eyebrow" id="sdEyebrow">AI and ways of working</p>
+            <h1 class="ph-title" id="sdTitle">Monthly pulse</h1>
+          </div>
+          <div class="ph-actions">
+            <span class="tag" id="sdStatus">Planned</span>
+            <span class="ov-avatar">JI</span>
+            <button class="ib ib-36 ib-tertiary" aria-label="More actions"><i data-icon="more-vertical"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status banner + timeline -->
+      <div class="ov-tl-card">
+        <div class="ov-banner">
+          <span class="ov-banner-icon" id="sdBannerIcon"><i data-icon="Clock"></i></span>
+          <span class="ov-banner-text" id="sdBanner"></span>
+          <button class="btn btn-secondary ov-banner-btn" id="sdEdit"><i data-icon="edit"></i> Edit survey</button>
+        </div>
+        <div class="ov-tl" id="sdTimeline"></div>
+      </div>
+
+      <!-- Survey settings -->
+      <div class="ov-section">
+        <div class="card-title ov-section-title">Survey settings<span class="ov-section-chev"><i data-icon="chevron-up"></i></span></div>
+        <div class="card card-elevated">
+          <div class="card-body" id="sdRows"></div>
+        </div>
+      </div>
+
+
+      <!-- Sharing results -->
+      <div class="ov-section">
+        <div class="card-title ov-section-title">Sharing results<span class="ov-section-chev"><i data-icon="chevron-up"></i></span></div>
+        <div class="card card-elevated">
+          <div class="card-body">
+            <div class="sr-row">
+              <div class="ov-row-icon tile-yellow"><i data-icon="privacy"></i></div>
+              <div class="ov-row-body">
+                <div class="sr-title">Results access</div>
+                <div class="sr-sub">Decide which users can view the survey results and response rate</div>
+              </div>
+            </div>
+            <a class="sr-row is-link" href="#" onclick="return false;">
+              <div class="ov-row-icon tile-blue"><i data-icon="pie-chart"></i></div>
+              <div class="ov-row-body">
+                <div class="sr-title">Results Release</div>
+                <div class="sr-sub">Manage how and when you share results</div>
+              </div>
+              <span class="ov-row-action">Release in phases <i data-icon="chevron-right"></i></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sr-cards">
+          <div class="card card-elevated">
+            <div class="card-title">Response</div>
+            <div class="sr-card-body">
+              <div class="sr-card-info" id="srResponse"></div>
+              <button class="btn btn-secondary" type="button" id="srResponseBtn">View response</button>
+            </div>
+          </div>
+          <div class="card card-elevated">
+            <div class="card-title">Results</div>
+            <div class="sr-card-body">
+              <div class="sr-card-info">
+                <span class="sr-card-art"></span>
+                <p class="sr-card-name">No results yet</p>
+                <span class="sr-card-note">We do not have any results yet</span>
+              </div>
+              <button class="btn btn-secondary" type="button" id="srResultsBtn">View results</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="https://effectory-ux.github.io/Engage-Design-system-/icons.js"></script>
+<script src="gtma-icons.js"></script>
+<script>
+/* ── What this survey turned out to be ────────────────────
+   Everything here is read back from the setup steps, so the page describes the
+   survey you actually planned. Scheduling it makes it Planned; starting it
+   immediately makes it Running. */
+var read = function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } };
+var SURVEY = read('gtma-cyos-survey') || {};
+var QUESTIONS = read('gtma-cyos-questions');
+var SAMPLING = read('gtma-cyos-sampling');
+var PERIOD = read('gtma-cyos-period');
+var DESIGN = read('gtma-cyos-layout') || {};
+
+var running = !!(PERIOD && PERIOD.when === 'now');
+var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function stamp(ms, time) {
+  if (!ms) return null;
+  var d = new Date(ms);
+  return WD[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() +
+    (time ? ', ' + time : '');
+}
+function daysUntil(ms) {
+  if (!ms) return null;
+  return Math.max(0, Math.round((ms - Date.now()) / 86400000));
+}
+
+document.getElementById('sdTitle').textContent = SURVEY.name || 'Monthly pulse';
+var project = SURVEY.project || 'AI and ways of working';
+document.getElementById('sdEyebrow').textContent = project;
+document.getElementById('sdCrumbProject').textContent = project;
+document.title = (SURVEY.name || 'Survey') + ' — My Effectory';
+
+/* Not `status`: at top level that is window.status, which turns anything
+   assigned to it into a string and quietly swallows the class change. */
+var statusTag = document.getElementById('sdStatus');
+statusTag.textContent = running ? 'Running' : 'Planned';
+statusTag.className = running ? 'tag tag-highlight' : 'tag is-planned';
+
+/* The banner says what happens next, and the button goes back into the setup. */
+var days = PERIOD ? daysUntil(PERIOD.start) : null;
+/* Changes stay open until two hours before the start, which is what the review
+   dialog promises when you plan the survey. */
+function cutoff() {
+  if (!PERIOD || !PERIOD.start) return null;
+  var t = (PERIOD.startTime || '00:00').split(':');
+  var d = new Date(PERIOD.start);
+  d.setHours(+t[0] - 2, +t[1] || 0, 0, 0);
+  var hh = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  return stamp(d.getTime(), hh);
+}
+document.getElementById('sdBanner').textContent = running
+  ? 'Your survey is running! Check out the current response rate to see how it is going'
+  : 'Your survey starts in ' + (days === null ? 'a few days' : days === 0 ? 'less than a day' : days + ' days') +
+    '! You can make changes up until ' + (cutoff() || 'it starts');
+document.getElementById('sdBannerIcon').innerHTML = '<i data-icon="' + (running ? 'activity' : 'Clock') + '"></i>';
+
+var edit = document.getElementById('sdEdit');
+edit.innerHTML = running
+  ? '<i data-icon="barchart-2"></i> View response'
+  : '<i data-icon="edit"></i> Edit survey';
+/* Edit survey walks back into the setup. View response goes nowhere: the response
+   rate of this survey is not a screen in this prototype, and the results dashboard
+   belongs to a different, finished survey. */
+if (!running) {
+  edit.addEventListener('click', function () { location.href = 'cyos-participants.html'; });
+}
+
+/* The three bands, with the marker where the survey stands today. */
+(function () {
+  /* The three phases each keep their own glyph: waiting, under way, done. Which
+     one the survey is in only moves the marker, not the labels. */
+  var bands = [
+    { cls: 'is-planned', label: 'PLANNED',   state: 'planned', icon: 'Clock' },
+    { cls: 'is-running', label: 'RUNNING',   state: 'running', icon: 'Clock' },
+    { cls: 'is-done',    label: 'COMPLETED', state: 'done',    icon: 'check' }
+  ];
+  /* The bands are the real dates: a run-up before the start, the survey period
+     itself, and a tail after it closes. The marker sits where today falls. */
+  /* An immediate survey has no start date: it started when it was launched. */
+  var startAt = PERIOD ? (PERIOD.start || (running ? Date.now() : null)) : null;
+  var span = startAt && PERIOD.end ? PERIOD.end - startAt : 0;
+  var from = startAt ? startAt - span * 0.35 : 0;
+  var to   = PERIOD && PERIOD.end ? PERIOD.end + span * 0.3 : 1;
+  var total = to - from || 1;
+  var pct = function (ms) { return Math.max(0, Math.min(100, (ms - from) / total * 100)); };
+  var widths = span
+    ? [pct(startAt), pct(PERIOD.end) - pct(startAt), 100 - pct(PERIOD.end)]
+    : [30, 50, 20];
+  /* A survey planned far ahead would push the marker off the left edge. */
+  var now = span ? Math.max(2, pct(Date.now())) : 4;
+  var at = now.toFixed(1) + '%';
+  /* The moments the survey passes through: the invitation goes out, the survey
+     closes, the results arrive. */
+  function milestones() {
+    var passed = running ? 1 : 0;
+    var short = function (ms) {
+      if (!ms) return '';
+      var d = new Date(ms);
+      return MON[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    };
+    var endAt = PERIOD && PERIOD.end;
+    return [
+      ['send', widths[0], 'Survey invitation: ' + short(startAt), 'is-invite'],
+      ['check', widths[0] + widths[1], 'Survey end date: ' + short(endAt), 'is-close'],
+      ['barchart-2', Math.min(99, widths[0] + widths[1] + widths[2] * 0.5), 'Phased release: ' + short(endAt), 'is-results']
+    ].map(function (m, i) {
+      return '<span class="ov-tl-ms ' + m[3] + (i < passed ? '' : ' is-future') + '" style="left:' + m[1] + '%">' +
+        '<span class="ov-tl-ms-dot"></span><span class="ov-tl-ms-stem"></span>' +
+        '<span class="tt-demo"><span class="ov-tl-ms-icon"><i data-icon="' + m[0] + '"></i></span>' +
+        '<span class="tooltip is-below">' + m[2] + '</span></span></span>';
+    }).join('');
+  }
+  var period = startAt && PERIOD.end
+    ? (running && !PERIOD.start ? 'Immediately' : stamp(startAt, PERIOD.startTime)) + ' <i data-icon="from-to"></i> End: ' + stamp(PERIOD.end, PERIOD.endTime)
+    : '';
+  document.getElementById('sdTimeline').innerHTML = bands.map(function (b, i) {
+    var dot = '';
+    return '<div class="ov-tl-band ' + b.cls + '" style="width:' + widths[i] + '%">' +
+      '<span class="ov-tl-band-lbl"><span class="ov-tl-status is-' + b.state + '">' + dot + '</span>' +
+        '<span class="text-l6">' + b.label + '</span></span>' +
+      (i === 1 && period ? '<span class="ov-tl-period">Start: ' + period + '</span>' : '') +
+    '</div>';
+  }).join('') +
+  '<div class="ov-tl-lane">' +
+    '<div class="ov-tl-track"></div>' +
+    '<div class="ov-tl-fill" style="width:' + at + '"></div>' +
+    milestones() +
+    '<div class="ov-tl-now" style="left:' + at + '"></div>' +
+  '</div>';
+})();
+
+/* The settings, in the order the setup asked for them. */
+(function () {
+  var rows = [
+    { icon: 'users', tile: 'tile-blue', title: 'Participants',
+      sub: SAMPLING && SAMPLING.groups
+        ? (SAMPLING.sampling
+            ? SAMPLING.invited + ' of ' + SAMPLING.total + ' participants, ' + SAMPLING.pct + '% random sample'
+            : SAMPLING.total + ' participants from ' + SAMPLING.groups + ' groups')
+        : 'Not selected',
+      action: 'View details', href: 'cyos-participants.html' },
+    { icon: 'calendar', tile: 'tile-purple', title: 'Period',
+      sub: PERIOD && PERIOD.end
+        ? (PERIOD.start ? stamp(PERIOD.start, PERIOD.startTime) : 'Immediately') + ' to ' + stamp(PERIOD.end, PERIOD.endTime)
+        : 'Not selected',
+      action: 'Edit period', href: 'cyos-survey-period.html' },
+    { icon: 'bell', tile: 'tile-orange', title: 'Survey reminders',
+      sub: '1 reminder, sent to everyone who has not responded' },
+    { icon: 'check-square', tile: 'tile-turquoise', title: 'Questions',
+      sub: QUESTIONS ? QUESTIONS.questions + ' questions, completion time ' + QUESTIONS.minutes + ' min' : 'Not selected',
+      action: 'View questions', href: 'ai-adoption-scan-questionnaire.html' },
+    { icon: 'layout', tile: 'tile-green', title: 'Design',
+      sub: 'Survey: ' + (DESIGN.layout || 'Novanta yellow') + ' · Email: ' + (DESIGN.mailTemplate || 'Novanta yellow'),
+      action: 'Edit design', href: 'cyos-layout-emails.html' }
+  ];
+  document.getElementById('sdRows').innerHTML = rows.map(function (r) {
+    var tag = r.href ? 'a' : 'div';
+    return '<' + tag + ' class="ov-row' + (r.href ? ' is-link' : '') + '"' + (r.href ? ' href="' + r.href + '"' : '') + '>' +
+      '<div class="ov-row-icon ' + r.tile + '"><i data-icon="' + r.icon + '"></i></div>' +
+      '<div class="ov-row-body">' +
+        '<div class="ov-row-title">' + r.title + '</div>' +
+        '<div class="ov-row-sub">' + r.sub + '</div>' +
+      '</div>' +
+      (r.action ? '<span class="ov-row-action">' + r.action + ' <i data-icon="chevron-right"></i></span>' : '') +
+    '</' + tag + '>';
+  }).join('');
+})();
+
+/* A survey that has not started yet has nothing to report, so the response card
+   is empty too. Once it runs, its own response rate starts at nought while the
+   benchmark it is measured against is already there. */
+document.getElementById('srResponse').innerHTML = running
+  ? [
+      [(SURVEY.project || 'Novanta B.V.').toUpperCase(), 0],
+      ['Effectory Index', 64]
+    ].map(function (r) {
+      return '<div class="sr-item">' +
+        '<div class="sr-item-top"><span class="sr-item-name">' + r[0] + '</span>' +
+        '<span class="sr-item-pct">' + r[1] + '%</span></div>' +
+        '<div class="sr-item-bar"><span style="width:' + r[1] + '%"></span></div>' +
+      '</div>';
+    }).join('')
+  : '<img class="sr-card-art is-response" src="assets/img/response-empty.svg" alt="" />' +
+    '<p class="sr-card-name">No response yet</p>' +
+    '<span class="sr-card-note">You don\u2019t have any responses</span>';
+
+/* With nothing to show, neither card has anywhere to send you. */
+[['srResponseBtn', !running], ['srResultsBtn', true]].forEach(function (b) {
+  var el = document.getElementById(b[0]);
+  el.disabled = b[1];
+  el.classList.toggle('is-disabled', b[1]);
+});
+
+if (window.Icons) window.Icons.render(document.body);
+</script>
+
+<!-- One language for the whole prototype: the design system's map for what these
+     screens share with the dashboard, this prototype's own for the rest. -->
+<script src="https://effectory-ux.github.io/Engage-Design-system-/i18n.js"></script>
+<script src="gtma-strings.js"></script>
+<script src="gtma-i18n.js"></script>
+</body>
+</html>

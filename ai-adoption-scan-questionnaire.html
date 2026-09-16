@@ -4,12 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Adoption Scan — Questions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Poppins comes straight from its files instead of through a stylesheet on
+       another host. That stylesheet is only cached for ten minutes, so every
+       navigation after that waited on a round trip before the font could even be
+       found, and the text was laid out twice: once in the fallback, once in
+       Poppins. The font files themselves are cached for a year. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
   <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/tokens.css" />
   <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/foundation.css" />
   <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/components.css" />
+  <link rel="stylesheet" href="cyos-review.css" />
   <style>
+    /* Components with their own display beat the browser's [hidden] rule, and this
+       page carries the shared review dialog. One rule instead of chasing them. */
+    [hidden] { display: none !important; }
+
     body { background: var(--bg-interface-body); }
 
     /* This screen has NO main navigation — the CYOS flow replaces the app shell with
@@ -21,18 +52,31 @@
     /* ── Header ──
        65px, white, hairline bottom border. Logo is the design-system Effectory mark
        (assets/illustrations/logo/effectory-logo.svg — the same artwork .mn-logo uses). */
-    .cyos-head { display: flex; align-items: center; height: 65px; padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-base); border-bottom: 1px solid var(--border-base); }
+    /* The name bar stays put while you scroll, so you always see which survey you
+       are setting up. The stepper scrolls with the page underneath it. */
+    .cyos-head { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; height: 65px; padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-base); border-bottom: 1px solid var(--border-base); }
     .cyos-logo { width: 40px; height: 40px; flex-shrink: 0; margin-right: var(--spacing-base); }
     .cyos-name-group { display: flex; align-items: center; gap: var(--spacing-tight); min-width: 0; }
     .cyos-name-group i[data-icon] { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-secondary); }
     .cyos-survey-name { margin: 0; color: var(--content-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .cyos-head-actions { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-tight); }
 
-    /* ── Stepper ──
-       Each step is a 28px circle that overlaps a 44px icon tile by 4px. The circle
-       carries the step number while pending and a check once done; its 2px white
-       border is what makes it read as sitting on top of the tile. */
-    .cyos-steps { display: flex; align-items: center; justify-content: center; padding: var(--spacing-base-tight) var(--spacing-base); border-bottom: 1px solid var(--border-base); overflow-x: auto; }
+    /* The rail is wider than the content column and spreads its steps: max 1300px,
+       centred, space-between, 24px gutters. The hairline belongs to the bar around it,
+       so it runs the full width. */
+    /* The rail sticks under the name bar instead of disappearing behind it, so the
+       two read as one header. */
+    /* Walking to the next step loads a page. A short cross-fade between the two
+       is the difference between stepping and blinking. */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .16s; }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+    }
+    .cyos-steps-bar { position: sticky; top: 65px; z-index: 15; padding: 12px 0; background: var(--bg-base); border-bottom: 1px solid var(--border-base); overflow-x: auto; }
+    /* The steps are drawn by script, so the bar keeps their height free from the
+       start and the content below it stays where it is. */
+    .cyos-steps { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-loose); max-width: 1300px; margin-inline: auto; padding: 0 var(--spacing-loose); }
     .cyos-step { display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-extra-tight) var(--spacing-base); border: none; background: transparent; border-radius: var(--radius-base); font-family: inherit; text-align: left; cursor: pointer; }
     .cyos-step:hover { background: var(--bg-base-hover); }
     .cyos-step-badge { flex-shrink: 0; display: flex; align-items: center; }
@@ -40,19 +84,24 @@
     .cyos-step-circle i { width: 16px; height: 16px; display: flex; }
     .cyos-step-tile { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-secondary-hover); color: var(--content-secondary); }
     .cyos-step-tile i { width: 24px; height: 24px; display: flex; }
-    /* done, but not the step you're on: positive fill + white check */
     .cyos-step.is-done .cyos-step-circle { background: var(--bg-positive); color: var(--content-on-brand-base); border-color: var(--bg-base); }
-    /* the step you're on: brand-selected fill on both, brand-secondary icon */
     .cyos-step.is-active .cyos-step-circle,
     .cyos-step.is-active .cyos-step-tile { background: var(--bg-brand-subtle-selected); }
     .cyos-step.is-active .cyos-step-circle { color: var(--content-brand-secondary); }
     .cyos-step.is-active .cyos-step-tile { color: var(--content-brand-secondary); }
-    .cyos-step-body { min-width: 0; }
+    /* Every page renders this rail from scratch, and the subtitles differ per step and
+       per state. Fixing the step width and reserving two subtitle lines keeps the bar
+       identical from page to page, so it no longer shifts on navigation. */
+    .cyos-step { width: 262px; }
+    .cyos-step-body { min-width: 0; flex: 1; }
+    .cyos-step-title { white-space: nowrap; }
+    .cyos-step-sub { min-height: 2.6em; }
     .cyos-step-title { margin: 0; color: var(--content-secondary); }
     .cyos-step.is-active .cyos-step-title { color: var(--content-base); }
     .cyos-step-sub { margin: 0; color: var(--content-secondary); }
     .cyos-step-sep { display: flex; align-items: center; color: var(--content-subtle); }
     .cyos-step-sep i { width: 16px; height: 16px; display: flex; }
+
 
     /* ── Template card ── */
     .cyos-title { margin: 0 0 var(--spacing-loose); color: var(--content-base); }
@@ -62,7 +111,7 @@
     .tmpl-card-name { margin: 0; color: var(--content-base); }
     .tmpl-card-meta { margin: var(--spacing-extra-tight) 0 0; color: var(--content-secondary); }
     /* the "locked" strip under the card — a standard template can't be edited here */
-    .tmpl-locked { margin-top: var(--spacing-base); padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-secondary); border-radius: var(--radius-base); color: var(--content-secondary); text-align: center; }
+    .tmpl-locked { margin-top: var(--spacing-base); padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-secondary-hover); border-radius: var(--radius-base); color: var(--content-secondary); text-align: center; }
 
     /* ── Questionnaire (same block as the template preview dialog) ── */
     .q-head { display: flex; align-items: center; gap: var(--spacing-base-tight); margin-bottom: var(--spacing-base-tight); }
@@ -94,9 +143,16 @@
       .q-scale span:last-child { display: none; }
     }
   </style>
+  <!-- The scripts that translate this page sit at the end of the body, and a
+       blocking script halfway down lets the browser paint what it has before it
+       gets there. In English there is nothing to wait for; in another language
+       that first paint is the wrong one, so hold it back until the text has been
+       swapped. The timeout is the failsafe: a page always shows itself. -->
+  <script>try{if((localStorage.getItem('effx-lang')||'en')!=='en'){document.documentElement.classList.add('gtma-lang-wait');setTimeout(function(){document.documentElement.classList.remove('gtma-lang-wait')},2000)}}catch(e){}</script>
+  <style>html.gtma-lang-wait body { visibility: hidden; }</style>
 </head>
 <body>
-
+    
 <div class="cyos">
 
   <!-- HEADER -->
@@ -109,13 +165,14 @@
       <button class="btn btn-tertiary"><i data-icon="edit"></i> Edit name</button>
     </div>
     <div class="cyos-head-actions">
-      <a class="btn btn-tertiary" href="#">Help articles <i data-icon="external-link"></i></a>
       <button class="btn btn-tertiary"><i data-icon="globe"></i> English</button>
     </div>
   </header>
 
   <!-- STEPPER — rendered from STEPS in the script -->
-  <nav class="cyos-steps" id="steps" aria-label="Survey setup"></nav>
+  <div class="cyos-steps-bar">
+    <nav class="cyos-steps" id="steps" aria-label="Survey setup"></nav>
+  </div>
 
   <!-- CONTENT -->
   <main class="cyos-main">
@@ -139,14 +196,17 @@
 
   <!-- FOOTER ACTIONS -->
   <div class="cyos-foot">
-    <button class="btn btn-secondary" data-saveclose>Save &amp; Close</button>
-    <button class="btn btn-primary">Next Step <i data-icon="arrow-right"></i></button>
-    <button class="btn btn-primary is-disabled" disabled>Review &amp; Plan <i data-icon="send"></i></button>
+    <button class="btn btn-secondary" data-saveclose>Save &amp; close</button>
+    <button class="btn btn-primary" type="button" onclick="location.href='cyos-participants.html'">Next step <i data-icon="arrow-right"></i></button>
+    <button class="btn btn-primary" type="button" id="reviewBtn"><i data-icon="send"></i> Review &amp; plan</button>
   </div>
 
 </div>
 
 <script src="https://effectory-ux.github.io/Engage-Design-system-/icons.js"></script>
+<script src="gtma-icons.js"></script>
+<script src="cyos-draft.js"></script>
+<script src="cyos-review.js"></script>
 <script>
   /* Questionnaire per template — question sections from the IP-safe Effectory content
      library (realistic-content skill, data.safe.json). Counts match the meta line on
@@ -485,7 +545,6 @@
   /* Where the create flow started, carried over by create-survey-dialog. "Save & Close"
      drops the user back on that overview — All surveys, or the Projects overview when the
      flow began inside a project (there is no project-detail reference screen yet). */
-  var RETURN_TO = 'ai-adoption-scan-template-dialog.html';
   if (!QUESTIONNAIRES[templateName]) templateName = 'AI Adoption Scan';
   var meta = TEMPLATE_META[templateName];
 
@@ -499,17 +558,46 @@
   };
 
   function esc(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return String(s).replace(/&/g, '&amp);').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
   /* The four setup steps. Every step is optional and pre-filled, so "Layout & emails"
      is done from the start; coming from a template the questions are already chosen
      and fixed, so "Questions" is done too. Set done:false to see the pending state. */
+  /* What the other steps settled on, so this rail matches the rest of the flow. */
+  var read = function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } };
+  var SAMPLING = read('gtma-cyos-sampling');
+  var PERIOD = read('gtma-cyos-period');
+  var DESIGN = read('gtma-cyos-layout') || {};
+  var LONG = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var fmt = function (ms) { var d = new Date(ms); return WD[d.getDay()] + ', ' + LONG[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); };
+
+  /* This step is what the summary counts, so it writes its own numbers down. */
+  var qCounts = meta.meta.match(/(\d+)\s+questions.*?(\d+)\s+minutes/);
+  var QUESTIONS = qCounts ? +qCounts[1] : 0;
+  var MINUTES = qCounts ? +qCounts[2] : 0;
+  try {
+    sessionStorage.setItem('gtma-cyos-questions', JSON.stringify({
+      template: templateName, questions: QUESTIONS, minutes: MINUTES
+    }));
+  } catch (e) {}
+
+  /* A survey that starts immediately has no start date, only an end. */
+  var periodSet = function (p) { return !!(p && p.end && (p.when === 'now' || p.start)); };
+
   var STEPS = [
-    { title: 'Questions',       icon: 'check-square', sub: '', done: true,  active: true },
-    { title: 'Participants',    icon: 'users',        sub: 'Select participants', done: false, active: false },
-    { title: 'Survey period',   icon: 'calendar',     sub: 'Select period',       done: false, active: false },
-    { title: 'Layout &amp; emails', icon: 'layout',   sub: 'Survey: Effectory default<br />Email: Effectory default', done: true, active: false }
+    { title: 'Questions', icon: 'check-square',
+      sub: QUESTIONS + ' questions<br />' + MINUTES + ' mins', done: true, active: true },
+    { title: 'Participants', icon: 'users',
+      sub: SAMPLING && SAMPLING.groups ? SAMPLING.groups + ' Groups<br />' + SAMPLING.total + ' participants' : 'Select participants',
+      done: !!(SAMPLING && SAMPLING.groups), active: false },
+    { title: 'Survey period', icon: 'calendar',
+      sub: periodSet(PERIOD) ? (PERIOD.when === 'now' ? 'Immediately' : fmt(PERIOD.start)) + '<br />' + fmt(PERIOD.end) : 'Select period',
+      done: periodSet(PERIOD), active: false },
+    { title: 'Layout &amp; emails', icon: 'layout',
+      sub: 'Survey: ' + (DESIGN.layout || 'Novanta yellow') + '<br />Email: ' + (DESIGN.mailTemplate || 'Novanta yellow'),
+      done: true, active: false }
   ];
 
   document.getElementById('steps').innerHTML = STEPS.map(function (st, i) {
@@ -517,17 +605,33 @@
     // done → check, otherwise the step number
     var badge = st.done ? '<i data-icon="check"></i>' : (i + 1);
     return (i ? '<span class="cyos-step-sep"><i data-icon="chevron-right"></i></span>' : '') +
-      '<button class="' + cls + '"' + (st.active ? ' aria-current="step"' : '') + '>' +
+      '<button class="' + cls + '" data-step="' + st.title + '"' + (st.active ? ' aria-current="step"' : '') + '>' +
         '<span class="cyos-step-badge">' +
           '<span class="cyos-step-circle">' + badge + '</span>' +
           '<span class="cyos-step-tile"><i data-icon="' + st.icon + '"></i></span>' +
         '</span>' +
         '<span class="cyos-step-body">' +
           '<p class="text-l5 cyos-step-title">' + st.title + '</p>' +
-          (st.sub ? '<p class="text-small text-w500 cyos-step-sub">' + st.sub + '</p>' : '') +
+          '<p class="text-small text-w500 cyos-step-sub">' + st.sub + '</p>' +
         '</span>' +
       '</button>';
   }).join('');
+
+  /* ── Walking between the steps ──────────────────────────── */
+  var STEP_HREF = {
+    'Participants': 'cyos-participants.html',
+    'Survey period': 'cyos-survey-period.html',
+    'Layout & emails': 'cyos-layout-emails.html'
+  };
+  document.getElementById('steps').addEventListener('click', function (e) {
+    var b = e.target.closest('.cyos-step');
+    if (!b) return;
+    /* The step names itself in English on the button, because the title on screen
+     follows the reader's language. */
+  var title = b.dataset.step;
+    var href = STEP_HREF[title];
+    if (href && !b.classList.contains('is-active')) location.href = href;
+  });
 
   document.getElementById('surveyName').textContent = surveyName;
   document.getElementById('tmplName').textContent = templateName;
@@ -539,15 +643,6 @@
     'https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/templates/' + meta.img + '.svg';
   document.title = surveyName + ' \u2014 Questions';
 
-  // the Questions step summarises the template: "N questions \u00b7 N mins"
-  var counts = meta.meta.match(/(\d+)\s+questions.*?(\d+)\s+minutes/);
-  if (counts) {
-    var qStep = document.querySelector('.cyos-step .cyos-step-body');
-    var sub = document.createElement('p');
-    sub.className = 'text-small text-w500 cyos-step-sub';
-    sub.textContent = counts[1] + ' questions \u00b7 ' + counts[2] + ' mins';
-    qStep.appendChild(sub);
-  }
 
   // Questionnaire — one card of rows per section, headed by the section + a count pill
   document.getElementById('questionnaire').innerHTML = QUESTIONNAIRES[templateName].map(function (sec) {
@@ -574,11 +669,16 @@
 
   // Save & Close — leave the survey as a draft and go back where you came from.
   // Nothing is persisted; the draft already exists from the moment it was created.
-  document.querySelector('[data-saveclose]').addEventListener('click', function () {
-    location.href = RETURN_TO;
-  });
+  /* Save & Close is handled by cyos-draft.js, which also leaves the draft behind. */
 
   if (window.Icons) window.Icons.render();
 </script>
+
+<!-- One language for the whole prototype: the design system's map for what these
+     screens share with the dashboard, this prototype's own for the rest. -->
+<script src="https://effectory-ux.github.io/Engage-Design-system-/i18n.js"></script>
+<script src="gtma-strings.js"></script>
+<script src="gtma-strings-questions.js"></script>
+<script src="gtma-i18n.js"></script>
 </body>
 </html>

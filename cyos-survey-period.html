@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYOS — Survey period</title>
+  <!-- Poppins comes straight from its files instead of through a stylesheet on
+       another host. That stylesheet is only cached for ten minutes, so every
+       navigation after that waited on a round trip before the font could even be
+       found, and the text was laid out twice: once in the fallback, once in
+       Poppins. The font files themselves are cached for a year. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/tokens.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/foundation.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/components.css" />
+  <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("effx-theme")||"light")}catch(e){}</script>
+  <link rel="stylesheet" href="cyos-review.css" />
+  <style>
+    body { background: var(--bg-base); }
+
+    /* Components that set their own display beat the browser's [hidden] rule, and this
+       screen toggles a lot of them. One rule instead of chasing them one by one. */
+    [hidden] { display: none !important; }
+
+    /* .tt-demo in components.css is the docs wrapper and shows the bubble permanently.
+       Gate it on hover, the same three lines the other prototypes here carry. */
+    .tt-demo { position: relative; display: inline-flex; }
+    /* The bubble is placed in a fixed layer on hover. Parking it there from the start
+       too keeps an idle tooltip from widening whatever box it sits in: absolutely
+       positioned, it still counted towards the scroll width and gave the Select groups
+       dialog a horizontal scrollbar. */
+    .tt-demo .tooltip { position: fixed; left: 0; top: 0; opacity: 0; pointer-events: none; transition: opacity var(--motion-fast) var(--ease-out); }
+    /* The tooltip inherits white-space from whatever it sits in, and the toggle label
+       here is nowrap to keep "Random sample" on one line. Without this the bubble can't
+       wrap and its text gets cut off at the 240px max-width. */
+    .tooltip { white-space: normal; }
+    .tt-demo:hover .tooltip, .tt-demo:focus-within .tooltip { opacity: 1; }
+
+    /* ══ CYOS shell ══
+       The same shell as the questionnaire screen in this repo, which is also the one
+       the live app uses: logo bar, four-step rail, 1000px column, fixed action bar. */
+    .cyos { display: flex; flex-direction: column; min-height: 100vh; }
+    .cyos-main { flex: 1; padding: var(--spacing-extra-loose) var(--spacing-loose) 120px; }
+    .cyos-inner { max-width: 1000px; margin-inline: auto; }
+
+    /* The name bar stays put while you scroll, so you always see which survey you
+       are setting up. The stepper scrolls with the page underneath it. */
+    .cyos-head { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; height: 65px; padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-base); border-bottom: 1px solid var(--border-base); }
+    .cyos-logo { width: 40px; height: 40px; flex-shrink: 0; margin-right: var(--spacing-base); }
+    .cyos-name-group { display: flex; align-items: center; gap: var(--spacing-tight); min-width: 0; }
+    .cyos-name-group i[data-icon] { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-secondary); }
+    .cyos-survey-name { margin: 0; color: var(--content-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cyos-head-actions { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-tight); }
+
+    /* The rail is wider than the content column and spreads its steps: max 1300px,
+       centred, space-between, 24px gutters. The hairline belongs to the bar around it,
+       so it runs the full width. */
+    /* The rail sticks under the name bar instead of disappearing behind it, so the
+       two read as one header. */
+    /* Walking to the next step loads a page. A short cross-fade between the two
+       is the difference between stepping and blinking. */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .16s; }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+    }
+    .cyos-steps-bar { position: sticky; top: 65px; z-index: 15; padding: 12px 0; background: var(--bg-base); border-bottom: 1px solid var(--border-base); overflow-x: auto; }
+    /* The steps are drawn by script, so the bar keeps their height free from the
+       start and the content below it stays where it is. */
+    .cyos-steps { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-loose); max-width: 1300px; margin-inline: auto; padding: 0 var(--spacing-loose); }
+    .cyos-step { display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-extra-tight) var(--spacing-base); border: none; background: transparent; border-radius: var(--radius-base); font-family: inherit; text-align: left; cursor: pointer; }
+    .cyos-step:hover { background: var(--bg-base-hover); }
+    .cyos-step-badge { flex-shrink: 0; display: flex; align-items: center; }
+    .cyos-step-circle { position: relative; z-index: 2; width: 28px; height: 28px; margin-right: -4px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-base); border-radius: var(--radius-full); background: var(--bg-secondary-hover); color: var(--content-secondary); font-size: 14px; font-weight: 500; }
+    .cyos-step-circle i { width: 16px; height: 16px; display: flex; }
+    .cyos-step-tile { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-secondary-hover); color: var(--content-secondary); }
+    .cyos-step-tile i { width: 24px; height: 24px; display: flex; }
+    .cyos-step.is-done .cyos-step-circle { background: var(--bg-positive); color: var(--content-on-brand-base); border-color: var(--bg-base); }
+    .cyos-step.is-active .cyos-step-circle,
+    .cyos-step.is-active .cyos-step-tile { background: var(--bg-brand-subtle-selected); }
+    .cyos-step.is-active .cyos-step-circle { color: var(--content-brand-secondary); }
+    .cyos-step.is-active .cyos-step-tile { color: var(--content-brand-secondary); }
+    /* Every page renders this rail from scratch, and the subtitles differ per step and
+       per state. Fixing the step width and reserving two subtitle lines keeps the bar
+       identical from page to page, so it no longer shifts on navigation. */
+    .cyos-step { width: 262px; }
+    .cyos-step-body { min-width: 0; flex: 1; }
+    .cyos-step-title { white-space: nowrap; }
+    .cyos-step-sub { min-height: 2.6em; }
+    .cyos-step-title { margin: 0; color: var(--content-secondary); }
+    .cyos-step.is-active .cyos-step-title { color: var(--content-base); }
+    .cyos-step-sub { margin: 0; color: var(--content-secondary); }
+    .cyos-step-sep { display: flex; align-items: center; color: var(--content-subtle); }
+    .cyos-step-sep i { width: 16px; height: 16px; display: flex; }
+
+    .cyos-foot { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-base) var(--spacing-loose); background: var(--bg-base); border-top: 1px solid var(--border-base); box-shadow: var(--sh-footer); }
+    .cyos-foot-right { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-base-tight); }
+    .cyos-saved { font-size: 14px; color: var(--content-secondary); }
+    /* The live app title-cases these labels in CSS, so the source strings stay sentence case. */
+    .cyos-foot .btn { text-transform: capitalize; }
+
+    /* ══ Survey period ══ */
+    .sp-head { display: flex; align-items: center; gap: var(--spacing-base); margin-bottom: var(--spacing-loose); }
+    .sp-head-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex-shrink: 0; border-radius: var(--radius-md); background: var(--bg-brand-subtle); color: var(--content-brand); }
+    .sp-head-icon i { width: 24px; height: 24px; display: flex; }
+    .sp-title { margin: 0; font-size: 26px; font-weight: 600; line-height: 1.3; color: var(--content-base); }
+    .sp-sub { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+
+    .sp-question { margin: 0 0 var(--spacing-base-tight); font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--content-base); }
+    /* .rb-group stacks; these two sit side by side, so only the row is ours. The
+       12px gap is the one .rb-group uses between options. */
+    .sp-radios { display: flex; align-items: center; gap: var(--spacing-loose); margin-bottom: var(--spacing-loose); }
+
+    /* One grey card holds the whole schedule, as in the app. */
+    .sp-card { background: var(--bg-secondary); border: 1px solid var(--border-base); border-radius: var(--radius-md); padding: var(--spacing-loose); }
+    /* 4px between a label and its field, the gap .tf-wrap and .slt-wrap set. */
+    .sp-label { display: flex; align-items: center; gap: var(--spacing-extra-tight); margin: 0 0 var(--spacing-extra-tight); font-size: 14px; font-weight: 600; color: var(--content-base); }
+    .sp-label-info { width: 14px; height: 14px; display: flex; color: var(--content-secondary); border: none; background: none; padding: 0; cursor: pointer; }
+    .sp-freq { width: calc(50% - var(--spacing-base)); }
+    .sp-divider { border: none; border-top: 1px solid var(--border-base); margin: var(--spacing-loose) 0; }
+
+    /* Start and end sit side by side; each is a date field plus a time field. */
+    /* Fixed halves rather than flex:1 — with "Immediately" the start column goes away
+       and the end one has to stay where it was instead of stretching. */
+    /* Two equal columns with the arrow in the gap between them; the app puts the second
+       column at exactly half the card. Fixed rather than flexible, so removing the start
+       column with "Immediately" leaves the rest where it was. */
+    .sp-dates { display: flex; align-items: flex-end; gap: 0; }
+    .sp-col { flex: 0 0 calc((100% - 48px) / 2); min-width: 0; }
+    /* With "Immediately" the from-to glyph is gone, and with it the 48px it held between
+       the columns. Survey duration would then sit right against the end time, so the row
+       carries its own gap instead. */
+    .sp-dates.is-now { gap: 64px; }
+    .sp-dates.is-now .sp-col { flex: 0 0 calc((100% - 64px) / 2); }
+    /* The duration row sits under the timezone line, so it needs more air above it
+       than the 16px that separates fields inside a block. */
+    #durationRow { display: flex; margin-top: var(--spacing-loose); }
+    .sp-field-row { display: flex; align-items: center; gap: var(--spacing-tight); }
+    /* The design system's from-to glyph, the same one the results date range uses:
+       two dots joined by a bar, 24x8. Sits centred on the 36px field, so its bottom
+       margin is (36 - 8) / 2. */
+    /* from-to.svg bakes in fill-opacity .5, so a already-translucent colour makes the
+       dots wash out. content-base lands it at the same weight as in the app. */
+    .sp-arrow { flex: 0 0 48px; height: 8px; display: flex; justify-content: center; color: var(--content-base); margin-bottom: 14px; }
+    .sp-arrow i { width: 24px; height: 8px; display: flex; }
+
+    /* Date field — a button, because the value only comes from the picker. */
+    /* The app gives the date box and the time box 200px each, so the pair fills its
+       column. Equal halves rather than a wide date and a narrow time field. */
+    .sp-date { position: relative; flex: 1 1 0; min-width: 0; }
+    .sp-date-btn { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-tight); width: 100%; height: 36px; padding: 0 var(--spacing-base-tight); border: 1px solid var(--border-action); border-radius: var(--radius-base); background: var(--bg-input); box-shadow: var(--sh-action); font-family: inherit; font-size: 14px; color: var(--content-base); cursor: pointer; }
+    .sp-date-btn:hover:not(:disabled) { border-color: var(--border-action-hover); }
+    .sp-date-btn.is-open { border-color: var(--border-brand); }
+    .sp-date-btn:disabled { background: var(--bg-disabled); border-color: var(--border-disabled); color: var(--content-disabled); box-shadow: none; cursor: not-allowed; }
+    .sp-date-btn.is-empty { color: var(--content-subtle); }
+    .sp-date-btn i { width: 16px; height: 16px; flex-shrink: 0; display: flex; color: var(--content-secondary); }
+    .sp-date-btn:disabled i { color: var(--content-disabled); }
+
+    /* Time field — separate hour and minute inputs with a stepper, as in the app. */
+    .sp-time { display: flex; align-items: center; gap: 2px; flex: 1 1 0; min-width: 0; height: 36px; padding: 0 var(--spacing-tight); border: 1px solid var(--border-action); border-radius: var(--radius-base); background: var(--bg-input); box-shadow: var(--sh-action); }
+    .sp-time.is-disabled { background: var(--bg-disabled); border-color: var(--border-disabled); box-shadow: none; }
+    .sp-time input { width: 26px; padding: 0; border: none; background: none; font-family: inherit; font-size: 14px; text-align: center; color: var(--content-base); }
+    .sp-time input:focus { outline: none; }
+    .sp-time.is-disabled input { color: var(--content-disabled); }
+    .sp-time-colon { color: var(--content-secondary); }
+    /* value on the left, stepper against the right edge, as in the app */
+    .sp-steps { display: flex; flex-direction: column; margin-left: auto; }
+    .sp-step { width: 16px; height: 14px; display: flex; align-items: center; justify-content: center; padding: 0; border: none; background: none; color: var(--content-secondary); cursor: pointer; }
+    .sp-step:hover:not(:disabled) { color: var(--content-base); }
+    .sp-step:disabled { color: var(--content-disabled); cursor: not-allowed; }
+    .sp-step i { width: 12px; height: 12px; display: flex; }
+
+    .sp-tz { display: flex; align-items: center; gap: var(--spacing-extra-tight); margin-top: var(--spacing-base); font-size: 14px; color: var(--content-secondary); }
+    .sp-tz-select { display: inline-flex; align-items: center; gap: var(--spacing-extra-tight); border: none; background: none; padding: 0; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--content-base); cursor: pointer; }
+    .sp-tz-select i { width: 16px; height: 16px; display: flex; color: var(--content-secondary); }
+
+    /* The design system's Inline notification (info); only the spacing and the stat
+       row inside the sampling one are ours. */
+    #tipStrip { margin-top: var(--spacing-base); }
+    /* ══ Sampling rotation ══
+       The app's own block: info-subtle fill with a full-strength info border, a title
+       with an Edit sample size button opposite it, and a checklist underneath. Each
+       line carries a green tick or an orange warning. */
+    #samplingBanner { position: relative; margin-top: var(--spacing-loose); padding: var(--spacing-loose); background: var(--bg-info-subtle); border: 1px solid var(--bg-info); border-radius: var(--radius-md); }
+    .sb-title { margin: 0; }
+    .sb-edit { position: absolute; top: var(--spacing-loose); right: var(--spacing-loose); }
+    .sb-list { margin: 14px 0 0; padding: 0; list-style: none; }
+    .sb-list li { display: flex; align-items: center; gap: 6px; margin-bottom: var(--spacing-tight); font-size: 14px; color: var(--content-base); }
+    .sb-list li:last-child { margin-bottom: 0; }
+    .sb-ok { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: var(--radius-full); background: var(--bg-positive); color: var(--content-on-brand-base); }
+    .sb-ok i { width: 10px; height: 10px; display: flex; }
+    /* The app's warning is a filled circle with a white glyph, the same construction as
+       the green tick next to it. That is the design system's notification-warning icon;
+       it loads as an <img> because icons.js would flatten its two colours. */
+    .sb-warn { flex-shrink: 0; width: 14px; height: 14px; display: block; }
+
+    /* ══ Date picker ══
+       296px popover, 36px round day cells, weeks starting on Sunday — the shape the app
+       uses. Prototype-local: the design system has a Date picker, but the results
+       prototypes carry their own too and this one has to honour the allowed window. */
+    .dp-pop { position: absolute; top: calc(100% + 4px); left: 0; z-index: 60; width: 296px; padding: var(--spacing-base-tight); background: var(--bg-base); border-radius: var(--radius-sm); box-shadow: 0 4px 12px rgba(25, 39, 67, .08); }
+    .dp-head { display: flex; align-items: center; gap: var(--spacing-tight); margin-bottom: var(--spacing-tight); }
+    .dp-period { display: inline-flex; align-items: center; gap: var(--spacing-extra-tight); flex: 1; padding: 4px 6px; border: none; background: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 14px; font-weight: 600; color: var(--content-base); cursor: pointer; }
+    .dp-period:hover { background: var(--bg-base-hover); }
+    .dp-period i { width: 14px; height: 14px; display: flex; }
+    .dp-nav { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; padding: 0; border: none; background: none; border-radius: var(--radius-full); color: var(--content-secondary); cursor: pointer; }
+    .dp-nav:hover:not(:disabled) { background: var(--bg-base-hover); color: var(--content-base); }
+    .dp-nav:disabled { color: var(--content-disabled); cursor: not-allowed; }
+    .dp-nav i { width: 16px; height: 16px; display: flex; }
+    .dp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .dp-wd { height: 28px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--content-secondary); }
+    .dp-cell { width: 36px; height: 36px; margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 0; border: 1px solid transparent; border-radius: var(--radius-full); background: none; font-family: inherit; font-size: 14px; color: var(--content-base); cursor: pointer; }
+    .dp-cell:hover:not(:disabled) { background: var(--bg-base-hover); }
+    .dp-cell.is-today { border-color: var(--border-base); }
+    .dp-cell.is-selected, .dp-cell.is-selected:hover { background: var(--bg-brand); color: var(--content-on-brand-base); }
+    .dp-cell:disabled { color: var(--content-disabled); cursor: not-allowed; }
+    .dp-cell.is-empty { visibility: hidden; }
+
+    /* Frequency + timezone menus */
+    .sp-menu-wrap { position: relative; }
+    .sp-menu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 60; min-width: 100%; background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); box-shadow: var(--sh-popovers); padding: var(--spacing-tight); }
+    .sp-mi { display: flex; align-items: center; gap: var(--spacing-tight); width: 100%; padding: 10px var(--spacing-base-tight); border: none; background: none; font-family: inherit; font-size: 14px; text-align: left; border-radius: var(--radius-md); color: var(--content-base); cursor: pointer; }
+    .sp-mi:hover { background: var(--bg-base-hover); }
+    .sp-mi.is-selected { background: var(--bg-brand-subtle); }
+    .sp-mi-check { margin-left: auto; width: 16px; height: 16px; display: flex; color: var(--content-brand); }
+  </style>
+  <!-- The scripts that translate this page sit at the end of the body, and a
+       blocking script halfway down lets the browser paint what it has before it
+       gets there. In English there is nothing to wait for; in another language
+       that first paint is the wrong one, so hold it back until the text has been
+       swapped. The timeout is the failsafe: a page always shows itself. -->
+  <script>try{if((localStorage.getItem('effx-lang')||'en')!=='en'){document.documentElement.classList.add('gtma-lang-wait');setTimeout(function(){document.documentElement.classList.remove('gtma-lang-wait')},2000)}}catch(e){}</script>
+  <style>html.gtma-lang-wait body { visibility: hidden; }</style>
+</head>
+<body>
+    
+<div class="cyos">
+
+  <header class="cyos-head">
+    <img class="cyos-logo" src="https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/logo/effectory-logo.svg" alt="Effectory" />
+    <div class="cyos-name-group">
+      <span class="tag is-draft">Draft</span>
+      <i data-icon="clipboard"></i>
+      <p class="text-medium text-w500 cyos-survey-name">Monthly pulse</p>
+      <button class="btn btn-tertiary"><i data-icon="edit"></i> Edit name</button>
+    </div>
+    <div class="cyos-head-actions">
+      <button class="btn btn-tertiary"><i data-icon="globe"></i> English</button>
+    </div>
+  </header>
+
+  <div class="cyos-steps-bar">
+    <nav class="cyos-steps" id="steps" aria-label="Survey setup"></nav>
+  </div>
+
+  <main class="cyos-main">
+    <div class="cyos-inner">
+
+      <div class="sp-head">
+        <div class="sp-head-icon"><i data-icon="calendar"></i></div>
+        <div>
+          <h1 class="sp-title">Survey period</h1>
+          <p class="sp-sub">Select a survey period from: Thu, Jan 1, 2026, 00:00 - Thu, Dec 31, 2026, 00:00</p>
+        </div>
+      </div>
+
+      <p class="sp-question">When should the survey start?</p>
+      <div class="sp-radios">
+        <label class="rb-label-wrap">
+          <span class="rb-wrap"><input type="radio" class="rb" name="start" value="later" checked /></span>
+          Schedule for later
+        </label>
+        <label class="rb-label-wrap">
+          <span class="rb-wrap"><input type="radio" class="rb" name="start" value="now" /></span>
+          Immediately
+        </label>
+      </div>
+
+      <div class="sp-card">
+        <p class="sp-label">Frequency
+          <span class="tt-demo"><button class="sp-label-info" type="button" aria-label="About frequency"><i data-icon="info"></i></button>
+            <span class="tooltip is-below">Choose how often this survey should be sent. This will create a recurring schedule.</span></span>
+        </p>
+        <div class="sp-menu-wrap sp-freq">
+          <button class="sp-date-btn" id="freqBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+            <span style="display:flex;align-items:center;gap:8px"><i data-icon="refresh"></i><span id="freqVal">Once</span></span>
+            <i data-icon="chevron-down"></i>
+          </button>
+          <div class="sp-menu" id="freqMenu" role="menu" hidden></div>
+        </div>
+
+        <hr class="sp-divider" />
+
+        <div class="sp-dates">
+          <div class="sp-col" id="startCol">
+            <p class="sp-label"><span id="startLbl">Start date</span>
+              <span class="tt-demo" id="startInfo" hidden><button class="sp-label-info" type="button" aria-label="About the schedule start"><i data-icon="info"></i></button>
+                <span class="tooltip is-below">The first survey of the schedule goes out on this date</span></span>
+            </p>
+            <div class="sp-field-row">
+              <div class="sp-date">
+                <button class="sp-date-btn is-empty" id="startBtn" type="button" aria-haspopup="dialog" aria-expanded="false">
+                  <span id="startVal">Select start date</span><i data-icon="calendar"></i>
+                </button>
+                <div class="dp-pop" id="startPop" hidden></div>
+              </div>
+              <div class="sp-time" id="startTime">
+                <input type="text" id="startHH" value="08" maxlength="2" aria-label="Start hour" />
+                <span class="sp-time-colon">:</span>
+                <input type="text" id="startMM" value="00" maxlength="2" aria-label="Start minute" />
+                <span class="sp-steps">
+                  <button class="sp-step" type="button" data-time="start" data-dir="1" aria-label="Later"><i data-icon="chevron-up"></i></button>
+                  <button class="sp-step" type="button" data-time="start" data-dir="-1" aria-label="Earlier"><i data-icon="chevron-down"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <span class="sp-arrow"><i data-icon="from-to"></i></span>
+
+          <div class="sp-col" id="endCol">
+            <p class="sp-label"><span id="endLbl">End date</span>
+              <span class="tt-demo" id="endInfo" hidden><button class="sp-label-info" type="button" aria-label="About the schedule end"><i data-icon="info"></i></button>
+                <span class="tooltip is-below">No new surveys are sent after this date</span></span>
+            </p>
+            <div class="sp-field-row">
+              <div class="sp-date">
+                <button class="sp-date-btn is-empty" id="endBtn" type="button" aria-haspopup="dialog" aria-expanded="false" disabled>
+                  <span id="endVal">Select end date</span><i data-icon="calendar"></i>
+                </button>
+                <div class="dp-pop" id="endPop" hidden></div>
+              </div>
+              <div class="sp-time is-disabled" id="endTime">
+                <input type="text" id="endHH" value="23" maxlength="2" aria-label="End hour" disabled />
+                <span class="sp-time-colon">:</span>
+                <input type="text" id="endMM" value="59" maxlength="2" aria-label="End minute" disabled />
+                <span class="sp-steps">
+                  <button class="sp-step" type="button" data-time="end" data-dir="1" aria-label="Later" disabled><i data-icon="chevron-up"></i></button>
+                  <button class="sp-step" type="button" data-time="end" data-dir="-1" aria-label="Earlier" disabled><i data-icon="chevron-down"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="sp-col" id="durationBlock" hidden>
+            <p class="sp-label">Survey duration
+              <span class="tt-demo"><button class="sp-label-info" type="button" aria-label="About survey duration"><i data-icon="info"></i></button>
+                <span class="tooltip is-below">How long each survey in the schedule stays open</span></span>
+            </p>
+            <div class="sp-menu-wrap">
+              <button class="sp-date-btn" id="durBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+                <span style="display:flex;align-items:center;gap:8px"><i data-icon="calendar"></i><span id="durVal">14 days (recommended)</span></span>
+                <i data-icon="chevron-down"></i>
+              </button>
+              <div class="sp-menu" id="durMenu" role="menu" hidden style="max-height:280px;overflow:auto"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="sp-tz">Selected time zone:
+          <span class="sp-menu-wrap">
+            <button class="sp-tz-select" id="tzBtn" type="button" aria-haspopup="menu" aria-expanded="false"><span id="tzVal">Europe/Amsterdam</span> <i data-icon="chevron-down"></i></button>
+            <span class="sp-menu" id="tzMenu" role="menu" hidden></span>
+          </span>
+        </p>
+
+        <div id="durationRow" hidden></div>
+
+        <div class="inline-notif is-info is-one-liner" id="tipStrip">
+          <img class="inline-notif-icon" src="https://effectory-ux.github.io/Engage-Design-system-/assets/icons/notification-information.svg" alt="" />
+          <div class="inline-notif-content">
+            <span class="inline-notif-text">
+              <span class="inline-notif-title">Tip!</span>
+              <span class="inline-notif-msg">We recommend setting a survey period of at least one week</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div id="samplingBanner" hidden>
+        <h2 class="text-l5 sb-title">The selected sampling rotation</h2>
+        <button class="btn btn-secondary sb-edit" type="button" onclick="location.href='cyos-participants.html'">Edit sample size <i data-icon="edit"></i></button>
+        <ul class="sb-list" id="sbList"></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="cyos-foot">
+    <button class="btn btn-secondary" type="button" onclick="location.href='cyos-participants.html'"><i data-icon="arrow-left"></i> Previous step</button>
+    <div class="cyos-foot-right">
+      <span class="cyos-saved">All changes were saved</span>
+      <button class="btn btn-secondary" type="button" data-saveclose>Save &amp; close</button>
+      <button class="btn btn-primary" type="button" onclick="location.href='cyos-layout-emails.html'">Next step <i data-icon="arrow-right"></i></button>
+      <button class="btn btn-primary" type="button" id="reviewBtn"><i data-icon="send"></i> Review &amp; plan</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://effectory-ux.github.io/Engage-Design-system-/icons.js"></script>
+<script src="gtma-icons.js"></script>
+<script src="cyos-draft.js"></script>
+<script src="cyos-review.js"></script>
+<script>
+/* ── The window the project allows, and where "today" sits inside it ──────── */
+var WINDOW_FROM = new Date(2026, 0, 1);
+var WINDOW_TO   = new Date(2026, 11, 31);
+var TODAY       = new Date(2026, 8, 2);
+
+var FREQUENCIES = ['Once', 'Weekly', 'Monthly', 'Quarterly'];
+/* How long each survey in a schedule stays open. Fourteen days is the one the app
+   recommends. */
+var DURATIONS = Array.from({ length: 31 }, function (_, i) { return (i + 1) + ' day' + (i ? 's' : ''); });
+DURATIONS[13] = '14 days (recommended)';
+var ZONES = ['Europe/Amsterdam', 'Europe/Berlin', 'Europe/London', 'UTC'];
+
+var state = {
+  when: 'later',            /* later | now */
+  freq: 'Once',
+  tz: 'Europe/Amsterdam',
+  duration: '14 days (recommended)',
+  start: null, end: null,   /* Date, or null while unset */
+  startTime: '08:00', endTime: '23:59',
+  view: { start: new Date(TODAY), end: new Date(TODAY) }   /* month each picker shows */
+};
+
+var $ = function (id) { return document.getElementById(id); };
+
+/* Same reason as on the participants step: stepping back and forth is a page load, so
+   the schedule is kept for as long as the tab is open. */
+var SAVE_KEY = 'gtma-cyos-period';
+function save() {
+  try {
+    sessionStorage.setItem(SAVE_KEY, JSON.stringify({
+      when: state.when, freq: state.freq, tz: state.tz, duration: state.duration,
+      start: state.start ? state.start.getTime() : null,
+      end: state.end ? state.end.getTime() : null,
+      startTime: state.startTime, endTime: state.endTime
+    }));
+  } catch (e) {}
+}
+function restore() {
+  var saved;
+  try { saved = JSON.parse(sessionStorage.getItem(SAVE_KEY)); } catch (e) { return; }
+  if (!saved) return;
+  state.when = saved.when || state.when;
+  state.freq = saved.freq || state.freq;
+  state.tz = saved.tz || state.tz;
+  state.duration = saved.duration || state.duration;
+  state.startTime = saved.startTime || state.startTime;
+  state.endTime = saved.endTime || state.endTime;
+  if (saved.start) state.start = new Date(saved.start);
+  if (saved.end) state.end = new Date(saved.end);
+  state.view = { start: new Date(state.start || TODAY), end: new Date(state.end || TODAY) };
+  document.querySelector('input[value="' + state.when + '"]').checked = true;
+}
+
+/* What the participants step decided. Absent when this page is opened on its own, in
+   which case there is nothing to say about sampling. */
+var SAMPLING = (function () {
+  try { return JSON.parse(sessionStorage.getItem('gtma-cyos-sampling')) || null; }
+  catch (e) { return null; }
+})();
+
+/* Sampling draws a fresh subset for every run, so the step spells out what that means
+   for the schedule that is being set here: how many people per run, how many runs it
+   takes before everyone has had a turn, and whether the chosen period holds that many. */
+var UNIT = { Weekly: 'week', Monthly: 'month', Quarterly: 'quarter' };
+var UNIT_DAYS = { Weekly: 7, Monthly: 30.44, Quarterly: 91.31 };
+
+/* How many runs fit between the two dates at the chosen frequency. */
+function cyclesInPeriod() {
+  if (!state.start || !state.end) return null;
+  var days = (state.end - state.start) / 86400000;
+  return Math.max(1, Math.floor(days / UNIT_DAYS[state.freq]) + 1);
+}
+
+function renderSamplingBanner(recurring) {
+  var b = $('samplingBanner');
+  if (!SAMPLING || !SAMPLING.sampling || !SAMPLING.invited) { b.hidden = true; return; }
+  b.hidden = false;
+
+  /* Everyone has had a turn once the samples add up to the whole group. */
+  var needed = Math.ceil(SAMPLING.total / SAMPLING.invited);
+  var have = cyclesInPeriod();
+  var lines = [];
+
+  if (recurring) {
+    lines.push([true, 'With a <b>' + SAMPLING.pct + '%</b> sample, <b>' + SAMPLING.invited +
+      '</b> employees are invited once every <b>' + UNIT[state.freq] + '</b>.']);
+    lines.push([true, 'Smart rotation ensures participants who have been invited the least will be prioritized in the next survey']);
+    if (have !== null) {
+      lines.push(have < needed
+        ? [false, 'This timeframe has only <b>' + have + '</b> of the ' + needed + ' cycles needed to invite everyone']
+        : [true, 'This timeframe holds all <b>' + needed + '</b> cycles needed to invite everyone']);
+      lines.push([true, '<b>' + have + '</b> survey' + (have === 1 ? '' : 's') + ' will be created']);
+    }
+    lines.push([true, 'With the current sample and smart rotation, we guarantee participants are not invited consecutively.']);
+  } else {
+    lines.push([true, 'With a <b>' + SAMPLING.pct + '%</b> sample, <b>' + SAMPLING.invited + '</b> of ' +
+      SAMPLING.total + ' employees are invited.']);
+    lines.push([false, 'A one-off survey has nothing to rotate. It would take ' + needed +
+      ' surveys at this sample size before everyone has been invited once.']);
+  }
+
+  $('sbList').innerHTML = lines.map(function (l) {
+    return '<li>' + (l[0]
+      ? '<span class="sb-ok"><i data-icon="check"></i></span>'
+      : '<img class="sb-warn" src="https://effectory-ux.github.io/Engage-Design-system-/assets/icons/notification-warning.svg" alt="" />') +
+      '<span>' + l[1] + '</span></li>';
+  }).join('');
+}
+
+
+var DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+var MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+var LONG = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var sameDay = function (a, b) { return a && b && a.toDateString() === b.toDateString(); };
+var fmt = function (d) { return WD[d.getDay()] + ', ' + LONG[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); };
+
+/* ── Stepper ─────────────────────────────────────────────────
+   The same four steps the live app shows. Survey period is the step you are on; its
+   subtitle turns into the chosen dates once both are set. */
+/* The layout step remembers its template; the rail shows whatever it settled on. */
+var LAYOUT = (function () {
+  try { return (JSON.parse(sessionStorage.getItem('gtma-cyos-layout')) || {}).layout || 'Novanta yellow'; }
+  catch (e) { return 'Novanta yellow'; }
+})();
+
+/* The questions step writes down what the template asks. */
+var QUESTIONS = (function () {
+  try { return JSON.parse(sessionStorage.getItem('gtma-cyos-questions')); } catch (e) { return null; }
+})();
+
+/* A survey that starts immediately has no start date, only an end. */
+function filled() { return !!(state.end && (state.when === 'now' || state.start)); }
+
+function renderSteps() {
+  var steps = [
+    { title: 'Questions', icon: 'check-square',
+      sub: QUESTIONS ? QUESTIONS.questions + ' questions<br />' + QUESTIONS.minutes + ' mins' : 'Select questions',
+      done: !!QUESTIONS, active: false },
+    /* The participants step wrote what it settled on, so this subtitle follows it
+       instead of repeating a fixed number. */
+    { title: 'Participants',    icon: 'users',
+      sub: SAMPLING && SAMPLING.groups ? SAMPLING.groups + ' Groups<br />' + SAMPLING.total + ' participants' : 'Select participants',
+      done: !!(SAMPLING && SAMPLING.groups), active: false },
+    { title: 'Survey period',   icon: 'calendar',     sub: filled() ? (state.when === 'now' ? 'Immediately' : fmt(state.start)) + '<br />' + fmt(state.end) : 'Select period', done: filled(), active: true },
+    { title: 'Layout &amp; emails', icon: 'layout',   sub: 'Survey: ' + LAYOUT + '<br />Email: Effectory default', done: true, active: false }
+  ];
+  $('steps').innerHTML = steps.map(function (st, i) {
+    var cls = 'cyos-step' + (st.active ? ' is-active' : '') + (st.done ? ' is-done' : '');
+    var badge = st.done ? '<i data-icon="check"></i>' : (i + 1);
+    return (i ? '<span class="cyos-step-sep"><i data-icon="chevron-right"></i></span>' : '') +
+      '<button class="' + cls + '" data-step="' + st.title + '"' + (st.active ? ' aria-current="step"' : '') + '>' +
+        '<span class="cyos-step-badge">' +
+          '<span class="cyos-step-circle">' + badge + '</span>' +
+          '<span class="cyos-step-tile"><i data-icon="' + st.icon + '"></i></span>' +
+        '</span>' +
+        '<span class="cyos-step-body">' +
+          '<p class="text-l5 cyos-step-title">' + st.title + '</p>' +
+          '<p class="text-small text-w500 cyos-step-sub">' + st.sub + '</p>' +
+        '</span>' +
+      '</button>';
+  }).join('');
+}
+
+/* ── Date picker ─────────────────────────────────────────────
+   A month grid inside the window the project allows. The end date can never be before
+   the start, so those days are disabled rather than hidden. */
+function pickerHTML(which) {
+  var view = state.view[which];
+  var y = view.getFullYear(), m = view.getMonth();
+  var first = new Date(y, m, 1);
+  var lead = first.getDay();                       /* weeks start on Sunday */
+  var days = new Date(y, m + 1, 0).getDate();
+  var min = which === 'end' && state.start ? state.start : WINDOW_FROM;
+  var max = which === 'start' && state.end ? state.end : WINDOW_TO;
+  var prevOff = new Date(y, m, 0) < min;
+  var nextOff = new Date(y, m + 1, 1) > max;
+
+  var cells = '';
+  for (var i = 0; i < lead; i++) cells += '<button class="dp-cell is-empty" tabindex="-1"></button>';
+  for (var d = 1; d <= days; d++) {
+    var day = new Date(y, m, d);
+    var off = day < min || day > max;
+    var cls = 'dp-cell' + (sameDay(day, TODAY) ? ' is-today' : '') + (sameDay(day, state[which]) ? ' is-selected' : '');
+    cells += '<button class="' + cls + '" type="button" data-pick="' + which + '" data-d="' + d + '"' + (off ? ' disabled' : '') + '>' + d + '</button>';
+  }
+  return '<div class="dp-head">' +
+      '<button class="dp-period" type="button">' + MONTHS[m] + ' ' + y + ' <i data-icon="chevron-down"></i></button>' +
+      '<button class="dp-nav" type="button" data-month="' + which + '" data-step="-1"' + (prevOff ? ' disabled' : '') + ' aria-label="Previous month"><i data-icon="chevron-left"></i></button>' +
+      '<button class="dp-nav" type="button" data-month="' + which + '" data-step="1"' + (nextOff ? ' disabled' : '') + ' aria-label="Next month"><i data-icon="chevron-right"></i></button>' +
+    '</div>' +
+    '<div class="dp-grid">' + DAYS.map(function (d) { return '<span class="dp-wd">' + d + '</span>'; }).join('') + cells + '</div>';
+}
+
+/* ── Render ──────────────────────────────────────────────── */
+function render() {
+  var later = state.when === 'later';
+  /* A repeating survey is a schedule: the dates bracket the schedule rather than one
+     survey, each run has its own duration, and the tip about a one-week period no
+     longer applies. */
+  var recurring = state.freq !== 'Once';
+
+  /* "Immediately" means the survey starts on save, so there is no start to pick. */
+  $('startCol').hidden = !later;
+  document.querySelector('.sp-arrow').hidden = !later;
+  document.querySelector('.sp-dates').classList.toggle('is-now', !later);
+
+  $('startVal').textContent = state.start ? fmt(state.start) : 'Select start date';
+  $('startBtn').classList.toggle('is-empty', !state.start);
+  $('endVal').textContent = state.end ? fmt(state.end) : 'Select end date';
+  $('endBtn').classList.toggle('is-empty', !state.end);
+
+  /* The end date only opens once there is something to end after. */
+  var endReady = !later || !!state.start;
+  /* On a schedule the start time belongs to a date that isn't picked yet, so it stays
+     shut until there is one. With a one-off survey the time stands on its own. */
+  var startTimeReady = !recurring || !!state.start;
+  $('startTime').classList.toggle('is-disabled', !startTimeReady);
+  ['startHH', 'startMM'].forEach(function (id) { $(id).disabled = !startTimeReady; });
+  document.querySelectorAll('.sp-step[data-time="start"]').forEach(function (b) { b.disabled = !startTimeReady; });
+
+  $('endBtn').disabled = !endReady;
+  $('endTime').classList.toggle('is-disabled', !endReady);
+  ['endHH', 'endMM'].forEach(function (id) { $(id).disabled = !endReady; });
+  document.querySelectorAll('.sp-step[data-time="end"]').forEach(function (b) { b.disabled = !endReady; });
+
+  $('startHH').value = state.startTime.slice(0, 2);
+  $('startMM').value = state.startTime.slice(3);
+  $('endHH').value = state.endTime.slice(0, 2);
+  $('endMM').value = state.endTime.slice(3);
+
+  $('startLbl').textContent = recurring ? 'Start of schedule' : 'Start date';
+  $('endLbl').textContent   = recurring ? 'End of schedule' : 'End date';
+  $('startInfo').hidden = !recurring;
+  $('endInfo').hidden = !recurring;
+
+  /* Survey duration takes the column the start date leaves behind when the survey
+     starts immediately; otherwise it drops to its own row under the timezone. */
+  $('durationBlock').hidden = !recurring;
+  var inRow = recurring && !later;
+  var host = inRow ? $('startCol').parentElement : $('durationRow');
+  if ($('durationBlock').parentElement !== host) host.appendChild($('durationBlock'));
+  $('durationRow').hidden = !recurring || inRow;
+  $('tipStrip').hidden = recurring;
+
+  $('durVal').textContent = state.duration;
+  $('durMenu').innerHTML = DURATIONS.map(function (d) {
+    return '<button class="sp-mi' + (d === state.duration ? ' is-selected' : '') + '" type="button" role="menuitemradio" aria-checked="' + (d === state.duration) + '" data-dur="' + d + '">' + d +
+      (d === state.duration ? '<i class="sp-mi-check" data-icon="check"></i>' : '') + '</button>';
+  }).join('');
+
+  $('freqVal').textContent = state.freq;
+  $('freqMenu').innerHTML = FREQUENCIES.map(function (f) {
+    return '<button class="sp-mi' + (f === state.freq ? ' is-selected' : '') + '" type="button" role="menuitemradio" aria-checked="' + (f === state.freq) + '" data-freq="' + f + '">' + f +
+      (f === state.freq ? '<i class="sp-mi-check" data-icon="check"></i>' : '') + '</button>';
+  }).join('');
+  $('tzVal').textContent = state.tz;
+  $('tzMenu').innerHTML = ZONES.map(function (z) {
+    return '<button class="sp-mi' + (z === state.tz ? ' is-selected' : '') + '" type="button" role="menuitemradio" aria-checked="' + (z === state.tz) + '" data-tz="' + z + '">' + z +
+      (z === state.tz ? '<i class="sp-mi-check" data-icon="check"></i>' : '') + '</button>';
+  }).join('');
+
+  if (!$('startPop').hidden) $('startPop').innerHTML = pickerHTML('start');
+  if (!$('endPop').hidden) $('endPop').innerHTML = pickerHTML('end');
+
+  /* Paint the filled part of both tracks up to the thumb. */
+  [$('sampleRange'), $('sgRange')].filter(Boolean).forEach(function (r) {
+    var at = (state.pct - r.min) / (r.max - r.min) * 100;
+    r.style.background = 'linear-gradient(to right, var(--bg-info) 0 ' + at + '%, var(--bg-tertiary) ' + at + '% 100%)';
+  });
+
+  save();
+  renderSamplingBanner(recurring);
+  renderSteps();
+  if (window.Icons) window.Icons.render(document.body);
+}
+
+/* ── Walking between the steps ────────────────────────────
+   Only Participants and Survey period are built, so those two are the ones that
+   navigate; the other two stay put. Delegated, because renderSteps rebuilds the rail. */
+var STEP_HREF = {
+  'Questions': 'ai-adoption-scan-questionnaire.html',
+  'Participants': 'cyos-participants.html',
+  'Survey period': 'cyos-survey-period.html',
+  'Layout & emails': 'cyos-layout-emails.html'
+};
+document.getElementById('steps').addEventListener('click', function (e) {
+  var b = e.target.closest('.cyos-step');
+  if (!b) return;
+  /* The step names itself in English on the button, because the title on screen
+     follows the reader's language. */
+  var title = b.dataset.step;
+  var href = STEP_HREF[title];
+  if (href && !b.classList.contains('is-active')) location.href = href;
+});
+
+/* ── Wiring ──────────────────────────────────────────────── */
+document.querySelectorAll('input[name="start"]').forEach(function (r) {
+  r.addEventListener('change', function () { state.when = r.value; render(); });
+});
+
+function closeAll(except) {
+  ['startPop', 'endPop', 'freqMenu', 'tzMenu', 'durMenu'].forEach(function (id) {
+    if (id === except) return;
+    $(id).hidden = true;
+    /* Empty a closed picker: a hidden month grid would otherwise keep stale day
+       buttons around, and they are the first thing a querySelector finds. */
+    if (id.slice(-3) === 'Pop') $(id).innerHTML = '';
+  });
+  $('startBtn').classList.remove('is-open');
+  $('endBtn').classList.remove('is-open');
+  $('freqBtn').setAttribute('aria-expanded', 'false');
+  $('tzBtn').setAttribute('aria-expanded', 'false');
+}
+
+[['startBtn', 'startPop', 'start'], ['endBtn', 'endPop', 'end']].forEach(function (t) {
+  $(t[0]).addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = $(t[1]).hidden;
+    closeAll(open ? t[1] : null);
+    $(t[1]).hidden = !open;
+    $(t[0]).classList.toggle('is-open', open);
+    $(t[0]).setAttribute('aria-expanded', String(open));
+    if (open) { state.view[t[2]] = new Date(state[t[2]] || TODAY); render(); }
+  });
+});
+
+document.addEventListener('click', function (e) {
+  var pick = e.target.closest('[data-pick]');
+  if (pick) {
+    e.stopPropagation();
+    var which = pick.dataset.pick;
+    var v = state.view[which];
+    state[which] = new Date(v.getFullYear(), v.getMonth(), +pick.dataset.d);
+    /* Picking a start after the end clears the end rather than leaving it wrong. */
+    if (which === 'start' && state.end && state.end < state.start) state.end = null;
+    closeAll();
+    render();
+    return;
+  }
+  var nav = e.target.closest('[data-month]');
+  if (nav) {
+    e.stopPropagation();
+    var w = nav.dataset.month;
+    state.view[w] = new Date(state.view[w].getFullYear(), state.view[w].getMonth() + (+nav.dataset.step), 1);
+    render();
+    return;
+  }
+  var f = e.target.closest('[data-freq]');
+  if (f) { e.stopPropagation(); state.freq = f.dataset.freq; closeAll(); render(); return; }
+  var z = e.target.closest('[data-tz]');
+  if (z) { e.stopPropagation(); state.tz = z.dataset.tz; closeAll(); render(); return; }
+  var du = e.target.closest('[data-dur]');
+  if (du) { e.stopPropagation(); state.duration = du.dataset.dur; closeAll(); render(); return; }
+  closeAll();
+});
+
+[['freqBtn', 'freqMenu'], ['tzBtn', 'tzMenu'], ['durBtn', 'durMenu']].forEach(function (t) {
+  $(t[0]).addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = $(t[1]).hidden;
+    closeAll(open ? t[1] : null);
+    $(t[1]).hidden = !open;
+    $(t[0]).setAttribute('aria-expanded', String(open));
+  });
+});
+
+/* Time: the steppers move the hour, typing is free but clamped on the way out. */
+document.querySelectorAll('.sp-step').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var key = b.dataset.time + 'Time';
+    var parts = state[key].split(':');
+    var h = (+parts[0] + (+b.dataset.dir) + 24) % 24;
+    state[key] = String(h).padStart(2, '0') + ':' + parts[1];
+    render();
+  });
+});
+[['startHH', 'startTime', 0], ['startMM', 'startTime', 1], ['endHH', 'endTime', 0], ['endMM', 'endTime', 1]].forEach(function (t) {
+  $(t[0]).addEventListener('change', function () {
+    var max = t[2] === 0 ? 23 : 59;
+    var v = Math.max(0, Math.min(max, parseInt($(t[0]).value, 10) || 0));
+    var parts = state[t[1]].split(':');
+    parts[t[2]] = String(v).padStart(2, '0');
+    state[t[1]] = parts.join(':');
+    render();
+  });
+});
+
+restore();
+render();
+
+/* ---------- Tooltip auto-position ----------
+   Render the bubble in a fixed layer so no overflow:hidden ancestor can clip it. */
+(function () {
+  const GAP = 10, PAD = 8;
+  const place = (demo) => {
+    const tip = demo.querySelector('.tooltip');
+    if (!tip) return;
+    tip.style.position = 'fixed'; tip.style.margin = '0'; tip.style.transform = 'none';
+    tip.style.left = '0'; tip.style.top = '0'; tip.style.right = 'auto'; tip.style.bottom = 'auto'; tip.style.height = 'auto';
+    const t = demo.getBoundingClientRect();
+    const tw = tip.offsetWidth, th = tip.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+    const pref = tip.classList.contains('is-below') ? 'below'
+      : tip.classList.contains('is-left') ? 'left'
+      : tip.classList.contains('is-right') ? 'right' : 'above';
+    const fits = {
+      above: t.top - th - GAP >= PAD, below: t.bottom + th + GAP <= vh - PAD,
+      left: t.left - tw - GAP >= PAD, right: t.right + tw + GAP <= vw - PAD,
+    };
+    const dir = [pref, 'above', 'below', 'right', 'left'].find(d => fits[d]) || pref;
+    let x, y;
+    if (dir === 'above')      { x = t.left + t.width / 2 - tw / 2; y = t.top - th - GAP; }
+    else if (dir === 'below') { x = t.left + t.width / 2 - tw / 2; y = t.bottom + GAP; }
+    else if (dir === 'left')  { x = t.left - tw - GAP; y = t.top + t.height / 2 - th / 2; }
+    else                      { x = t.right + GAP; y = t.top + t.height / 2 - th / 2; }
+    tip.style.left = Math.max(PAD, Math.min(x, vw - tw - PAD)) + 'px';
+    tip.style.top = Math.max(PAD, Math.min(y, vh - th - PAD)) + 'px';
+    tip.classList.remove('is-above', 'is-below', 'is-left', 'is-right');
+    tip.classList.add('is-' + dir);
+  };
+  const onEnter = (e) => { const demo = e.target.closest && e.target.closest('.tt-demo'); if (demo) place(demo); };
+  document.addEventListener('mouseover', onEnter);
+  document.addEventListener('focusin', onEnter);
+})();
+</script>
+
+<!-- One language for the whole prototype: the design system's map for what these
+     screens share with the dashboard, this prototype's own for the rest. -->
+<script src="https://effectory-ux.github.io/Engage-Design-system-/i18n.js"></script>
+<script src="gtma-strings.js"></script>
+<script src="gtma-i18n.js"></script>
+</body>
+</html>

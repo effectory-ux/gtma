@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYOS — Layout &amp; emails</title>
+  <!-- Poppins comes straight from its files instead of through a stylesheet on
+       another host. That stylesheet is only cached for ten minutes, so every
+       navigation after that waited on a round trip before the font could even be
+       found, and the text was laid out twice: once in the fallback, once in
+       Poppins. The font files themselves are cached for a year. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1JlFd2JQEl8qw.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/tokens.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/foundation.css" />
+  <link rel="stylesheet" href="https://effectory-ux.github.io/Engage-Design-system-/components.css" />
+  <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("effx-theme")||"light")}catch(e){}</script>
+  <link rel="stylesheet" href="cyos-review.css" />
+  <style>
+    body { background: var(--bg-base); }
+
+    /* Components that set their own display beat the browser's [hidden] rule, and this
+       screen toggles a lot of them. One rule instead of chasing them one by one. */
+    [hidden] { display: none !important; }
+
+    /* .tt-demo in components.css is the docs wrapper and shows the bubble permanently.
+       Gate it on hover, the same three lines the other prototypes here carry. */
+    .tt-demo { position: relative; display: inline-flex; }
+    /* The bubble is placed in a fixed layer on hover. Parking it there from the start
+       too keeps an idle tooltip from widening whatever box it sits in: absolutely
+       positioned, it still counted towards the scroll width and gave the Select groups
+       dialog a horizontal scrollbar. */
+    .tt-demo .tooltip { position: fixed; left: 0; top: 0; opacity: 0; pointer-events: none; transition: opacity var(--motion-fast) var(--ease-out); }
+    /* The tooltip inherits white-space from whatever it sits in, and the toggle label
+       here is nowrap to keep "Random sample" on one line. Without this the bubble can't
+       wrap and its text gets cut off at the 240px max-width. */
+    .tooltip { white-space: normal; }
+    .tt-demo:hover .tooltip, .tt-demo:focus-within .tooltip { opacity: 1; }
+
+    /* ══ CYOS shell ══
+       The same shell as the questionnaire screen in this repo, which is also the one
+       the live app uses: logo bar, four-step rail, 1000px column, fixed action bar. */
+    .cyos { display: flex; flex-direction: column; min-height: 100vh; }
+    .cyos-main { flex: 1; padding: var(--spacing-extra-loose) var(--spacing-loose) 120px; }
+    .cyos-inner { max-width: 1000px; margin-inline: auto; }
+
+    /* The name bar stays put while you scroll, so you always see which survey you
+       are setting up. The stepper scrolls with the page underneath it. */
+    .cyos-head { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; height: 65px; padding: var(--spacing-base-tight) var(--spacing-base); background: var(--bg-base); border-bottom: 1px solid var(--border-base); }
+    .cyos-logo { width: 40px; height: 40px; flex-shrink: 0; margin-right: var(--spacing-base); }
+    .cyos-name-group { display: flex; align-items: center; gap: var(--spacing-tight); min-width: 0; }
+    .cyos-name-group i[data-icon] { width: 16px; height: 16px; display: flex; flex-shrink: 0; color: var(--content-secondary); }
+    .cyos-survey-name { margin: 0; color: var(--content-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cyos-head-actions { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-tight); }
+
+    /* The rail is wider than the content column and spreads its steps: max 1300px,
+       centred, space-between, 24px gutters. The hairline belongs to the bar around it,
+       so it runs the full width. */
+    /* The rail sticks under the name bar instead of disappearing behind it, so the
+       two read as one header. */
+    /* Walking to the next step loads a page. A short cross-fade between the two
+       is the difference between stepping and blinking. */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .16s; }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+    }
+    .cyos-steps-bar { position: sticky; top: 65px; z-index: 15; padding: 12px 0; background: var(--bg-base); border-bottom: 1px solid var(--border-base); overflow-x: auto; }
+    /* The steps are drawn by script, so the bar keeps their height free from the
+       start and the content below it stays where it is. */
+    .cyos-steps { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-loose); max-width: 1300px; margin-inline: auto; padding: 0 var(--spacing-loose); }
+    .cyos-step { display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-extra-tight) var(--spacing-base); border: none; background: transparent; border-radius: var(--radius-base); font-family: inherit; text-align: left; cursor: pointer; }
+    .cyos-step:hover { background: var(--bg-base-hover); }
+    .cyos-step-badge { flex-shrink: 0; display: flex; align-items: center; }
+    .cyos-step-circle { position: relative; z-index: 2; width: 28px; height: 28px; margin-right: -4px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-base); border-radius: var(--radius-full); background: var(--bg-secondary-hover); color: var(--content-secondary); font-size: 14px; font-weight: 500; }
+    .cyos-step-circle i { width: 16px; height: 16px; display: flex; }
+    .cyos-step-tile { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-secondary-hover); color: var(--content-secondary); }
+    .cyos-step-tile i { width: 24px; height: 24px; display: flex; }
+    .cyos-step.is-done .cyos-step-circle { background: var(--bg-positive); color: var(--content-on-brand-base); border-color: var(--bg-base); }
+    .cyos-step.is-active .cyos-step-circle,
+    .cyos-step.is-active .cyos-step-tile { background: var(--bg-brand-subtle-selected); }
+    .cyos-step.is-active .cyos-step-circle { color: var(--content-brand-secondary); }
+    .cyos-step.is-active .cyos-step-tile { color: var(--content-brand-secondary); }
+    /* Every page renders this rail from scratch, and the subtitles differ per step and
+       per state. Fixing the step width and reserving two subtitle lines keeps the bar
+       identical from page to page, so it no longer shifts on navigation. */
+    .cyos-step { width: 262px; }
+    .cyos-step-body { min-width: 0; flex: 1; }
+    .cyos-step-title { white-space: nowrap; }
+    .cyos-step-sub { min-height: 2.6em; }
+    .cyos-step-title { margin: 0; color: var(--content-secondary); }
+    .cyos-step.is-active .cyos-step-title { color: var(--content-base); }
+    .cyos-step-sub { margin: 0; color: var(--content-secondary); }
+    .cyos-step-sep { display: flex; align-items: center; color: var(--content-subtle); }
+    .cyos-step-sep i { width: 16px; height: 16px; display: flex; }
+
+    .cyos-foot { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; gap: var(--spacing-base-tight); padding: var(--spacing-base) var(--spacing-loose); background: var(--bg-base); border-top: 1px solid var(--border-base); box-shadow: var(--sh-footer); }
+    .cyos-foot-right { margin-left: auto; display: flex; align-items: center; gap: var(--spacing-base-tight); }
+    .cyos-saved { font-size: 14px; color: var(--content-secondary); }
+    /* The live app title-cases these labels in CSS, so the source strings stay sentence case. */
+    .cyos-foot .btn { text-transform: capitalize; }
+
+    /* ══ Layout & emails ══ */
+    .le-head { display: flex; align-items: center; gap: var(--spacing-base); margin-bottom: var(--spacing-loose); }
+    .le-head-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex-shrink: 0; border-radius: var(--radius-md); background: var(--bg-brand-subtle); color: var(--content-brand); }
+    .le-head-icon i { width: 24px; height: 24px; display: flex; }
+    .le-title { margin: 0; font-size: 26px; font-weight: 600; line-height: 1.3; color: var(--content-base); }
+    .le-sub { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+
+    /* A row of: icon tile, title over description, and whatever sits on the right. */
+    .le-row { display: flex; align-items: center; gap: var(--spacing-base-tight); }
+    .le-tile { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: var(--radius-md); background: var(--bg-accent-blue-subtle); color: var(--content-base); }
+    .le-tile.is-orange { background: var(--bg-accent-orange-subtle); color: var(--content-accent-orange); }
+    .le-tile i { width: 20px; height: 20px; display: flex; }
+    .le-row-txt { flex: 1; min-width: 0; }
+    .le-row-title { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.6; color: var(--content-base); }
+    .le-row-desc { margin: 0; font-size: 14px; line-height: 1.6; color: var(--content-secondary); }
+    /* The value shown on an email row: plain text, the row itself is the button. */
+    .le-row .sel-btn { flex-shrink: 0; }
+    /* The design system's .menu carries the surface; only the placing is ours. It hangs
+       from the right edge of the control, which sits at the right of the card. */
+    .le-menu-wrap { position: relative; flex-shrink: 0; }
+    .le-menu-wrap .menu { position: absolute; top: calc(100% + 4px); right: 0; width: max-content; min-width: 220px; z-index: 60; }
+    /* Each template carries its own mark: a square in the variant's light colour with a
+       dot in its primary, the same pair the preview is built from. */
+    .le-mark { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; flex-shrink: 0; border-radius: var(--radius-sm); background: var(--le-light); }
+    .le-mark::after { content: ''; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--le-primary); }
+    .le-mark.is-yellow { --le-light: var(--bg-highlight-subtle); --le-primary: var(--bg-highlight-base); }
+    .le-mark.is-blue { --le-light: var(--bg-accent-blue-subtle); --le-primary: var(--bg-info); }
+
+    .le-card { padding: var(--spacing-loose); background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); box-shadow: var(--sh-card); }
+
+    /* The two design previews sit on a grey plate inside the card. */
+    .le-design { display: flex; gap: var(--spacing-loose); margin-top: var(--spacing-base); padding: var(--spacing-loose); background: var(--bg-secondary); border-radius: var(--radius-md); }
+    .le-screen { flex: 1 1 0; min-width: 0; }
+    .le-chip { display: inline-flex; align-items: center; height: 26px; padding: 0 var(--spacing-tight); margin-bottom: var(--spacing-base); border-radius: var(--radius-base); background: var(--bg-inverse); color: var(--content-inverse); font-size: 12px; font-weight: 500; }
+
+    /* Simplified renderings of the two screens, the same way My Effectory draws them:
+       a browser card with the logo bar on top, the landing photo on the left and the
+       branded, patterned ground with the question card on the right. Both are built
+       from the template's own colours, so switching template shows what changes. */
+    .le-shot { height: 300px; border: 1px solid var(--border-base); border-radius: var(--radius-lg); background: var(--bg-base); overflow: hidden; box-shadow: var(--sh-card); display: flex; flex-direction: column; }
+    .le-shot-bar { position: relative; display: flex; align-items: center; height: 32px; flex-shrink: 0; padding: 0 var(--spacing-base-tight); background: var(--bg-base); }
+    .le-shot-bar .le-shot-line { position: absolute; left: 50%; transform: translateX(-50%); width: 84px; }
+    .le-shot-logo { width: 14px; height: 14px; flex-shrink: 0; border-radius: var(--radius-sm); background: var(--le-light); display: inline-flex; align-items: center; justify-content: center; }
+    .le-shot-logo::after { content: ''; width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--le-primary); }
+    .le-shot-line { height: 6px; border-radius: var(--radius-full); background: var(--bg-tertiary); }
+
+    /* The stage is whatever fills the screen below the bar. */
+    .le-stage { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-base); padding: var(--spacing-base); overflow: hidden; }
+    .le-stage > * { position: relative; }
+    .le-stage.is-photo { gap: var(--spacing-loose); padding: var(--spacing-loose) var(--spacing-base) var(--spacing-base); background-image: url('assets/img/layout-landing.jpeg'); background-size: cover; background-position: center; }
+    /* Scrim over the photo: a light blur plus a downward gradient, so the white
+       placeholder text keeps its contrast wherever the photo is bright. */
+    .le-stage.is-photo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(25, 39, 67, .18), rgba(25, 39, 67, .45)); backdrop-filter: blur(1.5px); }
+
+    /* Everything drawn on top of a photo or a brand colour is white. */
+    .le-on-art { background: rgba(255, 255, 255, .92); }
+    .le-titles { display: flex; flex-direction: column; align-items: center; gap: 5px; width: 100%; }
+    .le-people { display: flex; justify-content: center; gap: var(--spacing-loose); }
+    .le-person { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .le-face { width: 24px; height: 24px; border-radius: var(--radius-full); background: rgba(255, 255, 255, .92); }
+    .le-shot-btn { width: 72px; height: 18px; border-radius: var(--radius-full); background: var(--le-primary); box-shadow: 0 2px 6px rgba(25, 39, 67, .25); }
+
+    /* Questionnaire: a band in the primary colour, then the patterned brand ground. */
+    .le-strip { height: 10px; flex-shrink: 0; background: var(--le-primary); }
+    .le-stage.is-brand { background: var(--le-plate); gap: var(--spacing-base-tight); }
+    .le-stage.is-brand::before { content: ''; position: absolute; inset: 0; background-image: url('assets/img/layout-pattern.svg'); background-size: 150px; opacity: .12; }
+    .le-q-card { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-base-tight); width: 56%; padding: var(--spacing-loose); background: var(--bg-base); border-radius: var(--radius-lg); box-shadow: var(--sh-card); }
+    .le-q-card .le-shot-line { width: 58%; }
+    .le-q-dots { display: flex; justify-content: center; gap: var(--spacing-tight); }
+    .le-q-opt { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: var(--radius-full); background: var(--bg-base); box-shadow: 0 1px 4px rgba(25, 39, 67, .3); }
+    .le-q-dot { width: 8px; height: 8px; box-sizing: border-box; border-radius: var(--radius-full); border: 2px solid; }
+    .le-q-dot.is-1 { border-color: var(--bg-negative); }
+    .le-q-dot.is-2 { border-color: var(--bg-warning-hover); }
+    .le-q-dot.is-3 { border-color: var(--bg-highlight-base); }
+    .le-q-dot.is-4 { border-color: var(--border-accent-green); }
+    .le-q-dot.is-5 { border-color: var(--bg-positive); }
+    .le-q-input { width: 40%; height: 15px; border-radius: var(--radius-sm); box-shadow: 0 1px 4px rgba(25, 39, 67, .3); }
+
+    /* ══ Email dialog ══
+       Rebuilt after the real one in My Effectory: the notification, the template
+       picker, then a grey plate holding the language row and the mail preview. */
+    .le-dlg { gap: var(--spacing-base); max-height: 100%; }
+    /* 32px above the action row, matching the dialog's own bottom inset. */
+    .le-dlg .dialog-footer { margin-top: var(--spacing-base); }
+    /* The body scrolls, so the header and the action row stay in view. */
+    .le-dlg-body { display: flex; flex-direction: column; gap: var(--spacing-base); min-height: 0; overflow-y: auto; margin: 0 calc(var(--spacing-loose) * -1); padding: 0 var(--spacing-loose); }
+    /* Stand-in for the fix already made in components.css but not yet published: the
+       design system sizes and colours a bare <svg> in a .slt, not the <i data-icon>
+       that icons.js renders, so the chevron came out black and zero-sized, and .slt
+       carries no font-family, so a <button class="slt"> fell back to Arial. */
+    .slt i[data-icon] { width: 16px; height: 16px; flex-shrink: 0; display: flex; color: var(--content-secondary); }
+    button.slt { font: inherit; font-size: 14px; }
+
+    /* The design system puts .slt-lbl at 600; the product uses 500. */
+    .le-dlg .slt-lbl { font-weight: 500; }
+
+    .le-tpl-row { display: flex; align-items: flex-end; gap: var(--spacing-base-tight); }
+    .le-tpl-row .slt-wrap { flex: 1; min-width: 0; }
+    .le-tpl-wrap { position: relative; flex: 1; min-width: 0; }
+    .le-tpl-wrap .menu { position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 20; }
+
+    /* The grey plate around the preview. */
+    .le-plate { display: flex; flex-direction: column; gap: var(--spacing-loose); padding: var(--spacing-loose) var(--spacing-super-loose) var(--spacing-super-loose); background: var(--bg-secondary); border-radius: var(--radius-md); }
+    .le-plate-top { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-base-tight); }
+    .le-lang { width: 264px; }
+    .le-flag { display: inline-block; width: 18px; height: 14px; flex-shrink: 0; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(25, 39, 67, .08); }
+    .le-flag.is-uk { background:
+        linear-gradient(to bottom, transparent 38%, #cf142b 38% 62%, transparent 62%),
+        linear-gradient(to right,  transparent 38%, #cf142b 38% 62%, transparent 62%),
+        linear-gradient(to bottom, transparent 30%, #fff 30% 70%, transparent 70%),
+        linear-gradient(to right,  transparent 30%, #fff 30% 70%, transparent 70%),
+        #00247d; }
+    .le-flag.is-nl { background: linear-gradient(to bottom, #ae1c28 33%, #fff 33% 66%, #21468b 66%); }
+    .le-flag.is-de { background: linear-gradient(to bottom, #000 33%, #dd0000 33% 66%, #ffce00 66%); }
+    .le-lang-wrap { position: relative; width: 264px; }
+    .le-lang-wrap .menu { position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 20; }
+
+    /* The mail itself: a white sheet with the subject on top and the body below. */
+    .le-mailcard { background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); overflow: hidden; }
+    .le-subject { display: flex; align-items: baseline; gap: var(--spacing-base-tight); padding: var(--spacing-loose); border-bottom: 1px solid var(--border-base); }
+    .le-subject-lbl { flex-shrink: 0; font-size: 14px; font-weight: 600; color: var(--content-secondary); }
+    .le-subject-val { font-size: 14px; font-weight: 500; color: var(--content-base); }
+    .le-sheet { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-base); padding: var(--spacing-extra-loose) var(--spacing-extra-loose) var(--spacing-super-loose); }
+    .le-sheet-mark { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--le-light); }
+    .le-sheet-mark::after { content: ''; width: 22px; height: 22px; border-radius: var(--radius-full); background: var(--le-primary); }
+    .le-sheet-title { margin: 0; font-size: 26px; font-weight: 400; line-height: 1.3; color: var(--content-base); }
+    .le-sheet-title strong { font-weight: 700; }
+    .le-sheet-text { margin: 0; font-size: 14px; line-height: 1.5; color: var(--content-base); }
+    /* A design system primary button, sized up for the mail and wearing the template's colour. */
+    .le-sheet-cta.btn-primary,
+    .le-sheet-cta.btn-primary:hover,
+    .le-sheet-cta.btn-primary:active { height: 44px; padding: 0 var(--spacing-loose); background: var(--le-primary); border-color: var(--le-line); color: var(--le-on); }
+    /* The 16px gap of the sheet plus 8px, so the image sits 24px under the button. */
+    .le-sheet-cta + .le-sheet-img { margin-top: var(--spacing-tight); }
+    .le-sheet-img { width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius-md); display: block; }
+    .le-sheet-fine { margin: 0; font-size: 12px; line-height: 1.4; color: var(--content-secondary); }
+    .le-sheet-fine strong { font-weight: 700; }
+
+    /* Closing note under the mail, inside the plate. */
+    /* Sits on the plate under the mail, not on the sheet itself. */
+    .le-note { margin-top: calc(var(--spacing-tight) * -1); }
+    .le-note p { margin: 0; font-size: 12px; line-height: 1.5; text-align: center; color: var(--content-secondary); }
+
+    .le-section { margin: var(--spacing-extra-loose) 0 var(--spacing-base); font-size: 16px; font-weight: 600; color: var(--content-base); }
+
+    /* The email rows are one stacked card of buttons. */
+    .le-list { border: 1px solid var(--border-base); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-base); box-shadow: var(--sh-card); }
+    .le-mail { display: flex; align-items: center; gap: var(--spacing-base-tight); width: 100%; padding: var(--spacing-loose); border: none; border-bottom: 1px solid var(--border-base); background: none; font-family: inherit; text-align: left; cursor: pointer; }
+    .le-mail:last-child { border-bottom: none; }
+    .le-mail:hover { background: var(--bg-secondary); }
+  </style>
+  <!-- The scripts that translate this page sit at the end of the body, and a
+       blocking script halfway down lets the browser paint what it has before it
+       gets there. In English there is nothing to wait for; in another language
+       that first paint is the wrong one, so hold it back until the text has been
+       swapped. The timeout is the failsafe: a page always shows itself. -->
+  <script>try{if((localStorage.getItem('effx-lang')||'en')!=='en'){document.documentElement.classList.add('gtma-lang-wait');setTimeout(function(){document.documentElement.classList.remove('gtma-lang-wait')},2000)}}catch(e){}</script>
+  <style>html.gtma-lang-wait body { visibility: hidden; }</style>
+</head>
+<body>
+    
+<div class="cyos">
+
+  <header class="cyos-head">
+    <img class="cyos-logo" src="https://effectory-ux.github.io/Engage-Design-system-/assets/illustrations/logo/effectory-logo.svg" alt="Effectory" />
+    <div class="cyos-name-group">
+      <span class="tag is-draft">Draft</span>
+      <i data-icon="clipboard"></i>
+      <p class="text-medium text-w500 cyos-survey-name">Monthly pulse</p>
+      <button class="btn btn-tertiary"><i data-icon="edit"></i> Edit name</button>
+    </div>
+    <div class="cyos-head-actions">
+      <button class="btn btn-tertiary"><i data-icon="globe"></i> English</button>
+    </div>
+  </header>
+
+  <div class="cyos-steps-bar">
+    <nav class="cyos-steps" id="steps" aria-label="Survey setup"></nav>
+  </div>
+
+  <main class="cyos-main">
+    <div class="cyos-inner">
+
+      <div class="le-head">
+        <div class="le-head-icon"><i data-icon="layout"></i></div>
+        <div>
+          <h1 class="le-title">Layout &amp; emails</h1>
+          <p class="le-sub">Choose your survey layout and manage the email messages sent to participants.</p>
+        </div>
+      </div>
+
+      <div class="le-card">
+        <div class="le-row">
+          <span class="le-tile"><i data-icon="clipboard-a"></i></span>
+          <span class="le-row-txt">
+            <p class="le-row-title">Survey layout</p>
+            <p class="le-row-desc">The design of the questionnaire</p>
+          </span>
+          <span class="le-menu-wrap">
+            <button class="sel-btn sel-btn-inline is-filled" id="layoutBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span id="layoutMark"></span>
+              <span class="sel-btn-value" id="layoutVal">Novanta yellow</span>
+              <i data-icon="chevron-down"></i>
+            </button>
+            <div class="menu" id="layoutMenu" role="listbox" hidden></div>
+          </span>
+        </div>
+
+        <div class="le-design">
+          <div class="le-screen">
+            <span class="le-chip">Landing page</span>
+            <div class="le-shot">
+              <div class="le-shot-bar">
+                <span class="le-shot-logo"></span>
+                <span class="le-shot-line"></span>
+              </div>
+              <div class="le-stage is-photo">
+                <div class="le-titles">
+                  <span class="le-shot-line le-on-art" style="width:44%;height:8px"></span>
+                  <span class="le-shot-line le-on-art" style="width:30%"></span>
+                </div>
+                <div class="le-people">
+                  <span class="le-person"><span class="le-face"></span><span class="le-shot-line le-on-art" style="width:40px"></span><span class="le-shot-line le-on-art" style="width:28px"></span></span>
+                  <span class="le-person"><span class="le-face"></span><span class="le-shot-line le-on-art" style="width:40px"></span><span class="le-shot-line le-on-art" style="width:28px"></span></span>
+                  <span class="le-person"><span class="le-face"></span><span class="le-shot-line le-on-art" style="width:40px"></span><span class="le-shot-line le-on-art" style="width:28px"></span></span>
+                </div>
+                <span class="le-shot-btn"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="le-screen">
+            <span class="le-chip">Questionnaire</span>
+            <div class="le-shot">
+              <div class="le-shot-bar">
+                <span class="le-shot-logo"></span>
+                <span class="le-shot-line"></span>
+              </div>
+              <div class="le-strip"></div>
+              <div class="le-stage is-brand">
+                <div class="le-titles">
+                  <span class="le-shot-line le-on-art" style="width:34%;height:8px"></span>
+                  <span class="le-shot-line le-on-art" style="width:24%"></span>
+                </div>
+                <div class="le-q-card">
+                  <span class="le-shot-line"></span>
+                  <div class="le-q-dots">
+                    <span class="le-q-opt"><span class="le-q-dot is-1"></span></span>
+                    <span class="le-q-opt"><span class="le-q-dot is-2"></span></span>
+                    <span class="le-q-opt"><span class="le-q-dot is-3"></span></span>
+                    <span class="le-q-opt"><span class="le-q-dot is-4"></span></span>
+                    <span class="le-q-opt"><span class="le-q-dot is-5"></span></span>
+                  </div>
+                  <div class="le-q-input"></div>
+                </div>
+                <span class="le-shot-btn"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="le-section">Email communication</p>
+
+      <div class="le-list">
+        <button class="le-mail" type="button" data-mail="invitation">
+          <span class="le-tile"><i data-icon="send"></i></span>
+          <span class="le-row-txt">
+            <p class="le-row-title">Invitation email</p>
+            <p class="le-row-desc">The first email sent to participants to complete the survey</p>
+          </span>
+          <span class="sel-btn sel-btn-inline is-filled">
+            <span class="le-mark is-effectory"></span>
+            <span class="sel-btn-value">Effectory default</span>
+            <i data-icon="chevron-right"></i>
+          </span>
+        </button>
+        <button class="le-mail" type="button" data-mail="reminder">
+          <span class="le-tile is-orange"><i data-icon="bell"></i></span>
+          <span class="le-row-txt">
+            <p class="le-row-title">Reminder email</p>
+            <p class="le-row-desc">A follow-up email sent to participants who haven&rsquo;t completed the survey</p>
+          </span>
+          <span class="sel-btn sel-btn-inline is-filled">
+            <span class="le-mark is-effectory"></span>
+            <span class="sel-btn-value">Effectory default</span>
+            <i data-icon="chevron-right"></i>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="cyos-foot">
+    <button class="btn btn-secondary" type="button" onclick="location.href='cyos-survey-period.html'"><i data-icon="arrow-left"></i> Previous step</button>
+    <div class="cyos-foot-right">
+      <span class="cyos-saved">All changes were saved</span>
+      <button class="btn btn-secondary" type="button" data-saveclose>Save &amp; close</button>
+      <button class="btn btn-primary" type="button" id="reviewBtn"><i data-icon="send"></i> Review &amp; plan</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="overlay" id="mailOv" hidden>
+  <div class="dialog dialog-m le-dlg" role="dialog" aria-modal="true" aria-labelledby="mailTitle">
+    <button class="dialog-close" type="button" id="mailClose" aria-label="Close"><i data-icon="cross"></i></button>
+
+    <div class="dialog-header">
+      <h2 class="dialog-title" id="mailTitle">Invitation</h2>
+    </div>
+
+    <div class="le-dlg-body">
+      <div class="le-tpl-row">
+        <div class="slt-wrap le-tpl-wrap">
+          <span class="slt-lbl" id="tplLbl">Selected template</span>
+          <button class="slt" type="button" id="tplBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="tplLbl">
+            <span class="slt-left"><span id="tplMark"></span><span class="slt-val" id="tplVal">Effectory default</span></span>
+            <i data-icon="chevron-down"></i>
+          </button>
+          <div class="menu" id="tplMenu" role="listbox" hidden></div>
+        </div>
+        <button class="btn btn-secondary" type="button"><i data-icon="plus"></i> Create template</button>
+      </div>
+
+      <div class="le-plate">
+        <div class="le-plate-top">
+          <div class="le-lang-wrap">
+            <button class="slt" type="button" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+              <span class="slt-left"><span id="langFlag"></span><span class="slt-val" id="langVal"></span></span>
+              <i data-icon="chevron-down"></i>
+            </button>
+            <div class="menu" id="langMenu" role="listbox" hidden></div>
+          </div>
+          <button class="btn btn-secondary" type="button"><i data-icon="edit"></i> Edit email content</button>
+        </div>
+
+        <div class="le-mailcard">
+          <div class="le-subject">
+            <span class="le-subject-lbl">Subject:</span>
+            <span class="le-subject-val" id="mailSubject"></span>
+          </div>
+          <div class="le-sheet">
+            <span class="le-sheet-mark"></span>
+            <h3 class="le-sheet-title" id="mailHeadline"></h3>
+            <p class="le-sheet-text" id="mailText"></p>
+            <a class="btn btn-primary le-sheet-cta" id="mailCta" href="#" onclick="return false);"></a>
+            <img class="le-sheet-img" src="assets/img/layout-landing.jpeg" alt="" />
+            <p class="le-sheet-fine" id="mailFine"></p>
+          </div>
+        </div>
+
+        <div class="le-note">
+          <p>The email layout could vary depending on the email type and also your email client.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <button class="btn btn-primary" type="button" id="mailApply">Use email template</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://effectory-ux.github.io/Engage-Design-system-/icons.js"></script>
+<script src="gtma-icons.js"></script>
+<script src="cyos-draft.js"></script>
+<script src="cyos-review.js"></script>
+<script>
+var $ = function (id) { return document.getElementById(id); };
+
+/* What the earlier steps settled on, so the rail can show it. */
+var SAMPLING = (function () {
+  try { return JSON.parse(sessionStorage.getItem('gtma-cyos-sampling')) || null; } catch (e) { return null; }
+})();
+var PERIOD = (function () {
+  try { return JSON.parse(sessionStorage.getItem('gtma-cyos-period')) || null; } catch (e) { return null; }
+})();
+
+/* mark: the design system logo, or a lettermark in the variant's own colour */
+var LAYOUTS = [
+  { name: 'Novanta yellow', cls: 'is-yellow', brand: 'var(--bg-highlight-base)', light: 'var(--bg-highlight-subtle)', plate: 'var(--bg-warning-hover)', on: 'var(--content-base)', line: 'var(--border-highlight)' },
+  { name: 'Novanta blue',   cls: 'is-blue',   brand: 'var(--bg-info)',          light: 'var(--bg-accent-blue-subtle)', plate: 'var(--bg-accent-blue)', on: 'var(--content-on-brand-base)', line: 'var(--border-info-hover)' }
+];
+var markHTML = function (l) { return '<span class="le-mark ' + l.cls + '"></span>'; };
+/* Both mails share one template, the way the product states in this dialog. */
+var state = { layout: 'Novanta yellow', mailTemplate: 'Novanta yellow' };
+/* Keep the choice while you walk back and forth between the steps. */
+var KEY = 'gtma-cyos-layout';
+function save() { try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+(function restore() {
+  try {
+    var v = JSON.parse(sessionStorage.getItem(KEY));
+    if (v && LAYOUTS.some(function (l) { return l.name === v.layout; })) state.layout = v.layout;
+    var ok = function (n) { return LAYOUTS.some(function (l) { return l.name === n; }); };
+    if (v && ok(v.mailTemplate)) state.mailTemplate = v.mailTemplate;
+  } catch (e) {}
+})();
+var current = function () { return LAYOUTS.find(function (l) { return l.name === state.layout; }); };
+
+var LONG = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var fmt = function (ms) { var d = new Date(ms); return WD[d.getDay()] + ', ' + LONG[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); };
+
+/* The questions step writes down what the template asks. */
+var QUESTIONS = (function () {
+  try { return JSON.parse(sessionStorage.getItem('gtma-cyos-questions')); } catch (e) { return null; }
+})();
+
+/* A survey that starts immediately has no start date, only an end. */
+function periodSet(p) { return !!(p && p.end && (p.when === 'now' || p.start)); }
+
+function renderSteps() {
+  var period = periodSet(PERIOD) ? (PERIOD.when === 'now' ? 'Immediately' : fmt(PERIOD.start)) + '<br />' + fmt(PERIOD.end) : 'Select period';
+  var steps = [
+    { title: 'Questions', icon: 'check-square',
+      sub: QUESTIONS ? QUESTIONS.questions + ' questions<br />' + QUESTIONS.minutes + ' mins' : 'Select questions',
+      done: !!QUESTIONS, active: false },
+    { title: 'Participants',    icon: 'users',
+      sub: SAMPLING && SAMPLING.groups ? SAMPLING.groups + ' Groups<br />' + SAMPLING.total + ' participants' : 'Select participants',
+      done: !!(SAMPLING && SAMPLING.groups), active: false },
+    { title: 'Survey period',   icon: 'calendar', sub: period, done: periodSet(PERIOD), active: false },
+    { title: 'Layout &amp; emails', icon: 'layout',
+      sub: 'Survey: ' + state.layout + '<br />Email: ' + state.mailTemplate, done: true, active: true }
+  ];
+  $('steps').innerHTML = steps.map(function (st, i) {
+    var cls = 'cyos-step' + (st.active ? ' is-active' : '') + (st.done ? ' is-done' : '');
+    var badge = st.done ? '<i data-icon="check"></i>' : (i + 1);
+    return (i ? '<span class="cyos-step-sep"><i data-icon="chevron-right"></i></span>' : '') +
+      '<button class="' + cls + '" data-step="' + st.title + '"' + (st.active ? ' aria-current="step"' : '') + '>' +
+        '<span class="cyos-step-badge">' +
+          '<span class="cyos-step-circle">' + badge + '</span>' +
+          '<span class="cyos-step-tile"><i data-icon="' + st.icon + '"></i></span>' +
+        '</span>' +
+        '<span class="cyos-step-body">' +
+          '<p class="text-l5 cyos-step-title">' + st.title + '</p>' +
+          '<p class="text-small text-w500 cyos-step-sub">' + st.sub + '</p>' +
+        '</span>' +
+      '</button>';
+  }).join('');
+}
+
+function render() {
+  $('layoutVal').textContent = state.layout;
+  $('layoutMark').innerHTML = markHTML(current());
+  /* The previews are the point of this step, so they take the template's colour. */
+  var d = document.querySelector('.le-design');
+  d.style.setProperty('--le-primary', current().brand);
+  d.style.setProperty('--le-light', current().light);
+  d.style.setProperty('--le-plate', current().plate);
+  $('layoutMenu').innerHTML = LAYOUTS.map(function (l) {
+    var on = l.name === state.layout;
+    return '<div class="menu-item' + (on ? ' is-selected' : '') + '" role="option" aria-selected="' + on + '" tabindex="0" data-layout="' + l.name + '">' +
+      markHTML(l) +
+      '<span class="menu-item-body"><span class="menu-item-title">' + l.name + '</span></span>' +
+      (on ? '<i data-icon="check" class="menu-item-check"></i>' : '') + '</div>';
+  }).join('');
+  document.querySelectorAll('.le-mail').forEach(function (b) {
+    b.querySelector('.le-mark').className = 'le-mark ' + tpl(state.mailTemplate).cls;
+    b.querySelector('.sel-btn-value').textContent = state.mailTemplate;
+  });
+  renderSteps();
+  if (window.Icons) window.Icons.render(document.body);
+}
+
+/* ── Walking between the steps ────────────────────────────
+   Only the three built steps navigate; Questions stays put. */
+var STEP_HREF = {
+  'Questions': 'ai-adoption-scan-questionnaire.html',
+  'Participants': 'cyos-participants.html',
+  'Survey period': 'cyos-survey-period.html',
+  'Layout & emails': 'cyos-layout-emails.html'
+};
+document.getElementById('steps').addEventListener('click', function (e) {
+  var b = e.target.closest('.cyos-step');
+  if (!b) return;
+  /* The step names itself in English on the button, because the title on screen
+     follows the reader's language. */
+  var title = b.dataset.step;
+  var href = STEP_HREF[title];
+  if (href && !b.classList.contains('is-active')) location.href = href;
+});
+
+$('layoutBtn').addEventListener('click', function (e) {
+  e.stopPropagation();
+  var open = $('layoutMenu').hidden;
+  $('layoutMenu').hidden = !open;
+  $('layoutBtn').setAttribute('aria-expanded', String(open));
+});
+document.addEventListener('click', function (e) {
+  var l = e.target.closest('[data-layout]');
+  if (l) { state.layout = l.dataset.layout; save(); }
+  $('layoutMenu').hidden = true;
+  $('layoutBtn').setAttribute('aria-expanded', 'false');
+  if (l) render();
+});
+
+/* ── The invitation and reminder mails ─────────────────────
+   One template, two mails: only the subject and the copy differ. The copy
+   follows the language picked in the dialog, the way the product shows the
+   version each group will receive. */
+var LANGS = [
+  { code: 'en', name: 'English (United Kingdom)', flag: 'is-uk' },
+  { code: 'nl', name: 'Nederlands',               flag: 'is-nl' },
+  { code: 'de', name: 'Deutsch',                  flag: 'is-de' }
+];
+
+var FINE = {
+  en: '<strong>We guarantee your privacy</strong><br />Effectory processes all data confidentially. Want to know more? Please ask your manager or HR manager. Or visit our online helpdesk.',
+  nl: '<strong>Wij garanderen je privacy</strong><br />Effectory verwerkt alle gegevens vertrouwelijk. Meer weten? Vraag het je manager of HR-manager. Of bezoek onze online helpdesk.',
+  de: '<strong>Wir garantieren Ihre Privatsphäre</strong><br />Effectory verarbeitet alle Daten vertraulich. Sie möchten mehr wissen? Fragen Sie Ihre Führungskraft oder die Personalabteilung. Oder besuchen Sie unseren Online-Helpdesk.'
+};
+var CTA = { en: 'Share your thoughts', nl: 'Deel je gedachten', de: 'Teilen Sie Ihre Gedanken' };
+
+var MAILS = {
+  invitation: {
+    title: 'Invitation',
+    copy: {
+      en: { subject: 'Fill out your {{OrganizationName}} Employee Survey now!',
+            headline: '<strong>Hello {{FirstName | participant}},</strong><br />We’re inviting you to share your ideas!',
+            text: 'Your thoughts and ideas are essential to us to create a better working life together at {{OrganizationName}}. Sharing your ideas is easy:<br />Click on the link below to fill out your personal questionnaire before {{SurveyEndDate}} UTC!' },
+      nl: { subject: 'Vul nu de medewerkersvragenlijst van {{OrganizationName}} in!',
+            headline: '<strong>Hallo {{FirstName | deelnemer}},</strong><br />We nodigen je uit om je ideeën te delen!',
+            text: 'Jouw gedachten en ideeën zijn essentieel om samen bij {{OrganizationName}} een beter werkend leven te maken. Je ideeën delen is eenvoudig:<br />Klik op de link hieronder en vul je persoonlijke vragenlijst in vóór {{SurveyEndDate}} UTC!' },
+      de: { subject: 'Füllen Sie jetzt die Mitarbeiterbefragung von {{OrganizationName}} aus!',
+            headline: '<strong>Hallo {{FirstName | Teilnehmer}},</strong><br />Wir laden Sie ein, Ihre Ideen zu teilen!',
+            text: 'Ihre Gedanken und Ideen sind entscheidend, um bei {{OrganizationName}} gemeinsam ein besseres Arbeitsleben zu schaffen. Ideen teilen ist einfach:<br />Klicken Sie auf den Link unten und füllen Sie Ihren persönlichen Fragebogen vor dem {{SurveyEndDate}} UTC aus!' }
+    }
+  },
+  reminder: {
+    title: 'Reminder',
+    copy: {
+      en: { subject: 'Reminder: Share your thoughts with {{OrganizationName}}!',
+            headline: '<strong>Hello {{FirstName | participant}},</strong><br />Don’t miss out on your chance to share your ideas!',
+            text: 'You have until {{SurveyEndDate}} UTC to share your thoughts with {{OrganizationName}}. Have you already participated? Thanks!<br />If you haven’t, simply click on the link below to fill out your personal questionnaire.' },
+      nl: { subject: 'Herinnering: deel je gedachten met {{OrganizationName}}!',
+            headline: '<strong>Hallo {{FirstName | deelnemer}},</strong><br />Laat je kans om je ideeën te delen niet lopen!',
+            text: 'Je hebt tot {{SurveyEndDate}} UTC om je gedachten met {{OrganizationName}} te delen. Heb je al meegedaan? Bedankt!<br />Zo niet, klik dan op de link hieronder en vul je persoonlijke vragenlijst in.' },
+      de: { subject: 'Erinnerung: Teilen Sie Ihre Gedanken mit {{OrganizationName}}!',
+            headline: '<strong>Hallo {{FirstName | Teilnehmer}},</strong><br />Verpassen Sie nicht die Chance, Ihre Ideen zu teilen!',
+            text: 'Sie haben bis zum {{SurveyEndDate}} UTC Zeit, Ihre Gedanken mit {{OrganizationName}} zu teilen. Haben Sie schon teilgenommen? Vielen Dank!<br />Falls nicht, klicken Sie einfach auf den Link unten und füllen Sie Ihren persönlichen Fragebogen aus.' }
+    }
+  }
+};
+
+/* The mails offer the same templates as the survey layout, so the mail and the
+   questionnaire always carry one brand. */
+var TEMPLATES = LAYOUTS;
+var tpl = function (name) {
+  return TEMPLATES.find(function (x) { return x.name === name; }) || TEMPLATES[0];
+};
+
+/* which mail is open, plus the template and language it is being read in */
+var mail = { key: null, draft: TEMPLATES[0].name, lang: 'en' };
+
+function renderMail() {
+  var m = MAILS[mail.key];
+  if (!m) return;
+  var c = m.copy[mail.lang];
+  $('mailTitle').textContent = m.title;
+  $('mailSubject').textContent = c.subject;
+  $('mailHeadline').innerHTML = c.headline;
+  $('mailText').innerHTML = c.text;
+  $('mailCta').textContent = CTA[mail.lang];
+  $('mailFine').innerHTML = FINE[mail.lang];
+
+  var t = tpl(mail.draft);
+  $('tplVal').textContent = t.name;
+  $('tplMark').innerHTML = markHTML(t);
+  var dlg = document.querySelector('.le-dlg');
+  dlg.style.setProperty('--le-primary', t.brand);
+  dlg.style.setProperty('--le-light', t.light);
+  dlg.style.setProperty('--le-on', t.on);
+  dlg.style.setProperty('--le-line', t.line);
+
+  $('tplMenu').innerHTML = TEMPLATES.map(function (x) {
+    var on = x.name === t.name;
+    return '<div class="menu-item' + (on ? ' is-selected' : '') + '" role="option" aria-selected="' + on + '" tabindex="0" data-tpl="' + x.name + '">' +
+      markHTML(x) +
+      '<span class="menu-item-body"><span class="menu-item-title">' + x.name + '</span></span>' +
+      (on ? '<i data-icon="check" class="menu-item-check"></i>' : '') + '</div>';
+  }).join('');
+
+  var lang = LANGS.find(function (l) { return l.code === mail.lang; });
+  $('langVal').textContent = lang.name;
+  $('langFlag').innerHTML = '<span class="le-flag ' + lang.flag + '"></span>';
+  $('langMenu').innerHTML = LANGS.map(function (l) {
+    var on = l.code === mail.lang;
+    return '<div class="menu-item' + (on ? ' is-selected' : '') + '" role="option" aria-selected="' + on + '" tabindex="0" data-lang="' + l.code + '">' +
+      '<span class="le-flag ' + l.flag + '"></span>' +
+      '<span class="menu-item-body"><span class="menu-item-title">' + l.name + '</span></span>' +
+      (on ? '<i data-icon="check" class="menu-item-check"></i>' : '') + '</div>';
+  }).join('');
+
+  if (window.Icons) window.Icons.render($('mailOv'));
+}
+
+function closeMenus() {
+  $('tplMenu').hidden = true;
+  $('langMenu').hidden = true;
+  $('tplBtn').setAttribute('aria-expanded', 'false');
+  $('langBtn').setAttribute('aria-expanded', 'false');
+}
+function openMail(key) {
+  mail.key = key;
+  mail.draft = state.mailTemplate;
+  closeMenus();
+  renderMail();
+  $('mailOv').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeMail() {
+  $('mailOv').hidden = true;
+  closeMenus();
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.le-mail').forEach(function (b) {
+  b.addEventListener('click', function () { openMail(b.dataset.mail); });
+});
+$('mailClose').addEventListener('click', closeMail);
+$('mailOv').addEventListener('click', function (e) { if (e.target === $('mailOv')) closeMail(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('mailOv').hidden) closeMail(); });
+
+/* The dialog is a draft until you confirm it, the same as in the product. */
+$('mailApply').addEventListener('click', function () {
+  state.mailTemplate = mail.draft;
+  save();
+  render();
+  closeMail();
+});
+
+function wireMenu(btnId, menuId, attr, pick) {
+  $(btnId).addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = $(menuId).hidden;
+    closeMenus();
+    $(menuId).hidden = !open;
+    $(btnId).setAttribute('aria-expanded', String(open));
+  });
+  $(menuId).addEventListener('click', function (e) {
+    var t = e.target.closest('[' + attr + ']');
+    if (!t) return;
+    e.stopPropagation();
+    pick(t.getAttribute(attr));
+    closeMenus();
+    renderMail();
+  });
+}
+wireMenu('tplBtn', 'tplMenu', 'data-tpl', function (v) { mail.draft = v; });
+wireMenu('langBtn', 'langMenu', 'data-lang', function (v) { mail.lang = v; });
+document.addEventListener('click', function () { if (!$('mailOv').hidden) closeMenus(); });
+
+render();
+</script>
+
+<!-- One language for the whole prototype: the design system's map for what these
+     screens share with the dashboard, this prototype's own for the rest. -->
+<script src="https://effectory-ux.github.io/Engage-Design-system-/i18n.js"></script>
+<script src="gtma-strings.js"></script>
+<script src="gtma-i18n.js"></script>
+</body>
+</html>
