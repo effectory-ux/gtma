@@ -420,42 +420,15 @@ Object.assign(window.GTMA_STRINGS, {
 });
 
 /* ── Waiting on the design system release ────────────────────────────────────
-   These 26 strings live in the design system's i18n.js, where they belong: the
-   dashboard renders them, not this prototype. The prototypes load that file from
-   the design system's Pages site, so until the version carrying them is
-   published they would read English in Dutch and German. Copied here to bridge
-   that gap, with the same wording. Delete this block once the design system
-   release is out. */
+   Three strings, for the same reason as the thirty before them: the dashboard
+   draws them, the design system owns the translation, and the prototype loads that file
+   from Pages. The Actions intro was rewritten so it no longer claims responses
+   are shared with HR, the Monitoring tile became "To monitor", and the empty
+   state was reworded. A translation is keyed on its English source, so each
+   rewrite took the Dutch and German with it. The fix is on the design
+   system's pull request #13. Delete this block once that is released. */
 Object.assign(window.GTMA_STRINGS, {
-  "To improve": { nl: "Te verbeteren", de: "Zu verbessern" },
-  "Monitoring": { nl: "Monitoren", de: "Beobachten" },
-  "Flagged for support": { nl: "Hulp nodig", de: "Unterstützung nötig" },
-  "To promote": { nl: "Uit te dragen", de: "Zu fördern" },
-  "Focus area": { nl: "Aandachtsgebied", de: "Schwerpunkt" },
-  "Response": { nl: "Reactie", de: "Reaktion" },
-  "Activity": { nl: "Activiteit", de: "Aktivität" },
-  "Action": { nl: "Actie", de: "Maßnahme" },
-  "Choose your focus area": { nl: "Kies je aandachtsgebied", de: "Schwerpunkt wählen" },
-  "Choose how to respond": { nl: "Kies hoe je reageert", de: "Reaktion wählen" },
-  "Plan it": { nl: "Inplannen", de: "Einplanen" },
-  "Pick the response that fits this area — you can change it later.": { nl: "Kies de reactie die bij dit gebied past. Je kunt het later nog aanpassen.", de: "Wählen Sie die Reaktion, die zu diesem Bereich passt. Sie können das später ändern." },
-  "Choose the recommended actions you want to take": { nl: "Kies de aanbevolen acties die je wilt oppakken", de: "Wählen Sie die empfohlenen Maßnahmen, die Sie ergreifen möchten" },
-  "Relevant for my team": { nl: "Relevant voor mijn team", de: "Relevant für mein Team" },
-  "Not relevant right now": { nl: "Nu niet relevant", de: "Derzeit nicht relevant" },
-  "Choose": { nl: "Kiezen", de: "Auswählen" },
-  "Furthest below benchmark": { nl: "Grootste achterstand op de benchmark", de: "Am weitesten unter der Benchmark" },
-  "Biggest drop": { nl: "Grootste daling", de: "Stärkster Rückgang" },
-  "Improving, still behind": { nl: "Verbetert, maar nog achter", de: "Verbessert sich, liegt aber zurück" },
-  "Below benchmark": { nl: "Onder de benchmark", de: "Unter der Benchmark" },
-  "Legend": { nl: "Legenda", de: "Legende" },
-  "Lower": { nl: "Lager", de: "Niedriger" },
-  "File is being generated.": { nl: "Het bestand wordt aangemaakt.", de: "Die Datei wird erstellt." },
-  "Open eNPS details": { nl: "eNPS-details openen", de: "eNPS-Details öffnen" },
-  "Search questions": { nl: "Vragen zoeken", de: "Fragen suchen" },
-  "Statistical significance — learn how it works": { nl: "Statistische significantie: zo werkt het", de: "Statistische Signifikanz: so funktioniert es" },
-  "Spiderweb of theme scores, current versus previous survey": { nl: "Spinnenweb van themascores, huidig onderzoek versus vorig onderzoek", de: "Netzdiagramm der Themenwerte, aktuelle im Vergleich zur vorherigen Befragung" },
-  "Theme score over time": { nl: "Themascore in de tijd", de: "Themenwert im Zeitverlauf" },
-  "Dismiss": { nl: "Sluiten", de: "Schließen" },
-  "Everything you've decided to act on": { nl: "Alles wat je gaat aanpakken", de: "Alles, was Sie angehen möchten" },
+  "To monitor": { nl: "Monitoren", de: "Beobachten" },
+  "Respond to a focus area to decide how you'll act on it, and it shows up here. Not sure where to start? Create a custom pin from your own goal.": { nl: "Reageer op een aandachtsgebied om te bepalen wat je ermee doet, dan verschijnt het hier. Weet je niet waar je moet beginnen? Maak een eigen pin vanuit je eigen doel.", de: "Reagieren Sie auf einen Schwerpunkt, um festzulegen, wie Sie damit umgehen, dann erscheint er hier. Sie wissen nicht, wo Sie anfangen sollen? Erstellen Sie eine eigene Markierung aus Ihrem eigenen Ziel." },
   "All actions you're taking, areas you're monitoring, and topics flagged for support, gathered from your focus areas and the questions you pinned in the Overview.": { nl: "Alle acties die je uitvoert, gebieden die je in de gaten houdt en onderwerpen waarvoor je hulp hebt aangevraagd, verzameld uit je aandachtsgebieden en de vragen die je in het overzicht hebt vastgepind.", de: "Alle Maßnahmen, die Sie ergreifen, Bereiche, die Sie beobachten, und Themen, für die Sie Unterstützung angefordert haben, gesammelt aus Ihren Schwerpunkten und den Fragen, die Sie in der Übersicht angepinnt haben." }
 });
