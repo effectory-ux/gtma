@@ -10,7 +10,10 @@
    1. Pinning in the Overview asks "Choose how to respond", then opens the side
       panel on that goal with a new action ready, instead of a popover and a toast.
    2. The Focus View shows three focus areas and three wins, with the rest behind
-      "Explore more areas" and "Explore more wins". */
+      "Explore more areas" and "Explore more wins".
+   3. The Actions tab: a "Your responses" eyebrow, a plain Export button, scores
+      as pills, the prototype's row menu, custom pins that start without a goal
+      and only list once named, and the empty state with clickable responses. */
 (function () {
   var root = document.getElementById('root');
   if (!root || typeof FV_CARDS === 'undefined' || typeof DATA === 'undefined') return;
@@ -63,7 +66,7 @@
       '<button class="step-close ib ib-36 ib-tertiary" aria-label="' + T('Close') + '" data-gtma-respond-x><i data-icon="cross"></i></button>' +
       '<div class="step-body"><div class="step-hero"><div class="step-hero-row"><span class="step-hero-ico"><i data-icon="list-unordered"></i></span>' +
       '<h2 class="step-h2" id="gtma-respond-title">' + T('Choose how to respond') + '</h2></div>' +
-      '<p class="step-sub">' + T('Pick the response that fits this question \u2014 you can change it later.') + '</p></div>' +
+      '<p class="step-sub">' + T('Pick the response that fits \u2014 you can change it later.') + '</p></div>' +
       '<div class="fv-card step-context-card"><div class="fv-card-head"><div class="fv-card-top">' +
       '<div class="fv-card-q"><p class="fv-card-question">' + T(subject.name) + '</p><span class="fv-card-theme">' + esc(subject.theme) + '</span></div>' +
       score + '</div></div></div>' +
@@ -234,8 +237,137 @@
     if (window.Icons) window.Icons.renderOne(i);
   });
 
+
+  /* ── 3. The Actions tab ── */
+  var ICON_OF = { improve: 'target', monitor: 'eye', support: 'flag', promote: 'win' };
+  /* The empty state's own copy, as the prototype writes it (Figma "Actions 01 -
+     Empty state"). Promote reads shorter here than in the respond dialog. */
+  var EMPTY_DESC = {
+    improve: 'Something the team can influence, so commit to a concrete next step now.',
+    monitor: 'Not urgent yet, so keep it on your radar and revisit at the next survey.',
+    support: "Outside the team's control, so flag it for the right person to pick up.",
+    promote: 'A real strength worth celebrating, so find a way to share the win with your team.'
+  };
+  var WIN_KEYS = {};
+  d.highScores.forEach(function (s) { WIN_KEYS[s.q] = 1; });
+  var QUESTION_KEYS = {};
+  d.lowScores.concat(d.highScores).forEach(function (s) { QUESTION_KEYS[s.q] = 1; });
+  SCORES_GROUPS.forEach(function (grp) { grp.rows.forEach(function (r) { QUESTION_KEYS[r.q] = 1; }); });
+
+  /* Rows: a question's score is a pill, the way the Focus View shows it, and the
+     row menu uses the prototype's words. Everything else is the design system's row. */
+  var dsRow = window.apRowHTML;
+  window.apRowHTML = function (r) {
+    var tpl = document.createElement('template');
+    tpl.innerHTML = dsRow(r).trim();
+    var row = tpl.content.firstElementChild;
+    var sc = row.querySelector('.ap-score');
+    if (sc && QUESTION_KEYS[r.key] && /%$/.test(sc.textContent.trim())) {
+      sc.innerHTML = '<span class="fv-score is-' + (WIN_KEYS[r.key] ? 'win' : 'focus') + '">' + esc(sc.textContent.trim()) + '</span>';
+    }
+    var lbl = function (sel, text) { var el = row.querySelector(sel + ' .menu-item-title'); if (el) el.textContent = T(text); };
+    lbl('.ap-edit', 'Edit details'); lbl('.ap-addk', 'Add action'); lbl('.ap-remove', 'Remove');
+    return row.outerHTML;
+  };
+
+  /* A custom pin without a name is still being made: it stays out of the list,
+     and it is dropped altogether if the panel closes before it has one. */
+  var dsRows = window.actionPlannerRows;
+  window.actionPlannerRows = function (dd) {
+    return dsRows(dd).filter(function (r) { return !(r.custom && !(r.name || '').trim()); });
+  };
+  function dropUnnamedCustom() {
+    var before = AP_CUSTOM.length;
+    AP_CUSTOM = AP_CUSTOM.filter(function (r) {
+      if ((r.name || '').trim()) return true;
+      delete ACT_STORE[r.key];
+      return false;
+    });
+    if (AP_CUSTOM.length !== before && window.renderAPBody) window.renderAPBody();
+  }
+
+  /* A new custom pin opens the panel on its title with no goal yet: the goal
+     dropdown reads "Select a goal", as it does for a question. From an empty-state
+     card the pin already has that card's goal and opens on a new action. */
+  function newCustomPin(goal) {
+    var key = 'custom:' + (++AP_CUSTOM_SEQ);
+    ACT_STORE[key] = { goal: goal || '', desc: '', actions: [] };
+    AP_CUSTOM.push({ key: key, name: '', score: null, custom: true });
+    AP_REMOVED.delete(key);
+    var overlay = window.apOpenActions(key, '', '–', !!goal);
+    if (!overlay) return;
+    if (goal) dropEmptyOnClose(overlay, key);
+    var obs = new MutationObserver(function () {
+      if (!overlay.hidden) return;
+      obs.disconnect();
+      dropUnnamedCustom();
+    });
+    obs.observe(overlay, { attributes: true, attributeFilter: ['hidden'] });
+  }
+
+  window.actionsEmptyHTML = function () {
+    return '<div class="actions-empty gtma-actions-empty">' +
+      '<img class="actions-illo" src="assets/illustrations/action-planning.svg" width="286" height="205" alt="" />' +
+      '<div class="ae-hero-txt">' +
+        '<h2 class="ae-title">' + T('Turn your results into action') + '</h2>' +
+        '<p class="ae-desc">' + T('Respond to a focus area to decide how you’ll act on it, and it shows up here.') + '</p>' +
+      '</div>' +
+      '<div class="ae-cards">' + GOAL_ORDER.map(function (key) {
+        var g = GOAL_CHIPS[key];
+        return '<button type="button" class="ae-card" data-gtma-custom="' + key + '" aria-label="' + T('Create a custom ' + g.label + ' pin') + '">' +
+          '<span class="ae-card-ico is-' + key + '"><i data-icon="' + ICON_OF[key] + '"></i></span>' +
+          '<span class="ae-card-t">' + T(g.label) + '</span>' +
+          '<span class="ae-card-d">' + T(EMPTY_DESC[key]) + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="ae-cta-row"><button type="button" class="btn btn-primary ae-cta" data-gtma-custom=""><i data-icon="plus"></i> ' + T('Add custom pin') + '</button></div>' +
+    '</div>';
+  };
+
+  function exportToast() {
+    var stack = document.getElementById('sysnotif-stack');
+    if (!stack) return;
+    var el = document.createElement('div');
+    el.className = 'sysnotif';
+    el.innerHTML = '<span class="sysnotif-title">' + T('Preparing your export…') + '</span>' +
+      '<button class="sysnotif-close" aria-label="' + T('Close') + '"><i data-icon="cross"></i></button>';
+    stack.appendChild(el);
+    if (window.Icons) window.Icons.render(el);
+    el.querySelector('.sysnotif-close').addEventListener('click', function () { el.remove(); });
+    setTimeout(function () { el.remove(); }, 3200);
+  }
+
+  /* Capture phase, ahead of the design system's handlers in the Actions view. */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var view = document.getElementById('view-actions');
+    if (!view || !view.contains(e.target)) return;
+    var custom = e.target.closest('.ap-custom, [data-gtma-custom]');
+    if (custom && window.apOpenActions) {
+      e.stopPropagation(); e.preventDefault();
+      newCustomPin(custom.dataset.gtmaCustom || '');
+      return;
+    }
+    if (e.target.closest('.ap-export')) {
+      e.stopPropagation(); e.preventDefault();
+      exportToast();
+    }
+  }, true);
+
+  /* The header: an eyebrow above the title, and Export as one button rather than
+     a menu. Then redraw the body so the rows and the empty state above apply. */
+  function augmentActions() {
+    var head = document.querySelector('#view-actions .actions-head-txt');
+    if (!head || head.querySelector('.gtma-eyebrow')) return;
+    head.insertAdjacentHTML('afterbegin', '<span class="fv-eyebrow is-focus gtma-eyebrow">' + T('Your responses') + '</span>');
+    var exp = document.querySelector('#view-actions .ap-export');
+    if (exp) { var chev = exp.querySelector('[data-icon="chevron-down"]'); if (chev) chev.remove(); }
+    var menu = document.querySelector('#view-actions .ap-export-menu'); if (menu) menu.remove();
+    if (window.renderAPBody) window.renderAPBody();
+  }
+
   augment();
+  augmentActions();
   /* A language or theme switch re-renders #root from scratch and resets FV_CARDS,
-     so put the extra cards back then. */
-  new MutationObserver(augment).observe(root, { childList: true });
+     so put the extra cards and the Actions header back then. */
+  new MutationObserver(function () { augment(); augmentActions(); }).observe(root, { childList: true });
 })();

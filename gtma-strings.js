@@ -441,9 +441,19 @@ Object.assign(window.GTMA_STRINGS, {
   "Show fewer areas": { nl: "Minder aandachtsgebieden tonen", de: "Weniger Schwerpunkte anzeigen" },
   "Explore more wins": { nl: "Meer successen bekijken", de: "Weitere Erfolge ansehen" },
   "Show fewer wins": { nl: "Minder successen tonen", de: "Weniger Erfolge anzeigen" },
-  "Pick the response that fits this question \u2014 you can change it later.": { nl: "Kies de reactie die bij deze vraag past. Je kunt het later nog aanpassen.", de: "Wählen Sie die Reaktion, die zu dieser Frage passt. Sie können das später ändern." },
+  "Pick the response that fits \u2014 you can change it later.": { nl: "Kies de reactie die past. Je kunt het later nog aanpassen.", de: "Wählen Sie die passende Reaktion. Sie können das später ändern." },
   "Choose Improve": { nl: "Verbeteren kiezen", de: "Verbessern wählen" },
   "Choose Monitor": { nl: "Monitoren kiezen", de: "Beobachten wählen" },
   "Choose Need support": { nl: "Hulp nodig kiezen", de: "Unterstützung nötig wählen" },
-  "Choose Promote": { nl: "Uitdragen kiezen", de: "Fördern wählen" }
+  "Choose Promote": { nl: "Uitdragen kiezen", de: "Fördern wählen" },
+  "Your responses": { nl: "Jouw reacties", de: "Ihre Reaktionen" },
+  "Edit details": { nl: "Details bewerken", de: "Details bearbeiten" },
+  "Remove": { nl: "Verwijderen", de: "Entfernen" },
+  "Preparing your export\u2026": { nl: "Je export wordt voorbereid\u2026", de: "Ihr Export wird vorbereitet\u2026" },
+  "Respond to a focus area to decide how you\u2019ll act on it, and it shows up here.": { nl: "Reageer op een aandachtsgebied om te bepalen wat je ermee doet, dan verschijnt het hier.", de: "Reagieren Sie auf einen Schwerpunkt, um festzulegen, wie Sie damit umgehen, dann erscheint er hier." },
+  "A real strength worth celebrating, so find a way to share the win with your team.": { nl: "Een echte sterkte om te vieren, dus zoek een manier om het succes met je team te delen.", de: "Eine echte Stärke, die es zu feiern gilt, also finden Sie einen Weg, den Erfolg mit Ihrem Team zu teilen." },
+  "Create a custom Improve pin": { nl: "Eigen pin maken om te verbeteren", de: "Eigene Markierung zum Verbessern erstellen" },
+  "Create a custom Monitor pin": { nl: "Eigen pin maken om te monitoren", de: "Eigene Markierung zum Beobachten erstellen" },
+  "Create a custom Need support pin": { nl: "Eigen pin maken waarvoor je hulp nodig hebt", de: "Eigene Markierung für benötigte Unterstützung erstellen" },
+  "Create a custom Promote pin": { nl: "Eigen pin maken om uit te dragen", de: "Eigene Markierung zum Fördern erstellen" }
 });

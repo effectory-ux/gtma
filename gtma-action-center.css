@@ -76,3 +76,35 @@
 .fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(5) { transition-delay: .36s; }
 .fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(6) { transition-delay: .43s; }
 @media (prefers-reduced-motion: reduce) { .fv-more, .fv-more .fv-card, .fv-more .fv-win-card { transition: none; } }
+
+/* ── Actions tab ──
+   The empty state as the prototype draws it (Figma "Actions 01 - Empty state"):
+   the illustration on top, a centred heading, and the four responses as cards
+   you can click to start a custom pin on that response. */
+.actions-empty.gtma-actions-empty { align-items: center; text-align: center; gap: 0; max-width: 900px; padding: var(--spacing-super-loose) 0; background: transparent; border: 0; }
+.gtma-actions-empty .actions-illo { width: 286px; max-width: 100%; height: auto; }
+.gtma-actions-empty .ae-hero-txt { display: flex; flex-direction: column; gap: var(--spacing-tight); width: 100%; margin-top: var(--spacing-loose); }
+.gtma-actions-empty .ae-title { font-size: 26px; }
+.gtma-actions-empty .ae-desc { color: var(--content-base); }
+.ae-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-base-tight); width: 100%; margin-top: var(--spacing-loose); }
+.ae-card { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: var(--spacing-base); background: var(--bg-base); border: 1px solid var(--border-base); border-radius: var(--radius-md); box-sizing: border-box; font-family: inherit; color: inherit; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.ae-card:hover { border-color: var(--border-action-hover, var(--content-brand)); box-shadow: var(--sh-card); }
+.ae-card:focus-visible { outline: 2px solid var(--content-brand); outline-offset: 2px; }
+.ae-card-ico { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: var(--radius-base); flex: none; }
+.ae-card-ico i { display: flex; width: 20px; height: 20px; }
+.ae-card-ico.is-improve { background: var(--r-improve-tile); color: var(--r-improve-fg); }
+.ae-card-ico.is-monitor { background: var(--r-monitor-tile); color: var(--r-monitor-fg); }
+.ae-card-ico.is-support { background: var(--r-support-tile); color: var(--r-support-fg); }
+.ae-card-ico.is-promote { background: var(--r-promote-tile); color: var(--r-promote-fg); }
+.ae-card-t { margin-top: var(--spacing-tight); font-size: 16px; font-weight: 600; color: var(--content-base); }
+.ae-card-d { margin-top: var(--spacing-tight); font-size: 12px; line-height: 1.5; color: var(--content-base); }
+.gtma-actions-empty .ae-cta-row { margin-top: var(--spacing-loose); }
+@media (max-width: 900px) { .ae-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .ae-cards { grid-template-columns: 1fr; } }
+/* The eyebrow sits on its own line above the title, not stretched across it. */
+.actions-head-txt .gtma-eyebrow { align-self: flex-start; }
+/* The Actions tab sits on the secondary background below the tabs, so its white
+   counters, table and cards read as cards; the header above stays white. */
+.main-scroll:has(#view-actions:not([hidden])) { background: var(--bg-secondary); }
+.main-scroll:has(#view-actions:not([hidden])) .results-head { background: var(--bg-base); }
+.actions-head-txt, .actions-head-txt .fv-section-desc { max-width: none; }
