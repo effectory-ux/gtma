@@ -1,0 +1,78 @@
+/* ── The Action Center, ahead of the design system ───────────────────────────
+   The dashboards are drawn by the design system's effectiveness.js and styled by
+   its effectiveness.css. The Action Center prototype
+   (effectory-ux/action-center, action-center-manager-stepper.html) has moved on
+   since that release, and this file brings the demo in line with it until the
+   design system catches up. Delete a block here once the design system ships it.
+   The behaviour that goes with it lives in gtma-action-center.js. */
+
+/* ── One palette for the four responses ──
+   Follows the Survey tags standard in Figma, as the prototype does:
+   Improve = red, Monitor = blue, Need support = amber, Promote = green.
+   *-pill is the tag tint, *-tile the stronger tint behind an icon, *-fg the
+   icon and text. Monitor and Promote were already right; Improve was brand
+   teal and Need support was red. */
+:root {
+  --r-improve-pill: var(--bg-negative-subtle);   --r-improve-tile: var(--bg-accent-red-subtle); --r-improve-fg: var(--content-negative);
+  --r-monitor-pill: var(--bg-info-subtle);       --r-monitor-tile: var(--bg-info-subtle);       --r-monitor-fg: var(--content-info);
+  --r-support-pill: var(--bg-highlight-subtle);  --r-support-tile: var(--bg-highlight-subtle);  --r-support-fg: var(--p-color-yellow-600);
+  --r-promote-pill: var(--bg-positive-subtle);   --r-promote-tile: var(--bg-positive-subtle);   --r-promote-fg: var(--content-positive);
+
+  /* Focus-area signals, from the "Smart tags" set in Figma: the level picks the
+     colour. Strong = red, Moderate = amber, Mild = blue. */
+  --sig-strong-bg: var(--bg-negative-subtle);    --sig-strong-fg: var(--content-negative);
+  --sig-moderate-bg: var(--bg-highlight-subtle); --sig-moderate-fg: var(--p-color-yellow-600);
+  --sig-mild-bg: var(--bg-info-subtle);          --sig-mild-fg: var(--content-info);
+}
+
+/* Goal chips: the Actions table, the side panel's goal dropdown, the pin popovers */
+.goal-chip.is-improve { background: var(--r-improve-pill); color: var(--r-improve-fg); }
+.goal-chip.is-monitor { background: var(--r-monitor-pill); color: var(--r-monitor-fg); }
+.goal-chip.is-support { background: var(--r-support-pill); color: var(--r-support-fg); }
+.goal-chip.is-promote { background: var(--r-promote-pill); color: var(--r-promote-fg); }
+
+/* Icon tiles: the respond step, the dialog hero, the done card, the Actions
+   counters and the empty state's four options */
+.step-opt.is-improve .step-opt-ico, .step-hero-ico.is-improve, .fa-done-ico.is-improve, .act-sum.is-improve .act-sum-ico { background: var(--r-improve-tile); color: var(--r-improve-fg); }
+.step-opt.is-monitor .step-opt-ico, .step-hero-ico.is-monitor, .fa-done-ico.is-monitor, .act-sum.is-monitor .act-sum-ico { background: var(--r-monitor-tile); color: var(--r-monitor-fg); }
+.step-opt.is-support .step-opt-ico, .step-hero-ico.is-support, .fa-done-ico.is-support, .act-sum.is-support .act-sum-ico { background: var(--r-support-tile); color: var(--r-support-fg); }
+.step-opt.is-promote .step-opt-ico, .step-hero-ico.is-promote, .fa-done-ico.is-promote, .act-sum.is-promote .act-sum-ico { background: var(--r-promote-tile); color: var(--r-promote-fg); }
+
+/* A pinned pin takes the colour of its goal, on the card and in the pin list */
+.sc-pin.is-pinned.is-goal-improve, .sc-pinlist-pin.is-goal-improve { color: var(--r-improve-fg); }
+.sc-pin.is-pinned.is-goal-monitor, .sc-pinlist-pin.is-goal-monitor { color: var(--r-monitor-fg); }
+.sc-pin.is-pinned.is-goal-support, .sc-pinlist-pin.is-goal-support { color: var(--r-support-fg); }
+.sc-pin.is-pinned.is-goal-promote, .sc-pinlist-pin.is-goal-promote { color: var(--r-promote-fg); }
+
+/* The pin popover shows all four responses at once. It is a .menu, and a menu
+   stops at 280px and scrolls, which hid Promote under the fold once the
+   question's name sat above the options. Four options are never too many to show. */
+.sc-pin-pop { max-height: none; overflow: visible; }
+
+/* Smart tags on the focus cards. The design system names them by tone, one tone
+   per reason, so each tone maps onto a signal level:
+   furthest below benchmark and biggest drop are strong, plain below benchmark
+   is moderate, improving but still behind is mild. */
+.fv-smarttag.is-info, .fv-smarttag.is-warning { background: var(--sig-strong-bg); color: var(--sig-strong-fg); }
+.fv-smarttag.is-neutral { background: var(--sig-moderate-bg); color: var(--sig-moderate-fg); }
+.fv-smarttag.is-accent { background: var(--sig-mild-bg); color: var(--sig-mild-fg); }
+
+/* ── Focus View: "Explore more areas" / "Explore more wins" ──
+   The top three stay as they are; the rest wait behind a link and slide in one
+   by one when it opens. The block's own gap would leave a hole while it is
+   closed, so it pulls itself back up by that gap until it opens. */
+.fv-explore-more { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: calc(var(--spacing-base) * -1); background: none; border: 0; padding: var(--spacing-tight) 0; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--content-brand); cursor: pointer; }
+.fv-explore-more i { display: flex; width: 16px; height: 16px; }
+.fv-explore-more:hover { text-decoration: underline; }
+.fv-more { overflow: hidden; max-height: 0; margin-top: calc(var(--spacing-loose) * -1); transition: max-height .55s var(--ease-standard, ease), margin-top .55s var(--ease-standard, ease); }
+.fv-more.is-open { max-height: 1400px; margin-top: calc(var(--spacing-base) * -1); }
+.fv-more > .fv-cards, .fv-more > .fv-win-cards { padding: 2px; }
+.fv-more .fv-card, .fv-more .fv-win-card { opacity: 0; transform: translateY(10px); transition: opacity .32s ease, transform .32s ease; }
+.fv-more.is-open .fv-card, .fv-more.is-open .fv-win-card { opacity: 1; transform: none; }
+.fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(1) { transition-delay: .06s; }
+.fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(2) { transition-delay: .14s; }
+.fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(3) { transition-delay: .21s; }
+.fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(4) { transition-delay: .28s; }
+.fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(5) { transition-delay: .36s; }
+.fv-more.is-open :is(.fv-card, .fv-win-card):nth-child(6) { transition-delay: .43s; }
+@media (prefers-reduced-motion: reduce) { .fv-more, .fv-more .fv-card, .fv-more .fv-win-card { transition: none; } }

@@ -432,3 +432,18 @@ Object.assign(window.GTMA_STRINGS, {
   "Respond to a focus area to decide how you'll act on it, and it shows up here. Not sure where to start? Create a custom pin from your own goal.": { nl: "Reageer op een aandachtsgebied om te bepalen wat je ermee doet, dan verschijnt het hier. Weet je niet waar je moet beginnen? Maak een eigen pin vanuit je eigen doel.", de: "Reagieren Sie auf einen Schwerpunkt, um festzulegen, wie Sie damit umgehen, dann erscheint er hier. Sie wissen nicht, wo Sie anfangen sollen? Erstellen Sie eine eigene Markierung aus Ihrem eigenen Ziel." },
   "All actions you're taking, areas you're monitoring, and topics flagged for support, gathered from your focus areas and the questions you pinned in the Overview.": { nl: "Alle acties die je uitvoert, gebieden die je in de gaten houdt en onderwerpen waarvoor je hulp hebt aangevraagd, verzameld uit je aandachtsgebieden en de vragen die je in het overzicht hebt vastgepind.", de: "Alle Maßnahmen, die Sie ergreifen, Bereiche, die Sie beobachten, und Themen, für die Sie Unterstützung angefordert haben, gesammelt aus Ihren Schwerpunkten und den Fragen, die Sie in der Übersicht angepinnt haben." }
 });
+
+/* ── The Action Center, ahead of the design system ──
+   Written by gtma-action-center.js, which bridges the Action Center prototype
+   until the design system ships it. Move these into its i18n.js with it. */
+Object.assign(window.GTMA_STRINGS, {
+  "Explore more areas": { nl: "Meer aandachtsgebieden bekijken", de: "Weitere Schwerpunkte ansehen" },
+  "Show fewer areas": { nl: "Minder aandachtsgebieden tonen", de: "Weniger Schwerpunkte anzeigen" },
+  "Explore more wins": { nl: "Meer successen bekijken", de: "Weitere Erfolge ansehen" },
+  "Show fewer wins": { nl: "Minder successen tonen", de: "Weniger Erfolge anzeigen" },
+  "Pick the response that fits this question \u2014 you can change it later.": { nl: "Kies de reactie die bij deze vraag past. Je kunt het later nog aanpassen.", de: "Wählen Sie die Reaktion, die zu dieser Frage passt. Sie können das später ändern." },
+  "Choose Improve": { nl: "Verbeteren kiezen", de: "Verbessern wählen" },
+  "Choose Monitor": { nl: "Monitoren kiezen", de: "Beobachten wählen" },
+  "Choose Need support": { nl: "Hulp nodig kiezen", de: "Unterstützung nötig wählen" },
+  "Choose Promote": { nl: "Uitdragen kiezen", de: "Fördern wählen" }
+});
