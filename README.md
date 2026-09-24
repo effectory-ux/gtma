@@ -6,6 +6,10 @@ rapporten, acties), 24 pagina's in totaal.
 
 **Live:** https://effectory-ux.github.io/gtma/
 
+GitHub Pages publiceert `main` vanaf de root (Settings → Pages → *Deploy from a
+branch*, `main`, `/ (root)`); elke push naar `main` zet de site opnieuw live. Dat
+werkt alleen zolang de repo public is.
+
 ## Waar de demo begint
 
 De flow start op [`surveys.html`](https://effectory-ux.github.io/gtma/surveys.html), de
