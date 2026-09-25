@@ -51,11 +51,11 @@ def data_uri(path):
     return "data:%s;base64,%s" % (mime, base64.b64encode(Path(path).read_bytes()).decode())
 
 # ── what every screen needs ──────────────────────────────────────────────────
-def shared_css():
+def css_files(names):
     """The design system, minus the @import that would pull the font stylesheet
        from another host; the pages carry their own @font-face already."""
     out = []
-    for name in ("tokens.css", "foundation.css", "components.css", "effectiveness.css"):
+    for name in names:
         css = read(DS / name)
         css = re.sub(r"@import url\([^)]*\);\s*", "", css)
         out.append("/* ══ %s ══ */\n%s" % (name, css))
@@ -116,8 +116,10 @@ def asset_map():
     return out
 
 print("design system  ", end="", flush=True)
-CSS, JS, ICONS, ASSETS = shared_css(), shared_js(), icon_map(), asset_map()
-print("%d KB css · %d KB js · %d icons · %d assets" % (len(CSS)//1024, len(JS)//1024, len(ICONS), len(ASSETS)))
+CSS = css_files(("tokens.css", "foundation.css", "components.css"))
+EFF_CSS = css_files(("effectiveness.css",))
+JS, ICONS, ASSETS = shared_js(), icon_map(), asset_map()
+print("%d KB css + %d KB dashboard-css \u00b7 %d KB js \u00b7 %d icons \u00b7 %d assets" % (len(CSS)//1024, len(EFF_CSS)//1024, len(JS)//1024, len(ICONS), len(ASSETS)))
 
 # ── the screens ──────────────────────────────────────────────────────────────
 DROP_SRC = re.compile(r"(proto-config\.js|toolbar/load\.js|gtma-icons\.js|" + re.escape(PAGES) + r")")
@@ -127,7 +129,9 @@ def split_page(path):
        its own head (minus everything that came from another host), its body,
        and its scripts in the order the page runs them."""
     s = read(ROOT / path)
-    head = s[s.index("<head>") + 6: s.index("</head>")] if "</head>" in s else ""
+    # a page may leave </head> out; then the head runs up to <body>
+    head_end = s.index("</head>") if "</head>" in s else s.index("<body>")
+    head = s[s.index("<head>") + 6: head_end]
     body = s[s.index("<body>") + 6:]
     body = body[:body.rindex("</body>")] if "</body>" in body else body
 
@@ -136,6 +140,7 @@ def split_page(path):
     for m in re.finditer(r"<style>(.*?)</style>|<script>(.*?)</script>", head, re.S):
         keep.append("<style>%s</style>" % m.group(1) if m.group(1) is not None else "<script>%s</script>" % m.group(2))
     needs_eff = "effectiveness.js" in s
+    needs_eff_css = "effectiveness.css" in head
     needs_chart = "chart.umd" in s
 
     # body: pull the scripts out, inline the local ones, drop what came from Pages
@@ -153,7 +158,7 @@ def split_page(path):
         return ""
     body = re.sub(r'<script(?:\s+src="([^"]+)")?\s*>(.*?)</script>', take, body, flags=re.S)
     return {"head": "\n".join(keep), "body": body, "js": scripts,
-            "eff": needs_eff, "chart": needs_chart}
+            "eff": needs_eff, "effcss": needs_eff_css, "chart": needs_chart}
 
 print("screens        ", end="", flush=True)
 BUILT = {}
@@ -254,11 +259,13 @@ payload = {
     "screens": {k: {"label": v["label"], "group": v["group"], "file": v["file"],
                     "head": v["head"], "body": v["body"],
                     "js": [rewrite(j) for j in v["js"]],
-                    "eff": v["eff"], "chart": v["chart"]} for k, v in BUILT.items()},
+                    "eff": v["eff"], "effcss": v["effcss"], "chart": v["chart"]} for k, v in BUILT.items()},
     "groups": groups,
 }
 
 TEMPLATE = """<title>GTMA prototype</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
 <style>
   /* The chrome around the prototype: a rail to pick a screen, and the screen
      itself. Everything inside the frame is the design system's own. */
@@ -336,6 +343,7 @@ TEMPLATE = """<title>GTMA prototype</title>
 <script>
 const BUNDLE = JSON.parse(@@PAYLOAD@@);
 const SHARED_CSS = @@CSS@@;
+const EFF_CSS = @@EFFCSS@@;
 const I18N_JS = @@I18N@@;
 const EFF_JS = @@EFF@@;
 const SHIM = @@SHIM@@;
@@ -367,7 +375,7 @@ function docFor(key, params) {
   const tag = (js) => '<scr' + 'ipt>' + js + '</scr' + 'ipt>';
   return '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-    '<style>' + SHARED_CSS + '</style>' + s.head +
+    '<style>' + SHARED_CSS + '</style>' + (s.effcss ? '<style>' + EFF_CSS + '</style>' : '') + s.head +
     tag('window.__params = ' + JSON.stringify(params) + ';') + tag(SHIM) + chart +
     tag(I18N_JS) + (s.eff ? tag(EFF_JS) : '') +
     '</head><body>' + s.body + s.js.map(tag).join('') + '</body></html>';
@@ -431,6 +439,7 @@ show(BY_FILE[(location.hash || '').slice(1)] ? BY_FILE[location.hash.slice(1)] :
 SUBS = {
     "@@PAYLOAD@@": js_string(json.dumps(payload)),
     "@@CSS@@": js_string(CSS),
+    "@@EFFCSS@@": js_string(EFF_CSS),
     "@@I18N@@": js_string(read(DS / "i18n.js")),
     "@@EFF@@": js_string(read(DS / "effectiveness.js")),
     "@@SHIM@@": js_string(SHIM),
