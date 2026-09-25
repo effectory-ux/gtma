@@ -67,23 +67,20 @@ def shared_js():
 
 def icon_map():
     """icons.js fetches one file per icon. Inside the artifact nothing can be
-       fetched, so the icons travel as a map and a stand-in renderer uses it."""
-    names = set(re.findall(r'data-icon=\\?["\']([a-zA-Z0-9_-]+)', "\n".join(
-        read(p) for p in list(ROOT.glob("*.html")) + list(ROOT.glob("*.js")))))
-    names |= set(re.findall(r'data-icon=\\?["\']([a-zA-Z0-9_-]+)', read(DS / "effectiveness.js")))
-    names |= set(re.findall(r"icon:\s*'([a-zA-Z0-9_-]+)'", read(DS / "effectiveness.js")))
+       fetched, so the icons travel as a map and a stand-in renderer uses it.
+
+       All of them, not the ones a pattern finds: a page names its icons in
+       markup, in a config object and in plain arrays, and a missed name shows
+       up as an empty square. The whole set is 274 KB against a file of 3.7 MB."""
     out = {}
-    for n in sorted(names):
-        f = DS / "assets" / "icons" / (n + ".svg")
-        if not f.exists():
-            continue
+    for f in sorted((DS / "assets" / "icons").glob("*.svg")):
         svg = f.read_text(encoding="utf-8")
         svg = re.sub(r'\sfill="#[0-9a-fA-F]{3,8}"', ' fill="currentColor"', svg)
         svg = re.sub(r'\sstroke="#[0-9a-fA-F]{3,8}"', ' stroke="currentColor"', svg)
         svg = re.sub(r'<svg([^>]*?)\swidth="[^"]*"', r"<svg\1", svg)
         svg = re.sub(r'<svg([^>]*?)\sheight="[^"]*"', r"<svg\1", svg)
         svg = re.sub(r"<svg\b", '<svg aria-hidden="true" width="100%" height="100%" style="display:block"', svg, count=1)
-        out[n] = " ".join(svg.split())
+        out[f.stem] = " ".join(svg.split())
     return out
 
 def asset_map():
@@ -432,7 +429,13 @@ btn.addEventListener('click', e => {
 });
 document.addEventListener('click', () => { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); });
 
-show(BY_FILE[(location.hash || '').slice(1)] ? BY_FILE[location.hash.slice(1)] : (BUNDLE.screens[(location.hash || '').slice(1)] ? location.hash.slice(1) : 'surveys'));
+function fromHash() {
+  const h = (location.hash || '').slice(1);
+  return BUNDLE.screens[h] ? h : (BY_FILE[h] || 'surveys');
+}
+/* A link straight to #questions changes the hash without reloading the page. */
+window.addEventListener('hashchange', () => { if (fromHash() !== current) show(fromHash()); });
+show(fromHash());
 </script>
 """
 
