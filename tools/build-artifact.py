@@ -84,39 +84,56 @@ def icon_map():
     return out
 
 def asset_map():
-    """Every image the screens or the dashboard point at, as a data URI, keyed on
-       the path they use. Only what is referenced: the design system's own
-       illustration folder is two megabytes, most of it for other prototypes."""
+    """Every image a screen can ask for, as a data URI.
+
+       Keyed twice, under the full URL and under the bare path: a page writes
+       the first, effectiveness.js composes the second from an ASSET_BASE that
+       is empty inside an inline script. Vector illustrations all travel, the
+       same reasoning as the icons: they are named in markup, in config and in
+       arrays, and guessing which ones missed win-small and improve-small on
+       every dashboard. Photographs are only packed when something asks for
+       them by name, because they are the heavy ones."""
     text = "\n".join(read(p) for p in list(ROOT.glob("*.html")) + list(ROOT.glob("*.js")))
     eff = read(DS / "effectiveness.js")
     out = {}
 
-    def add(key, f):
-        if Path(f).is_file():
-            out[key] = data_uri(f)
+    uris, index = [], {}
 
-    # written out in full, in the repo or on the design system's site
+    def add(path, *keys):
+        path = Path(path)
+        if not path.is_file():
+            return
+        if path not in index:
+            index[path] = len(uris)
+            uris.append(data_uri(path))
+        for k in keys:
+            out[k] = index[path]
+            if not k.startswith("http"):
+                out[PAGES + k] = index[path]
+
+    # every vector the design system ships, under both spellings
+    for f in (DS / "assets" / "illustrations").rglob("*.svg"):
+        rel = str(f.relative_to(DS))
+        add(f, rel)
+    # an icon can also be drawn as an image rather than inlined: the reports view
+    # builds ${ASSET_BASE}assets/icons/${type}-file.svg, a name no pattern finds.
+    # They are small, so they all get a URI as well as their inline copy.
+    for f in (DS / "assets" / "icons").glob("*.svg"):
+        add(f, str(f.relative_to(DS)))
+
+    # written out in full by a page or by the design system
     for url in set(re.findall(r'https://effectory-ux\.github\.io/Engage-Design-system-/(assets/[^"\'\s)]+)', text + eff)):
-        add(PAGES + url, DS / url)
+        add(DS / url, url)
+    # this repo's own images, relative
     for rel in set(re.findall(r'["\'](assets/[a-z0-9/_.-]+\.(?:svg|png|jpe?g))["\']', text)):
-        add(rel, ROOT / rel)
-
-    # composed at run time: the dashboard's three illustrations and its file icons,
-    # and one illustration per survey template in the picker
-    for name in ("actions-empty", "improve-small", "win-small"):
-        add(PAGES + "assets/illustrations/%s.svg" % name, DS / ("assets/illustrations/%s.svg" % name))
-    for name in ("file-loading", "file-ready", "ppt-file", "pdf-file"):
-        add(PAGES + "assets/icons/%s.svg" % name, DS / ("assets/icons/%s.svg" % name))
-    for f in (DS / "assets/illustrations/templates").glob("*.svg"):
-        add(PAGES + "assets/illustrations/templates/" + f.name, f)
-    add(PAGES + "assets/illustrations/logo/effectory-logo.svg", DS / "assets/illustrations/logo/effectory-logo.svg")
-    return out
+        add(ROOT / rel, rel)
+    return {"keys": out, "uris": uris}
 
 print("design system  ", end="", flush=True)
 CSS = css_files(("tokens.css", "foundation.css", "components.css"))
 EFF_CSS = css_files(("effectiveness.css",))
 JS, ICONS, ASSETS = shared_js(), icon_map(), asset_map()
-print("%d KB css + %d KB dashboard-css \u00b7 %d KB js \u00b7 %d icons \u00b7 %d assets" % (len(CSS)//1024, len(EFF_CSS)//1024, len(JS)//1024, len(ICONS), len(ASSETS)))
+print("%d KB css + %d KB dashboard-css \u00b7 %d KB js \u00b7 %d icons \u00b7 %d plaatjes onder %d namen" % (len(CSS)//1024, len(EFF_CSS)//1024, len(JS)//1024, len(ICONS), len(ASSETS["uris"]), len(ASSETS["keys"])))
 
 # ── the screens ──────────────────────────────────────────────────────────────
 DROP_SRC = re.compile(r"(proto-config\.js|toolbar/load\.js|gtma-icons\.js|" + re.escape(PAGES) + r")")
@@ -180,6 +197,11 @@ SHIM = r"""
 (function () {
   var P = window.__params || {};
   function go(u) { parent.GTMA.go(String(u)); }
+  /* A document built from a string has no URL, so the History API refuses to
+     write one: replaceState throws a SecurityError. The scan's tabs call it on
+     every click, and the error stopped the click before it switched the view.
+     The parent owns the address bar here, so these become no-ops. */
+  try { history.replaceState = function () {}; history.pushState = function () {}; } catch (e) {}
   /* Screen code reads location.search and sets location.href; both are rewritten
      to __loc at build time, so this object is what they talk to. */
   window.__loc = {
@@ -195,8 +217,10 @@ SHIM = r"""
   function fix(el) {
     var src = el.getAttribute('src');
     if (!src || src.slice(0, 5) === 'data:') return;
-    var hit = A[src] || A[src.replace(/^\.\//, '')];
-    if (hit) el.setAttribute('src', hit);
+    var i = A.keys[src];
+    if (i === undefined) i = A.keys[src.replace(/^\.\//, '')];
+    if (i === undefined) { console.warn('[gtma] geen ingebakken plaatje voor', src); return; }
+    el.setAttribute('src', A.uris[i]);
   }
   function sweep(root) {
     if (root.nodeType === 1 && root.tagName === 'IMG') fix(root);
