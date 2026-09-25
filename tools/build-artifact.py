@@ -267,6 +267,16 @@ def rewrite(js):
        from a string there is no URL to read or to navigate."""
     return re.sub(r"\b(?:window\.)?location\.", "__loc.", js)
 
+
+def rewrite_markup(html):
+    """The same, for the navigation a page writes straight into its markup:
+       onclick="location.href='cyos-participants.html'" on the step buttons.
+       Left alone, a relative URL in a frame without one resolves against the
+       page around it, and the whole artifact goes looking for a file that is
+       not there. Only inside on* attributes, never in the text itself."""
+    return re.sub(r'(\son\w+=")([^"]*)(")',
+                  lambda m: m.group(1) + rewrite(m.group(2)) + m.group(3), html)
+
 # ── the file ─────────────────────────────────────────────────────────────────
 def js_string(s):
     return json.dumps(s).replace("</", "<\\/")
@@ -278,7 +288,7 @@ for key, s in BUILT.items():
 
 payload = {
     "screens": {k: {"label": v["label"], "group": v["group"], "file": v["file"],
-                    "head": v["head"], "body": v["body"],
+                    "head": v["head"], "body": rewrite_markup(v["body"]),
                     "js": [rewrite(j) for j in v["js"]],
                     "eff": v["eff"], "effcss": v["effcss"], "chart": v["chart"]} for k, v in BUILT.items()},
     "groups": groups,
