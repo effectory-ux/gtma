@@ -150,10 +150,22 @@ def split_page(path):
     body = s[s.index("<body>") + 6:]
     body = body[:body.rindex("</body>")] if "</body>" in body else body
 
-    # head: keep this page's own <style> and inline <script>, drop the rest
+    # head: keep this page's own <style>, inline <script> and own stylesheets,
+    # drop what came from another host. A stylesheet of this repo is read in
+    # where its <link> stood, so the cascade keeps the order the page had: it
+    # carries the review dialog and the Action Center, and without it those
+    # draw unstyled, icons at full width.
     keep = []
-    for m in re.finditer(r"<style>(.*?)</style>|<script>(.*?)</script>", head, re.S):
-        keep.append("<style>%s</style>" % m.group(1) if m.group(1) is not None else "<script>%s</script>" % m.group(2))
+    for m in re.finditer(r"<style>(.*?)</style>|<script>(.*?)</script>"
+                         r'|<link[^>]*?rel="stylesheet"[^>]*?href="([^"]+)"[^>]*>', head, re.S):
+        if m.group(1) is not None:
+            keep.append("<style>%s</style>" % m.group(1))
+        elif m.group(2) is not None:
+            keep.append("<script>%s</script>" % m.group(2))
+        else:
+            f = ROOT / m.group(3)
+            if f.is_file():
+                keep.append("<style>/* %s */\n%s</style>" % (m.group(3), read(f)))
     needs_eff = "effectiveness.js" in s
     needs_eff_css = "effectiveness.css" in head
     needs_chart = "chart.umd" in s
