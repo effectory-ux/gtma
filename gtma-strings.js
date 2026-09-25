@@ -132,7 +132,12 @@ Object.assign(window.GTMA_STRINGS, {
   "Group structure": { nl: "Groepsstructuur", de: "Gruppenstruktur" },
   "Name": { nl: "Naam", de: "Name" },
   "Number of surveys the group is invited to": { nl: "Aantal onderzoeken waarvoor de groep is uitgenodigd", de: "Anzahl der Befragungen, zu denen die Gruppe eingeladen ist" },
-  "Search for a group": { nl: "Een groep zoeken", de: "Nach einer Gruppe suchen" }
+  "Search for a group": { nl: "Een groep zoeken", de: "Nach einer Gruppe suchen" },
+  /* Visible only with the sample switched on */
+  "Invited sample": { nl: "Uitgenodigde steekproef", de: "Eingeladene Stichprobe" },
+  "Randomized sample invited when survey starts": { nl: "De aselecte steekproef wordt uitgenodigd zodra het onderzoek start", de: "Die zufällige Stichprobe wird eingeladen, sobald die Befragung startet" },
+  /* The summary puts the number in bold, so the sentence arrives in pieces */
+  "Inviting": { nl: "Er worden", de: "Es werden" }
 });
 
 /* ── Survey creator: survey period ── */
@@ -244,6 +249,14 @@ Object.assign(window.GTMA_STRINGS, {
 
 /* ── One word, two meanings: these win on the page that means it differently ── */
 window.GTMA_PAGE_STRINGS = {
+  /* The date picker builds its own weekday letters. Two-letter keys are kept to
+     the page that draws that calendar, so a stray "We" or "Sa" elsewhere on the
+     prototype is never touched. */
+  "cyos-survey-period.html": {
+    "Su": { nl: "zo", de: "So" }, "Mo": { nl: "ma", de: "Mo" }, "Tu": { nl: "di", de: "Di" },
+    "We": { nl: "wo", de: "Mi" }, "Th": { nl: "do", de: "Do" }, "Fr": { nl: "vr", de: "Fr" },
+    "Sa": { nl: "za", de: "Sa" }
+  },
   "survey-detail.html": {
     "Response": { nl: "Respons", de: "Rücklauf" },
     "Questions": { nl: "Vragen", de: "Fragen" },
@@ -277,6 +290,7 @@ window.GTMA_RULES = [
   { re: /^Available in (\d+) projects?$/, nl: function (m) { return 'Beschikbaar in ' + m[1] + (m[1] === '1' ? ' project' : ' projecten'); }, de: function (m) { return 'Verfügbar in ' + m[1] + (m[1] === '1' ? ' Projekt' : ' Projekten'); } },
   { re: /^(\d+) reminders?, sent to everyone who has not responded$/, nl: function (m) { return m[1] + (m[1] === '1' ? ' herinnering' : ' herinneringen') + ', naar iedereen die nog niet heeft gereageerd'; }, de: function (m) { return m[1] + (m[1] === '1' ? ' Erinnerung' : ' Erinnerungen') + ', an alle, die noch nicht geantwortet haben'; } },
   { re: /^(\d+) participants from (\d+) groups$/, nl: '$1 deelnemers uit $2 groepen', de: '$1 Teilnehmende aus $2 Gruppen' },
+  { re: /^(\d+) participants$/, nl: function (m) { return m[1] + (m[1] === '1' ? ' deelnemer' : ' deelnemers'); }, de: function (m) { return m[1] + (m[1] === '1' ? ' teilnehmende Person' : ' Teilnehmende'); } },
   { re: /^(\d+) participants, (\d+)% random sample$/, nl: '$1 deelnemers, steekproef van $2%', de: '$1 Teilnehmende, $2% Stichprobe' },
   { re: /^Survey: (.+)$/, nl: 'Onderzoek: $1', de: 'Befragung: $1' },
   { re: /^Email: (.+)$/, nl: 'E-mail: $1', de: 'E-Mail: $1' },
@@ -370,6 +384,7 @@ Object.assign(window.GTMA_STRINGS, {
   "Completion time": { nl: "Invultijd", de: "Ausfülldauer" },
   "Not selected yet": { nl: "Nog niet gekozen", de: "Noch nicht ausgewählt" },
   "Inviting structure": { nl: "Uitnodigingsstructuur", de: "Einladungsstruktur" },
+  "Organizational Structure": { nl: "Organisatiestructuur", de: "Organisationsstruktur" },
   "Randomized sample": { nl: "Aselecte steekproef", de: "Zufällige Stichprobe" },
   "Invited": { nl: "Uitgenodigd", de: "Eingeladen" },
   "Start of schedule": { nl: "Start van het schema", de: "Beginn des Zeitplans" },
@@ -387,6 +402,15 @@ Object.assign(window.GTMA_STRINGS, {
 window.GTMA_RULES.push(
   { re: /^(\d+) participants?$/, nl: function (m) { return m[1] + (m[1] === '1' ? ' deelnemer' : ' deelnemers'); }, de: function (m) { return m[1] + ' Teilnehmende'; } },
   { re: /^(\d+) minutes?$/, nl: '$1 minuten', de: '$1 Minuten' },
+  { re: /^of (\d+) participants$/, nl: 'van de $1 deelnemers uitgenodigd', de: 'von $1 Teilnehmenden eingeladen' },
+  /* The structure's own name sits in the same text node, so it comes along */
+  /* The structure's name is a string of its own, so it goes through the
+     lookup as well: otherwise the Dutch line ends in English. */
+  { re: /^(\d+) groups under (.+)$/,
+    nl: function (m) { return m[1] + ' groepen onder ' + window.gtmaT(m[2]); },
+    de: function (m) { return m[1] + ' Gruppen unter ' + window.gtmaT(m[2]); } },
+  { re: /^(\d+) selected participants in total under (.+)$/, nl: '$1 geselecteerde deelnemers in totaal onder $2', de: '$1 ausgewählte Teilnehmende insgesamt unter $2' },
+  { re: /^Select (\d+) groups?$/, nl: function (m) { return m[1] + (m[1] === '1' ? ' groep selecteren' : ' groepen selecteren'); }, de: function (m) { return m[1] + (m[1] === '1' ? ' Gruppe auswählen' : ' Gruppen auswählen'); } },
   { re: /^(\d+) Groups?$/, nl: function (m) { return m[1] + (m[1] === '1' ? ' groep' : ' groepen'); }, de: function (m) { return m[1] + (m[1] === '1' ? ' Gruppe' : ' Gruppen'); } }
 );
 

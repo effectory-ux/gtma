@@ -131,6 +131,7 @@ def asset_map():
 
 print("design system  ", end="", flush=True)
 CSS = css_files(("tokens.css", "foundation.css", "components.css"))
+EFF_CSS_RAW = None
 EFF_CSS = css_files(("effectiveness.css",))
 JS, ICONS, ASSETS = shared_js(), icon_map(), asset_map()
 print("%d KB css + %d KB dashboard-css \u00b7 %d KB js \u00b7 %d icons \u00b7 %d plaatjes onder %d namen" % (len(CSS)//1024, len(EFF_CSS)//1024, len(JS)//1024, len(ICONS), len(ASSETS["uris"]), len(ASSETS["keys"])))
@@ -184,8 +185,14 @@ print("%d + %d dashboards" % (len(BUILT), len(DASHBOARDS)))
 
 # The dashboards share one shell: effectiveness.js draws them from a variant name.
 SHELL = split_page("novanta-after-overview.html")
+# Live, each of the six views is its own file calling renderOverview(variant, view).
+# Here one screen per variant serves all six, and the view arrives in the query
+# the router hands it, so a link to …-themes.html still opens on Themes.
+VIEW = "(__loc.search.match(/view=([a-z]+)/) || [])[1] || 'overview'"
 for variant, label in DASHBOARDS:
-    js = [re.sub(r"renderOverview\('[^']+'", "renderOverview('%s'" % variant, j) for j in SHELL["js"]]
+    js = [re.sub(r"renderOverview\('[^']+',\s*'[^']*'", "renderOverview('%s', %s" % (variant, VIEW),
+                 re.sub(r"renderOverview\('[^']+'(?!\s*,)", "renderOverview('%s'" % variant, j))
+          for j in SHELL["js"]]
     BUILT["dash-" + variant] = dict(SHELL, js=js, label=label, group="Your voice results",
                                     file=variant + "-overview.html")
 
@@ -222,6 +229,40 @@ SHIM = r"""
     if (i === undefined) { console.warn('[gtma] geen ingebakken plaatje voor', src); return; }
     el.setAttribute('src', A.uris[i]);
   }
+  /* Markup a screen writes at run time carries the same image paths, and the
+     parser fetches them the instant the string is assigned: by the time the
+     observer below runs, the request is already out and 404s. So the string
+     is swapped on its way in, and the observer stays as the safety net. */
+  function swapHTML(html) {
+    if (html.indexOf('assets/') === -1) return html;
+    return html.replace(/(\ssrc=")([^"]+)(")/g, function (m, a, url, z) {
+      if (url.slice(0, 5) === 'data:') return m;
+      var i = A.keys[url];
+      if (i === undefined) i = A.keys[url.replace(/^\.\//, '')];
+      return i === undefined ? m : a + A.uris[i] + z;
+    });
+  }
+  var IH = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+  Object.defineProperty(Element.prototype, 'innerHTML', {
+    configurable: true, enumerable: IH.enumerable,
+    get: function () { return IH.get.call(this); },
+    set: function (v) { IH.set.call(this, swapHTML(String(v))); }
+  });
+  var IA = Element.prototype.insertAdjacentHTML;
+  Element.prototype.insertAdjacentHTML = function (pos, html) {
+    return IA.call(this, pos, swapHTML(String(html)));
+  };
+  var SRC = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+  Object.defineProperty(HTMLImageElement.prototype, 'src', {
+    configurable: true, enumerable: SRC.enumerable,
+    get: function () { return SRC.get.call(this); },
+    set: function (v) {
+      var u = String(v), i = A.keys[u];
+      if (i === undefined) i = A.keys[u.replace(/^\.\//, '')];
+      SRC.set.call(this, i === undefined ? u : A.uris[i]);
+    }
+  });
+
   function sweep(root) {
     if (root.nodeType === 1 && root.tagName === 'IMG') fix(root);
     if (root.querySelectorAll) root.querySelectorAll('img[src]').forEach(fix);
@@ -262,10 +303,44 @@ SHIM = r"""
 })();
 """
 
+LOC_PROPS = ("href", "pathname", "search", "hash", "origin", "host", "hostname",
+             "protocol", "replace", "assign", "reload")
+
 def rewrite(js):
     """Screen code talks to __loc instead of location: inside an iframe built
-       from a string there is no URL to read or to navigate."""
-    return re.sub(r"\b(?:window\.)?location\.", "__loc.", js)
+       from a string there is no URL to read or to navigate. Only the real
+       properties are swapped, because the design system's translations talk
+       about "location" as a word and must be left alone."""
+    return re.sub(r"\b(?:window\.)?location\.(?=(?:%s)\b)" % "|".join(LOC_PROPS),
+                  "__loc.", js)
+
+
+def rewrite_css(css, assets):
+    """An image can also arrive through CSS: the layout previews, the phase
+       glyphs in the timeline, a checkmark in a checkbox. Nothing rewrites those
+       at run time the way an <img> is rewritten, so they are swapped here."""
+    def sub(m):
+        raw = m.group(2).strip()
+        if raw.startswith(("data:", "http")) and "effectory-ux.github.io" not in raw:
+            return m.group(0)
+        key = raw.replace("./", "")
+        i = assets["keys"].get(key, assets["keys"].get(raw))
+        return "url(%s)" % assets["uris"][i] if i is not None else m.group(0)
+    return re.sub(r"url\((['\"]?)([^)]*?)\1\)", sub, css)
+
+
+def swap_img(html, assets):
+    """An <img> in the markup is fetched the moment the parser reads it, long
+       before the shim can swap it. Outside the artifact that is a request that
+       404s, so the src is resolved here instead."""
+    def sub(m):
+        raw = m.group(2)
+        if raw.startswith("data:"):
+            return m.group(0)
+        key = raw.replace("./", "").replace(PAGES, "")
+        i = assets["keys"].get(raw, assets["keys"].get(key))
+        return m.group(1) + assets["uris"][i] + m.group(3) if i is not None else m.group(0)
+    return re.sub(r'(<img\b[^>]*?\ssrc=")([^"]+)(")', sub, html)
 
 
 def rewrite_markup(html):
@@ -288,7 +363,7 @@ for key, s in BUILT.items():
 
 payload = {
     "screens": {k: {"label": v["label"], "group": v["group"], "file": v["file"],
-                    "head": v["head"], "body": rewrite_markup(v["body"]),
+                    "head": rewrite_css(v["head"], ASSETS), "body": swap_img(rewrite_markup(v["body"]), ASSETS),
                     "js": [rewrite(j) for j in v["js"]],
                     "eff": v["eff"], "effcss": v["effcss"], "chart": v["chart"]} for k, v in BUILT.items()},
     "groups": groups,
@@ -420,7 +495,14 @@ const GTMA = {
   go(url) {
     const u = String(url);
     const file = (u.split(/[?#]/)[0] || GTMA.here()).replace(/^\.\//, '');
-    const rest = u.slice(u.split(/[?#]/)[0].length);
+    let rest = u.slice(u.split(/[?#]/)[0].length);
+    /* A dashboard is one screen per group and period; which of the six views it
+       opens on is the last part of the file name the prototype asks for. */
+    const dash = file.match(/^(novanta|team-it)-(after|before)-(overview|focus|themes|scores|reports|actions)\.html$/);
+    if (dash) {
+      rest = '?view=' + dash[3] + (rest.match(/#.*/) || [''])[0];
+      return show('dash-' + dash[1] + '-' + dash[2], rest);
+    }
     show(BY_FILE[file] || current, rest);
   }
 };
@@ -475,10 +557,10 @@ show(fromHash());
 
 SUBS = {
     "@@PAYLOAD@@": js_string(json.dumps(payload)),
-    "@@CSS@@": js_string(CSS),
-    "@@EFFCSS@@": js_string(EFF_CSS),
-    "@@I18N@@": js_string(read(DS / "i18n.js")),
-    "@@EFF@@": js_string(read(DS / "effectiveness.js")),
+    "@@CSS@@": js_string(rewrite_css(CSS, ASSETS)),
+    "@@EFFCSS@@": js_string(rewrite_css(EFF_CSS, ASSETS)),
+    "@@I18N@@": js_string(rewrite(read(DS / "i18n.js"))),
+    "@@EFF@@": js_string(rewrite(read(DS / "effectiveness.js"))),
     "@@SHIM@@": js_string(SHIM),
     "@@ICONS@@": js_string(json.dumps(ICONS)),
     "@@ASSETS@@": js_string(json.dumps(ASSETS)),
