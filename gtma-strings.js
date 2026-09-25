@@ -443,20 +443,6 @@ Object.assign(window.GTMA_STRINGS, {
   "See how your group scores compared to the benchmark. If your group scores close or higher than the benchmark, that is great! If your group is falling far behind, you should look closer into this topic.": { nl: "Bekijk hoe je groep scoort ten opzichte van de benchmark. Scoort je groep dichtbij of hoger dan de benchmark, top! Blijft je groep ver achter, kijk dan beter naar dit onderwerp.", de: "Sehen Sie, wie Ihre Gruppe im Vergleich zur Benchmark abschneidet. Liegt Ihre Gruppe nahe an oder über der Benchmark, ist das super! Fällt Ihre Gruppe weit zurück, sollten Sie dieses Thema genauer betrachten." }
 });
 
-/* ── Waiting on the design system release ────────────────────────────────────
-   Three strings, for the same reason as the thirty before them: the dashboard
-   draws them, the design system owns the translation, and the prototype loads that file
-   from Pages. The Actions intro was rewritten so it no longer claims responses
-   are shared with HR, the Monitoring tile became "To monitor", and the empty
-   state was reworded. A translation is keyed on its English source, so each
-   rewrite took the Dutch and German with it. The fix is on the design
-   system's pull request #13. Delete this block once that is released. */
-Object.assign(window.GTMA_STRINGS, {
-  "To monitor": { nl: "Monitoren", de: "Beobachten" },
-  "Respond to a focus area to decide how you'll act on it, and it shows up here. Not sure where to start? Create a custom pin from your own goal.": { nl: "Reageer op een aandachtsgebied om te bepalen wat je ermee doet, dan verschijnt het hier. Weet je niet waar je moet beginnen? Maak een eigen pin vanuit je eigen doel.", de: "Reagieren Sie auf einen Schwerpunkt, um festzulegen, wie Sie damit umgehen, dann erscheint er hier. Sie wissen nicht, wo Sie anfangen sollen? Erstellen Sie eine eigene Markierung aus Ihrem eigenen Ziel." },
-  "All actions you're taking, areas you're monitoring, and topics flagged for support, gathered from your focus areas and the questions you pinned in the Overview.": { nl: "Alle acties die je uitvoert, gebieden die je in de gaten houdt en onderwerpen waarvoor je hulp hebt aangevraagd, verzameld uit je aandachtsgebieden en de vragen die je in het overzicht hebt vastgepind.", de: "Alle Maßnahmen, die Sie ergreifen, Bereiche, die Sie beobachten, und Themen, für die Sie Unterstützung angefordert haben, gesammelt aus Ihren Schwerpunkten und den Fragen, die Sie in der Übersicht angepinnt haben." }
-});
-
 /* ── The Action Center, ahead of the design system ──
    Written by gtma-action-center.js, which bridges the Action Center prototype
    until the design system ships it. Move these into its i18n.js with it. */
